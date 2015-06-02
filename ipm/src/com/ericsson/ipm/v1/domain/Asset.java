@@ -8,12 +8,14 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the asset database table.
- * 
+ *
  */
 @Entity
+@Table(name="ASSET")
 @NamedQuery(name="Asset.findAll", query="SELECT a FROM Asset a")
 public class Asset implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue
@@ -40,11 +42,11 @@ public class Asset implements Serializable {
 
 	@Column(name = "REUSED_IN_OTHE_RPROJECTS_NAME")
 	private String reusedInOtherProjectsName;
-	
+
 	@Column(name = "MODIFIED_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
-	
+
 	@Column(name = "CREATION_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -64,8 +66,8 @@ public class Asset implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
+
 	public String getApprovalStatus() {
 		return approvalStatus;
 	}

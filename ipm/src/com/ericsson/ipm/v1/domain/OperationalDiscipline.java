@@ -2,7 +2,16 @@ package com.ericsson.ipm.v1.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 
 
 /**
@@ -10,6 +19,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name="OPERATIONAL_DISCIPLINE")
 @NamedQuery(name="OperationalDiscipline.findAll", query="SELECT o FROM OperationalDiscipline o")
 public class OperationalDiscipline implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +28,6 @@ public class OperationalDiscipline implements Serializable {
 	@GeneratedValue
 	@Column(name = "ID")
 	private int id;
-
 
 
 	//bi-directional many-to-one association to Userprofile
@@ -54,7 +63,7 @@ public class OperationalDiscipline implements Serializable {
 	}
 
 
-	
+
 
 	public String getOperationalDisciplineName() {
 		return operationalDisciplineName;

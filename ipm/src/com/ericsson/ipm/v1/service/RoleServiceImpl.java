@@ -1,14 +1,11 @@
 package com.ericsson.ipm.v1.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.dao.RoleDAO;
 import com.ericsson.ipm.v1.domain.Role;

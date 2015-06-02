@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,6 +18,7 @@ import javax.persistence.TemporalType;
 // http://forum.linuxcareer.com/threads/84-Use-BASH-script-to-parse-a-line-from-log-file
 
 @Entity
+@Table(name="DELIVERY_QUALITY")
 public class DeliveryQuality implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,10 +27,10 @@ public class DeliveryQuality implements Serializable {
 	@Column(name = "ID")
 	private int id;
 
-	
+
 	@Column(name = "PROJECT_NAME")
 	private String projectName;
-	
+
 	@Column(name = "PROJECT_TYPE")
 	private String projectType;
 
@@ -47,12 +49,12 @@ public class DeliveryQuality implements Serializable {
 
 	@Column(name = "TL_NAME")
 	private String tlName;
-	
-	
+
+
 	@Column(name = "SW_ARCHITECT_NAME")
 	private String swArchitectName;
-	
-	
+
+
 	//bi-directional many-to-one association to Userprofile
 		@ManyToOne(fetch=FetchType.LAZY)
 		@JoinColumn(name="USER_ID")
@@ -132,6 +134,6 @@ public class DeliveryQuality implements Serializable {
 		}
 
 
-		
-		
+
+
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ericsson.ipm.v1.domain;
 
@@ -13,16 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @author ihkhan
- * 
+ *
  */
 @Entity
+@Table(name="USER_ROLE_ASSIGNMENT")
 public class UserRoleAssignment implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 4026879770265467724L;
 

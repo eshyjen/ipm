@@ -12,15 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the userprofile database table.
- * 
+ *
  */
 @Entity
+@Table(name="USER_PROFILE")
 @NamedQuery(name="Userprofile.findAll", query="SELECT u FROM UserProfile u")
 public class UserProfile implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -29,82 +31,82 @@ public class UserProfile implements Serializable {
 	@GeneratedValue
 	@Column(name = "ID")
 	private int id;
-	
+
 	@Column(name = "USER_FRIST_NAME")
 	private String userFristName;
-	
+
 	@Column(name = "USER_LAST_NAME")
 	private String userLastName;
-	
+
 	@Column(name = "PASSWORD")
 	private String password;
 
 	@Column(name = "COST_CENTER")
 	private String costCenter;
-	
+
 	@Column(name = "IS_ROLE_MANAGER")
 	private Boolean role = Boolean.FALSE;
-	
+
 	@Column(name = "CURRENT_LINE_MANAGER")
 	private String currentLineManager;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATE_OF_JOIN_IN_MEDIA_ACCOUNT")
 	private Date dateOfJoinInMediaAccount;
-	
+
 	@Column(name = "EDUCATIONAL_QUALIFICATION")
 	private String educationalQualification;
-	
+
 	@Column(name = "EMAIL_ID")
 	private String emailId;
-	
+
 	@Column(name = "EMPLOYEE_ID")
 	private String employeeId;
-	
+
 	@Column(name = "JOB_ROLE")
 	private String jobRole;
-	
+
 	@Column(name = "JOB_STAGE")
 	private String jobStage;
-	
+
 	@Column(name = "LASTYEAR_IPM_RATING")
 	private String lastYearIPMRating;
-	
+
 	@Column(name = "MAN_HOUR_RATE")
 	private String manHourRate;
-	
+
 	@Column(name = "MODIFIED_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
-	
+
 	@Column(name = "PREVIOUS_LINE_MANEGER")
 	private String previousLineManeger;
-	
+
 	@Column(name = "PREVIOUS_ORGANISATION")
 	private String previousOrganisation;
-	
+
 	@Column(name = "REGISTRATION_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date registrationDate;
-	
+
 	@Column(name = "SIGNUN_ID")
 	private String signunId;
-	
+
 	@Column(name = "TOTAL_ERICSSON_EXPERIENCE_IN_MONTHS")
 	private int totalEricssonExperienceInMonths;
-	
+
 	@Column(name = "TOTALITEXPERIENCE")
 	private double totalITExperience;
-	
+
 	@Column(name = "TOTAL_YEARS_OF_EXPERIENCE")
 	private double totalYearsOfExperience;
-	
+
 	@Column(name = "YEAROF_IPM")
 	private String yearOfIPM;
-	
+
 	@Column(name = "YEAR_OF_LAST_PROMOTION")
 	private String yearOfLastPromotion;
-	
+
 	@Column(name = "IS_ENABLED")
 	private Boolean isEnabled = Boolean.FALSE;
 
@@ -115,10 +117,10 @@ public class UserProfile implements Serializable {
 	//bi-directional many-to-one association to Operationaldiscpline
 	@OneToMany(mappedBy="userprofile")
 	private List<OperationalDiscipline> operationaldiscplines;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
-	
+
 	//bi-directional many-to-one association to deliveryQualities
 	@OneToMany(mappedBy="userprofile")
 	private List<DeliveryQuality> deliveryQualities;
@@ -132,9 +134,9 @@ public class UserProfile implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}	
-	
-	
+	}
+
+
 	public String getUserFristName() {
 		return userFristName;
 	}
@@ -371,7 +373,7 @@ public class UserProfile implements Serializable {
 
 		return operationaldiscpline;
 	}
-	
+
 	   public List<UserRoleAssignment> getRoleAssignments() {
 		return roleAssignments;
 	}
@@ -421,8 +423,8 @@ public class UserProfile implements Serializable {
 		public void setIsEnabled(Boolean isEnabled) {
 			this.isEnabled = isEnabled;
 		}
-		
-		
-		
+
+
+
 
 }

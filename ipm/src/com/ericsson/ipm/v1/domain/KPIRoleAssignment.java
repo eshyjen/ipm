@@ -9,25 +9,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 /**
  * @author ihkhan
- * 
+ *
  */
 
 // http://www.jroller.com/raible/entry/multiple_select_with_spring_mvc
 // http://stackoverflow.com/questions/18728678/spring-formselect-multiple-selected-value
 
 @Entity
+@Table(name="KPI_ROLE_ASSIGNMENT")
 public class KPIRoleAssignment implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 
 	@Id
 	@GeneratedValue
-	@Column(name = "KPI_ROLE_ASSIGNMENT_ID")
+	@Column(name = "ID")
 	private Integer id;
 
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -71,7 +73,7 @@ public class KPIRoleAssignment implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
+
+
 
 }

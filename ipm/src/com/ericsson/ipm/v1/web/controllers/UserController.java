@@ -7,16 +7,22 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +33,21 @@ import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
 import com.ericsson.ipm.v1.domain.Role;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.domain.UserRoleAssignment;
+import com.ericsson.ipm.v1.dto.EmployeeDTO;
 import com.ericsson.ipm.v1.dto.KPIIdNameDTO;
 import com.ericsson.ipm.v1.security.authentication.vo.ContextAuthenticatedUserDetailsVO;
 import com.ericsson.ipm.v1.service.UserProfileService;
 import com.ericsson.v1.util.Constants;
 import com.ericsson.v1.util.IPMUtility;
+import com.google.visualization.datasource.DataSourceHelper;
+import com.google.visualization.datasource.DataSourceRequest;
+import com.google.visualization.datasource.base.ReasonType;
+import com.google.visualization.datasource.base.ResponseStatus;
+import com.google.visualization.datasource.base.StatusType;
+import com.google.visualization.datasource.base.TypeMismatchException;
+import com.google.visualization.datasource.datatable.ColumnDescription;
+import com.google.visualization.datasource.datatable.DataTable;
+import com.google.visualization.datasource.datatable.value.ValueType;
 
 
 /**
@@ -169,6 +185,98 @@ public class UserController extends BaseController {
 	
 	
 	
+	@RequestMapping(value="orgChartDetails.html", method=RequestMethod.GET)
+	public String getOrgChartDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		//model.addAttribute(loggedInUser.getProfile());
+		return "protected/OrgChart";
+	}
+	
+	@RequestMapping(value="managedPeopleDetails.html", method=RequestMethod.GET)
+	public String getManagedPeopleDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		
+		String signum = null;
+		ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
+		Map<String, String> managedPeopleMap = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LOGGER.debug("principal : "+principal);
+	    if (principal instanceof UserDetails) 
+	    {
+	        signum = ((UserDetails) principal).getUsername();
+	        LOGGER.debug("signum : "+signum);
+	    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
+	    }
+	    if(StringUtils.isNotBlank(signum)){
+	    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
+	    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
+	    }
+		
+	    List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		
+	    Set<String> set = managedPeopleMap.keySet();
+		for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			String string = (String) iterator.next();
+			employeeDTO.setSignum(string);
+			employeeDTO.setName(managedPeopleMap.get(string));
+			employeeDTOs.add(employeeDTO);
+		}
+	    
+		model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
+		return "protected/managedPeople";
+	}
+	
+	
+	@RequestMapping(value="orgChart.html", method=RequestMethod.GET)
+	public void getOrgChartDetail(Model model, HttpServletRequest request, HttpServletResponse response) {
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		
+		String signum = null;
+		ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
+		Map<String, String> managedPeopleMap = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LOGGER.debug("principal : "+principal);
+	    if (principal instanceof UserDetails) 
+	    {
+	        signum = ((UserDetails) principal).getUsername();
+	        LOGGER.debug("signum : "+signum);
+	    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
+	    }
+	    if(StringUtils.isNotBlank(signum)){
+	    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
+	    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
+	    }
+	    
+	    DataTable data = generateMyDataTable(signum, authenticatedUserDetailsVO, managedPeopleMap);
+		DataSourceRequest dsRequest = null;
+		
+		try {
+			// Extract the datasource request parameters.
+			dsRequest = new DataSourceRequest(request);
+			// NOTE: If you want to work in restricted mode, which means that
+			// only
+			// requests from the same domain can access the data source,
+			// uncomment the following call.
+			//
+			// DataSourceHelper.verifyAccessApproved(dsRequest);
+			// Apply the query to the data table.
+			//DataTable newData = DataSourceHelper.applyQuery(dsRequest.getQuery(), data, dsRequest.getUserLocale());
+			// Set the response.
+			DataSourceHelper.setServletResponse(data, dsRequest, response);
+		} catch (Exception rte) {
+			LOGGER.error("A runtime exception has occured", rte);
+			ResponseStatus status = new ResponseStatus(StatusType.ERROR,
+					ReasonType.INTERNAL_ERROR, rte.getMessage());
+			if (dsRequest == null) {
+				dsRequest = DataSourceRequest.getDefaultDataSourceRequest(request);
+			}
+		} 
+		return ;
+	}
 	
 	
 	
@@ -177,8 +285,30 @@ public class UserController extends BaseController {
 	
 	
 	
-	
-	
+	private DataTable generateMyDataTable(String signum, ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO, 
+			Map<String, String> managedPeopleMap) {
+		// Create a data table,
+		DataTable data = new DataTable();
+		ArrayList<ColumnDescription> cd = new ArrayList<ColumnDescription>();
+		cd.add(new ColumnDescription("Name", ValueType.TEXT, "Name"));
+		cd.add(new ColumnDescription("Manager", ValueType.TEXT, "Manager"));
+		cd.add(new ColumnDescription("ToolTip", ValueType.TEXT, "ToolTip"));
+		data.addColumns(cd);
+		// Fill the data table.
+		try {
+			UserProfile profile = authenticatedUserDetailsVO.getProfile();
+			data.addRowFromValues(signum, profile.getUserFristName() +" "+profile.getUserLastName()+"<div style='color:red; font-style:italic'>President</div>", "The President");
+			Set<String> set = managedPeopleMap.keySet();
+			for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
+				String string = (String) iterator.next();
+				data.addRowFromValues(string,signum, managedPeopleMap.get(string));
+			}
+
+		} catch (TypeMismatchException e) {
+			System.out.println("Invalid type!");
+		}
+		return data;
+	}
 	
 	
 	/*private static UserService userService;

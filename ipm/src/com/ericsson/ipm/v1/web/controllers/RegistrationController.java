@@ -166,6 +166,21 @@ public class RegistrationController {
         model.addAttribute("message", messages.getMessage("message.resendToken", null, locale));
         return "public/login";
     }
+    
+    @RequestMapping(value ="employeeRegistration.html", method = RequestMethod.GET)
+    public String showEmployeeRegistrationForm(final HttpServletRequest request, final Model model) {
+        LOGGER.debug("Rendering show Employee Registration Form page.");
+        return "public/employeeRegistration";
+    }
+    
+    @RequestMapping(value ="employeeRegistration.html", method = RequestMethod.POST)
+    public String employeeRegistration(final HttpServletRequest request, final Model model) {
+        LOGGER.debug("Rendering show Employee Registration Form page.");
+        String j_username = request.getParameter("j_username");
+        LOGGER.info("j_usernam " +j_username);
+        userProfileService.register(j_username);
+        return "public/login";
+    }
 	
 	
 	private UserProfile createUserAccount(final RegistrationDTO userDTO) {

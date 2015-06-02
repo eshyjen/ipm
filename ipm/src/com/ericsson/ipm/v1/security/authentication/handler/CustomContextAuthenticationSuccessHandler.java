@@ -24,11 +24,13 @@ public class CustomContextAuthenticationSuccessHandler extends SimpleUrlAuthenti
 	public static final String SESSION_USERPRINCIPAL_KEY = "_USER_PRINCIPAL_KEY";
 	public static final String SESSION_USERPROFILE_KEY = "_USER_PROFILE_KEY";
 	public static final String SESSION_ISADMIN_KEY = "_IS_ADMIN";
+	public static final String SESSION_ISMANAGER_KEY = "_IS_MANAGER";
 
 	private String defaultGuestUrl;
 	private String defaultAuthUrl;
 	private String defaultApprovalPendingUrl;
 	private String defaultSysAdminUrl;
+	private String defaultManagerUrl;
 
 
 	@Override
@@ -42,6 +44,7 @@ public class CustomContextAuthenticationSuccessHandler extends SimpleUrlAuthenti
 		session.setAttribute(SESSION_USERPRINCIPAL_KEY, user.getPrincipal());
 		session.setAttribute(SESSION_USERPROFILE_KEY, user.getProfile());
 		session.setAttribute(SESSION_ISADMIN_KEY,user.isUserInRole(APP_ROLES.ROLE_ADMIN));
+		session.setAttribute(SESSION_ISMANAGER_KEY,user.isUserInRole(APP_ROLES.ROLE_MANAGER));
 		LOGGER.debug("user.getPrincipal() : " + user.getPrincipal());
 		LOGGER.debug("user.getProfile() : " + user.getProfile());
 		LOGGER.debug("user.isUserInRole(APP_ROLES.ROLE_ADMIN) : " + user.isUserInRole(APP_ROLES.ROLE_ADMIN));
@@ -56,6 +59,8 @@ public class CustomContextAuthenticationSuccessHandler extends SimpleUrlAuthenti
 		// full-access user, as per role
 		else if (user.isUserInRole(APP_ROLES.ROLE_SYSADMIN))
 			targetUrl = getDefaultSysAdminUrl();
+		else if (user.isUserInRole(APP_ROLES.ROLE_MANAGER))
+			targetUrl = getDefaultManagerUrl();
 		else
 			targetUrl = getDefaultAuthUrl();
 
@@ -100,5 +105,15 @@ public class CustomContextAuthenticationSuccessHandler extends SimpleUrlAuthenti
 	public void setDefaultSysAdminUrl(String defaultSysAdminUrl) {
 		this.defaultSysAdminUrl = defaultSysAdminUrl;
 	}
+
+	public String getDefaultManagerUrl() {
+		return defaultManagerUrl;
+	}
+
+	public void setDefaultManagerUrl(String defaultManagerUrl) {
+		this.defaultManagerUrl = defaultManagerUrl;
+	}
+	
+	
 	
 }

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
@@ -13,10 +14,11 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * @author ihkhan
- * 
+ *
  */
 
 @Entity
+@Table(name="KPI")
 public class KPI implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -24,40 +26,40 @@ public class KPI implements Serializable {
 	@GeneratedValue
 	@Column(name = "ID")
 	private int id;
-	
+
 	@Column(name = "KPI_DISPLAY_NAME")
 	private String kpiDisplayName;
 
 	@Column(name = "KPI_NAME1", length=1000)
 	private String kpiName1;
-	
+
 	@Column(name = "KPI_NAME2", length=1000)
 	private String kpiName2;
-	
+
 	@Column(name = "KPI_NAME3", length=1000)
 	private String kpiName3;
-	
+
 	@Column(name = "KPI_NAME4", length=1000)
 	private String kpiName4;
-	
+
 	@Column(name = "KPI_VALUE")
 	private String kpiValue;
-	
+
 	@Column(name = "KPI_DESCRIPTION1", length=1000)
 	private String kpiDescription1;
-	
+
 	@Column(name = "KPI_DESCRIPTION2", length=1000)
 	private String kpiDescription2;
-	
+
 	@Column(name = "KPI_DESCRIPTION3", length=1000)
 	private String kpiDescription3;
-	
+
 	@Column(name = "KPI_DESCRIPTION4", length=1000)
 	private String kpiDescription4;
-	
+
 	@Transient
 	private String kpiName;
-	
+
 	@Transient
 	private String kpiDescription;
 
@@ -151,7 +153,7 @@ public class KPI implements Serializable {
 
 	public String getKpiName() {
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(StringUtils.isNotBlank(getKpiName1()))
 			sb.append(getKpiName1());
 		if(StringUtils.isNotBlank(getKpiName2()))
@@ -160,15 +162,15 @@ public class KPI implements Serializable {
 			sb.append(getKpiName3());
 		if(StringUtils.isNotBlank(getKpiName4()))
 			sb.append(getKpiName4());
-			
+
 		return kpiName = sb.toString();
 	}
 
 
 	public String getKpiDescription() {
-		
+
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(StringUtils.isNotBlank(getKpiDescription1()))
 			sb.append(getKpiDescription1());
 		if(StringUtils.isNotBlank(getKpiDescription2()))
@@ -191,11 +193,11 @@ public class KPI implements Serializable {
 				+ kpiDescription4 + ", kpiName=" + kpiName
 				+ ", kpiDescription=" + kpiDescription + "]";
 	}
-	
-	
-	
-	
 
-	
-	
+
+
+
+
+
+
 }
