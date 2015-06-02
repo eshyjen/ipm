@@ -90,7 +90,11 @@
 
         </style>
 		
-		
+<title>Login</title>
+<link href="${rootURL}/resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script>		
 		
 		
 
@@ -103,7 +107,7 @@
 
 <div class="container" align='center'>
 <div id='loginbox' ><font color="#0B2F3A" size="4">
-<div class='logintitle ericssonfont'> Delivery Quality</div>
+<div class='logintitle ericssonfont'> LOGIN</div>
 
 <div class='separator'></div>
 
@@ -112,16 +116,11 @@
 
 
 
-<fmt:setBundle basename="messages" />
-<html>
-<head>
-<title>Login</title>
-<link href="${rootURL}/resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script>
-</head>
-<body>
+
+
+
+
+
 		
 		<div class="col-md-6 col-md-offset-2">	
 		<c:if test="${param.error != null}">
@@ -137,8 +136,9 @@
          </div>  
             
      <div class="row">
+     <BR> <BR>
 		<div class="col-md-6 col-md-offset-2">	
-			<h2>User Login Form</h2>
+			
 			<form:form id="loginForm" method="post" action="${rootURL}/j_spring_security_check" 
 			class="form-horizontal" role="form" cssStyle="width: 800px; margin: 0 auto;">
 		  <div class="form-group">
@@ -164,7 +164,7 @@
 		<br> Current Locale : ${pageContext.response.locale} <br> <a
 				href="<c:url value="/v1/public/registration.html" />"><spring:message
 					code="label.form.loginSignUp"></spring:message></a>
-			<br><br><br>
+			&nbsp;
             <a href="<c:url value="/forgetPassword.html" />"><spring:message
               code="message.resetPassword"></spring:message></a>
 		
