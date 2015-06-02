@@ -6,10 +6,11 @@ import com.ericsson.ipm.v1.domain.Domain;
 import com.ericsson.ipm.v1.domain.JobStage;
 import com.ericsson.ipm.v1.domain.SkillCat;
 
-public interface CABootstrapSetupData {
+public interface BootstrapSetupData {
 
 
-public void setUp(JobStage jobstage);
+	public void setUp();
+	public void setUp(JobStage jobstage);
 
 
 	public void saveDomain(Domain domain);

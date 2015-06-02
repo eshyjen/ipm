@@ -84,16 +84,29 @@ public class CompetenceAssessmentController extends BaseController {
 
 		Integer empId = 1;
 		List<Integer> smIds =  new ArrayList<Integer>();
+		List<EmployeeSkill> employeeSkills =  new ArrayList<EmployeeSkill>();
 		while (enumeration.hasMoreElements()) {
 			String key = (String) enumeration.nextElement();
 			if(StringUtils.isNumeric(key)){
 				smIds.add(Integer.parseInt(key));
+				EmployeeSkill employeeskill = new EmployeeSkill();
+				LOGGER.info("key : "+key);
+				String value = request.getParameter(key);
+				LOGGER.info("value : "+value);
+				String actualValue = value;
+				employeeskill.setActualSkill(actualValue);
+				SkillMaster skillmaster = skillCategoryService.getRefById(Integer.parseInt(key));
+				Employee employee = skillCategoryService.getRefByEmployeeId(empId);
+				employeeskill.setSkillMaster(skillmaster);
+				employeeskill.setEmployee(employee);
+				employeeSkills.add(employeeskill);
 			}
 		}
 
 		skillCategoryService.deleteEmployeeSkill(empId, smIds);
+		skillCategoryService.saveEmployeeskills(employeeSkills);
 
-		while (enumeration.hasMoreElements()) {
+		/*while (enumeration.hasMoreElements()) {
 			String key = (String) enumeration.nextElement();
 			if(StringUtils.isNumeric(key)){
 				EmployeeSkill employeeskill = new EmployeeSkill();
@@ -108,7 +121,7 @@ public class CompetenceAssessmentController extends BaseController {
 				employeeskill.setEmployee(employee);
 				skillCategoryService.saveEmployeeskill(employeeskill);
 			}
-		}
+		}*/
 
 		int doid = 1; //Integer.parseInt(request.getParameter("doid"));
 		int scid = 1; //Integer.parseInt(request.getParameter("scid"));

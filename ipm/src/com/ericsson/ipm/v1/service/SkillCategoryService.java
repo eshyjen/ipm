@@ -15,6 +15,7 @@ public interface SkillCategoryService {
 	public SkillMaster getRefById(int id);
 
 	public void saveEmployeeskill(EmployeeSkill employeeskill);
+	public void saveEmployeeskills(List<EmployeeSkill> employeeskill);
 
 	public Employee getRefByEmployeeId(int id);
 

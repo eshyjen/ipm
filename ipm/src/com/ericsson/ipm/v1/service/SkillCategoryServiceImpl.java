@@ -54,6 +54,13 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 
 		return list;
 	}
+	
+	public void saveEmployeeskills(List<EmployeeSkill> employeeskills){
+		
+		for (EmployeeSkill employeeSkill : employeeskills) {
+			saveEmployeeskill(employeeSkill);
+		}
+	}
 
 	public void deleteEmployeeSkill( int eid, List<Integer> smIds){
 		skillCategoryDAO.deleteEmployeeSkill(eid, smIds);
