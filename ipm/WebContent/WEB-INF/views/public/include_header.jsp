@@ -20,8 +20,8 @@ function back2ProtectedHome() {
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/stylish.css">
 
-   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-   <script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
+   <%-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/script.js"></script> --%>
 
 
 <div>

@@ -160,7 +160,7 @@
 
  <form:hidden path="id" id="id" value="${operationalDisciplineDTO.id }"></form:hidden>
 <br>
-<input type="submit" value="Save/Update" />
+<input type="submit" style="width:100px;" value="Save/Update" />
 </form:form>
 
 </body>

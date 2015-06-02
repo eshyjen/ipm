@@ -17,14 +17,14 @@
 			<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
 				<link rel="stylesheet"
-				href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
-				<link href="${pageContext.request.contextPath }/css/style.css"
+				href="${pageContext.request.contextPath }/resources/css/layout.css" type="text/css" />
+				<link href="${pageContext.request.contextPath }/resources/css/style.css"
 				rel="stylesheet" type="text/css" />
-			<script type="text/javascript"
-				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
+			<%-- <script type="text/javascript"
+				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script> --%>
 			<script type="text/javascript"
 				src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
-			<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script>
+			<%-- <script type="text/javascript" src="${rootURL}/resources/js/app.js"></script> --%>
 	</head>
 <body style="font-size:15px";>
 			<div class="container">

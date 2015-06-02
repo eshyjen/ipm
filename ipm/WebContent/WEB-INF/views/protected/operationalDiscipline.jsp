@@ -77,10 +77,10 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="../resources/stylesheets/commonStyle.css">
+<!-- <link rel="stylesheet" type="text/css" href="../resources/stylesheets/commonStyle.css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-<link rel="stylesheet" type="text/css" href="../resources/stylesheets/jquery.autocomplete.css" />
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" type="text/css" href="../resources/stylesheets/jquery.autocomplete.css" /> -->
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -565,7 +565,7 @@
 				<h3 align="center">Operational Discipline Page</h3>
 			</FONT>
 			<a id="add" href="operationalDiscipline.html">
-				<img src="<%=request.getContextPath()%>/skin/images/add_button.gif" />
+				<img src="<%=request.getContextPath()%>/resources/images/add_button.gif" />
 			</a>
 
 				<div id="tablediv">
@@ -581,10 +581,10 @@
 				   	 </display:column> --%>
 				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id" >
 				   	 <a href="operationalDisciplineForUpdate.html?id=${usertable.id}">
-				   	 <img src="<%=request.getContextPath()%>/skin/images/edit_icon.gif" title="Edit" border="0">
-				   	 </a><img src="<%=request.getContextPath()%>/skin/images/spacer.gif" width="4" height="1">
+				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
+				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
 				   			<a href="javascript:checkDelete(${usertable_rowNum});">
-				   			<img src="<%=request.getContextPath()%>/skin/images/remove_icon.gif" title="Remove" border="0"></a>
+				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
 					 <display:column property="id" sortable="true" title="OpdId"/>
 				     <display:column property="operationalDisciplineName" title="Operational Discipline Name" sortable="true" sortProperty="operationalDisciplineName"/>
@@ -592,6 +592,8 @@
 				     <display:column property="quarter" title="Quarter" sortable="true" />
 				     <display:column property="nonCompliance" title="non-Compliance" sortable="true" />
 				     </display:table>
+				     
+ 
 				</div>
 			</form>
 			<p></p>
@@ -606,7 +608,10 @@
 	<div id="2"
 		style="position: relative; float: left; background-color: #ffffff; BORDER-RIGHT: #999999 2px solid; BORDER-TOP: #999999 2px solid; DISPLAY: none; Z-INDEX: 10; BORDER-LEFT: #999999 2px solid; WIDTH: 80%; BORDER-BOTTOM: #999999 2px solid">
 		<div class="container" align="center">
-		<div id="loginbox">
+		<div id="loginbox"><!-- <link rel="stylesheet" type="text/css" href="../resources/stylesheets/commonStyle.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" type="text/css" href="../resources/stylesheets/jquery.autocomplete.css" /> -->
         <div class='logintitle ericssonfont'> Operational Discipline</div>
         <div class='separator'></div>
    <form:form method="post" action="saveUpdateOperationalDiscipline.html" modelAttribute="operationalDisciplineDTO" name="saveUpdateOperationalDisciplineForm">

@@ -15,11 +15,11 @@
 	<head>
 	
 	
-	<link href="${pageContext.request.contextPath }/css/common_style.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath }/resources/css/common_style.css" rel="stylesheet" type="text/css" />
 	
-	<link href="${pageContext.request.contextPath }/css/style1.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath }/resources/css/style1.css" rel="stylesheet" type="text/css" />
 		
-	<link href="${pageContext.request.contextPath }/css/commonStyle.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath }/resources/css/commonStyle.css" rel="stylesheet" type="text/css" />
 		
 		
 		<title>Delivery Quality</title>
