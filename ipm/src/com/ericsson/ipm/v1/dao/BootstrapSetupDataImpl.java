@@ -127,18 +127,19 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 
 			doOriginateRole(roleService, kpisSWD, kpisSSWD);
-			UserProfile userProfile = doOriginateUserProfile(userProfileService, roleService);
+			
 
 			doOriginateSkillCat(skillCatDAO);
 			doOriginateDomain(domainDAO);
 
 			JobStage jobstage = doOriginateForTechnology_SkillCA5();
-			//doOriginateEmployee(employeeDAO, jobstage);
-
+			LOGGER.debug("jobstage : " + jobstage.getId());
+			//doOriginateEmployee(employeeDAO, userProfile, jobstage);
+			UserProfile userProfile = doOriginateUserProfile(jobstage, userProfileService, roleService);
 		}
 
 		findQueryOnUserProfile(userProfileService);
-		findQueryOnSkillCategory(skillCategoryService);
+		//findQueryOnSkillCategory(skillCategoryService);
 		
 		
 	}
@@ -284,7 +285,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 	}
 
-	public UserProfile doOriginateUserProfile(UserProfileService userProfileService,
+	public UserProfile doOriginateUserProfile(JobStage jobstage, UserProfileService userProfileService,
 			RoleService roleService) {
 		Date date = new Date();
 		UserProfile userProfile = new UserProfile();
@@ -342,7 +343,15 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 		userProfile.setRoleAssignments(roleAssignments);
 
+		Employee employee = new Employee();
+		employee.setUserprofile(userProfile);
+		//employee.setId(userProfile.getId());
+		employee.setJobStage(jobstage);
+		//employeeDAO.save(employee);
+		userProfile.setEmployee(employee);
+		
 		userProfile = userProfileService.save(userProfile);
+		
 		return userProfile;
 	}
 
@@ -1031,15 +1040,15 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		return kpis;
 	}
 
-	public void doOriginateEmployee(EmployeeDAO employeeDAO, JobStage jobstage) {
+	/*public void doOriginateEmployee(EmployeeDAO employeeDAO, UserProfile userProfile, JobStage jobstage) {
 		Employee employee = new Employee();
+		employee.setId(userProfile.getId());
 		employee.setJobStage(jobstage);
-
 		employeeDAO.save(employee);
-	}
+	}*/
 
 
-	private void doOriginateDomain(DomainDAO domainDAO) {
+	public void doOriginateDomain(DomainDAO domainDAO) {
 
 		List<Domain> domains = new ArrayList<Domain>();
 		Domain domain1 = new Domain();

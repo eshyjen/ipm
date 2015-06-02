@@ -10,8 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -125,6 +127,13 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private List<DeliveryQuality> deliveryQualities;
 
+	
+	//@OneToOne/*(mappedBy = "userprofile", cascade= CascadeType.ALL)*/
+	//@PrimaryKeyJoinColumn(name="ID")
+	//@MapsId
+	@OneToOne(mappedBy = "userprofile", cascade= CascadeType.ALL)
+	private Employee employee;
+	
 	public UserProfile() {
 	}
 
@@ -422,6 +431,14 @@ public class UserProfile implements Serializable {
 
 		public void setIsEnabled(Boolean isEnabled) {
 			this.isEnabled = isEnabled;
+		}
+
+		public Employee getEmployee() {
+			return employee;
+		}
+
+		public void setEmployee(Employee employee) {
+			this.employee = employee;
 		}
 
 
