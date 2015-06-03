@@ -52,6 +52,9 @@
     </table>
 	<input type="submit" name="submit" value="submit">
 	
+	<input type="hidden" id="doid" name="doid" value="${CADTOs.caDomainId}">
+	<input type="hidden" id="scid" name="scid" value="${CADTOs.caSkillId}">
+	
 	</form>
 	
 	</body>

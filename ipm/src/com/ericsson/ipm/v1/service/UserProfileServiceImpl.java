@@ -207,6 +207,16 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		
 		userProfile.setRoleAssignments(roleAssignments);
+		
+		JobStage jobStageEntity = null;
+    		jobStageEntity = skillCategoryService.getJobStageId(5);
+    		
+    		if(jobStageEntity != null){
+	    		Employee employee = new Employee();
+				employee.setUserprofile(userProfile);
+				employee.setJobStage(jobStageEntity);
+				userProfile.setEmployee(employee);
+	    	}
 
         return userProfileDAO.save(userProfile);
     }
@@ -304,6 +314,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		    		jobStageEntity = skillCategoryService.getJobStageId(Integer.parseInt(jobStage));
 		    	}
 		    	
+		    	List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>();
 		    	
 		    	UserProfile profile = new UserProfile();
 		    	profile.setCostCenter(pfDetailsMap.get("COSTCENTRE"));
@@ -331,6 +342,31 @@ public class UserProfileServiceImpl implements UserProfileService {
 					profile.setEmployee(employee);
 		    	}
 		    	
+		    	String userRole = getEmployeeRole(pfDetailsMap.get("POSITIONNAME"), pfDetailsMap.get("JOBROLE"));
+		    	
+		    			if(StringUtils.isNotBlank(userRole)){
+		    				List<Role> roles = roleService.findByCode("SSWD");
+		    				UserRoleAssignment userRoleAssignment = new UserRoleAssignment();
+
+		    				Role role0 = roles.get(0);
+		    				userRoleAssignment.setRole(role0);
+		    				userRoleAssignment.setUser(profile);
+
+		    				roleAssignments.add(userRoleAssignment);
+		    			}
+
+
+				List<Role> roles1 = roleService.findByCode("USER");
+				UserRoleAssignment userRoleAssignment1 = new UserRoleAssignment();
+				Role role1 = roles1.get(0);
+				userRoleAssignment1.setRole(role1);
+				userRoleAssignment1.setUser(profile);
+
+				roleAssignments.add(userRoleAssignment1);
+
+
+				profile.setRoleAssignments(roleAssignments);
+		    	
 		        return userProfileDAO.save(profile);
 	    	}catch(Exception e){
 	    		e.printStackTrace();
@@ -342,7 +378,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		private String getJobStage(String positionName){
 			
-			String jobStage4 = "5";
+			String jobStage4 = "4";
 			String jobStage5 = "5";
 			String jobStage6 = "6";
 			
@@ -356,6 +392,40 @@ public class UserProfileServiceImpl implements UserProfileService {
 				return jobStage4;
 			} else if("Solution Integrator".equalsIgnoreCase(positionName)){
 				return jobStage4;
+			} else if(positionName.startsWith("Senior Solution Integrator")){
+				return jobStage5;
+			}
+			return null;
+		}
+		
+		private String getEmployeeRole(String positionName, String jobRole){
+			
+			String jobStage4 = "SWD";
+			String jobStage5 = "SSWD";
+			String jobStage6 = "SA";
+			String jobStage7 = "SSA";
+			
+			if("Senior Software Developer".equalsIgnoreCase(positionName)){
+				return jobStage5;
+			} else if("Senior Solution Integrator".equalsIgnoreCase(positionName)){
+				return jobStage5;
+			} else if("Solution Architect".equalsIgnoreCase(positionName)){
+				return jobStage6;
+			} else if("Senior Solution Architect".equalsIgnoreCase(positionName)){
+				return jobStage7;
+			} else if("Solution Integrator - CSI ADM & PMO".equalsIgnoreCase(positionName)){
+				return jobStage4;
+			} else if("Solution Integrator".equalsIgnoreCase(positionName)){
+				return jobStage4;
+				
+			} else if(jobRole.equalsIgnoreCase("CUSTOMER PROJECT MANAGER")){
+				return "SPM";
+			} else if(jobRole.equalsIgnoreCase("DESIGN AUTHORITY") || jobRole.equalsIgnoreCase("CHIEF ARCHITECT") ){
+				return "CA";
+			} else if(jobRole.equalsIgnoreCase("Senior Solution Integrator")){
+				return "";
+			} else if(jobRole.equalsIgnoreCase("Senior Solution Integrator")){
+				return "";
 			}
 			return null;
 		}

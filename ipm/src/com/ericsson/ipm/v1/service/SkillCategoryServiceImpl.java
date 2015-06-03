@@ -9,11 +9,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ericsson.ipm.v1.dao.DomainDAO;
 import com.ericsson.ipm.v1.dao.EmployeeDAO;
+import com.ericsson.ipm.v1.dao.SkillCatDAO;
 import com.ericsson.ipm.v1.dao.SkillCategoryDAO;
+import com.ericsson.ipm.v1.domain.Domain;
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.EmployeeSkill;
 import com.ericsson.ipm.v1.domain.JobStage;
+import com.ericsson.ipm.v1.domain.SkillCat;
 import com.ericsson.ipm.v1.domain.SkillMaster;
 import com.ericsson.ipm.v1.dto.CADTO;
 import com.ericsson.ipm.v1.dto.NameIdDTO;
@@ -27,6 +31,10 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 	private SkillCategoryDAO skillCategoryDAO;
 
 	private EmployeeDAO employeeDAO;
+	
+	private SkillCatDAO skillCatDAO;
+	
+	private DomainDAO domainDAO;
 
 	@Override
 	public List<CADTO> getEmployeeCASkill(int doid, int scid, int eid) {
@@ -87,6 +95,16 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 	public void setEmployeeDAO(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
+	
+	@Autowired
+	public void setSkillCatDAO(SkillCatDAO skillCatDAO) {
+		this.skillCatDAO = skillCatDAO;
+	}
+
+	@Autowired
+	public void setDomainDAO(DomainDAO domainDAO) {
+		this.domainDAO = domainDAO;
+	}
 
 	@Override
 	public void saveEmployeeskill(EmployeeSkill employeeskill) {
@@ -97,7 +115,20 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 	public Employee getRefByEmployeeId(int id) {
 		return employeeDAO.getRefById(id);
 	}
+	
+	public Domain findByDomainName(Object d_name) {
+		List<Domain> domains = domainDAO.findByDomainName(d_name);
+		if(domains != null && domains.size() > 0)
+			return domains.get(0);
+		return null ;
+	}
 
 
+	public SkillCat findBySkillCatName(Object skillName){
+		List<SkillCat> skillCats = skillCatDAO.findBySkillCatName(skillName);
+		if(skillCats != null && skillCats.size() > 0)
+			return skillCats.get(0);
+		return null ;
+	}
 
 }

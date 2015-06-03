@@ -11,8 +11,8 @@ public class CADTOs implements Serializable {
 
 	private String CADomainName;
 	private String CASkillName;
-	private String CADomainId;
-	private String CASkillId;
+	private Integer caDomainId;
+	private Integer caSkillId;
 	
 	private List<CADTO> list =  new ArrayList<CADTO>();
 	
@@ -28,17 +28,18 @@ public class CADTOs implements Serializable {
 	public void setCASkillName(String cASkillName) {
 		CASkillName = cASkillName;
 	}
-	public String getCADomainId() {
-		return CADomainId;
+	
+	public Integer getCaDomainId() {
+		return caDomainId;
 	}
-	public void setCADomainId(String cADomainId) {
-		CADomainId = cADomainId;
+	public void setCaDomainId(Integer caDomainId) {
+		this.caDomainId = caDomainId;
 	}
-	public String getCASkillId() {
-		return CASkillId;
+	public Integer getCaSkillId() {
+		return caSkillId;
 	}
-	public void setCASkillId(String cASkillId) {
-		CASkillId = cASkillId;
+	public void setCaSkillId(Integer caSkillId) {
+		this.caSkillId = caSkillId;
 	}
 	public List<CADTO> getList() {
 		return list;

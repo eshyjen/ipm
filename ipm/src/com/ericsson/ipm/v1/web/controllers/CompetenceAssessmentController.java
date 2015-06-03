@@ -18,8 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ericsson.ipm.v1.domain.Domain;
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.EmployeeSkill;
+import com.ericsson.ipm.v1.domain.SkillCat;
 import com.ericsson.ipm.v1.domain.SkillMaster;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.dto.CADTO;
@@ -54,13 +56,17 @@ public class CompetenceAssessmentController extends BaseController {
 			LOGGER.info("useName : "+useName);
 		}
 
-		int doid = Integer.parseInt(request.getParameter("doid"));
-		int scid = Integer.parseInt(request.getParameter("scid"));
+		
+		Domain domain = skillCategoryService.findByDomainName(request.getParameter("domain"));
+		SkillCat skillCat =  skillCategoryService.findBySkillCatName(request.getParameter("skill"));
+		
 		int eid = userProfile.getId();
 		CADTOs cadtOs = new CADTOs();
 		//LOGGER.info("skillCategoryService : "+skillCategoryService);
-		List<CADTO> list = skillCategoryService.getEmployeeCASkill(doid, scid, eid);
+		List<CADTO> list = skillCategoryService.getEmployeeCASkill(domain.getId(), skillCat.getId(), eid);
 		cadtOs.getList().addAll(list);
+		cadtOs.setCaDomainId(domain.getId());
+		cadtOs.setCaSkillId(skillCat.getId());
 		model.addAttribute(Constants.CA_LIST , cadtOs);
 		return "protected/caTechdetails";
 	}
@@ -82,7 +88,7 @@ public class CompetenceAssessmentController extends BaseController {
 
 		Enumeration<String> enumeration =  request.getParameterNames();
 
-		Integer empId = 1;
+		Integer empId = userProfile.getId();
 		List<Integer> smIds =  new ArrayList<Integer>();
 		List<EmployeeSkill> employeeSkills =  new ArrayList<EmployeeSkill>();
 		while (enumeration.hasMoreElements()) {
@@ -105,31 +111,16 @@ public class CompetenceAssessmentController extends BaseController {
 
 		skillCategoryService.deleteEmployeeSkill(empId, smIds);
 		skillCategoryService.saveEmployeeskills(employeeSkills);
-
-		/*while (enumeration.hasMoreElements()) {
-			String key = (String) enumeration.nextElement();
-			if(StringUtils.isNumeric(key)){
-				EmployeeSkill employeeskill = new EmployeeSkill();
-				LOGGER.info("key : "+key);
-				String value = request.getParameter(key);
-				LOGGER.info("value : "+value);
-				String actualValue = value;
-				employeeskill.setActualSkill(actualValue);
-				SkillMaster skillmaster = skillCategoryService.getRefById(Integer.parseInt(key));
-				Employee employee = skillCategoryService.getRefByEmployeeId(empId);
-				employeeskill.setSkillMaster(skillmaster);
-				employeeskill.setEmployee(employee);
-				skillCategoryService.saveEmployeeskill(employeeskill);
-			}
-		}*/
-
-		int doid = 1; //Integer.parseInt(request.getParameter("doid"));
-		int scid = 1; //Integer.parseInt(request.getParameter("scid"));
+		
+		int doid = Integer.parseInt(request.getParameter("doid"));
+		int scid = Integer.parseInt(request.getParameter("scid"));
 		int eid = userProfile.getId();
 		CADTOs cadtOs = new CADTOs();
 		List<CADTO> list = skillCategoryService.getEmployeeCASkill(doid, scid, eid);
 		cadtOs.getList().addAll(list);
 		//model.addAttribute(Constants.CA_LIST , getSkillMaster());
+		cadtOs.setCaDomainId(doid);
+		cadtOs.setCaSkillId(doid);
 		model.addAttribute(Constants.CA_LIST , cadtOs);
 		return "protected/caTechdetails";
 	}

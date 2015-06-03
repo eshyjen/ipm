@@ -12,12 +12,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ericsson.v1.util.Constants;
 
 public class PeopleFinderPerser {
 
 	static Map<String, String> rowIndexParamKeyMap = new HashMap<String, String>();
+	private static final Logger LOGGER = LoggerFactory.getLogger(PeopleFinderPerser.class);
 
 	static {
 		populateRowIndexParamKeyMap();
@@ -75,8 +78,12 @@ public class PeopleFinderPerser {
 //				case 8:
 //				case 11:
 				case 33:
-					paramValue.append(row.select("a").first().attr("abs:href").trim());
-					break;
+					//paramValue.append(row.select("a").first().attr("abs:href").trim());
+					//break;
+					if(isLineManager.equalsIgnoreCase("YES")) {
+                        paramValue.append(row.select("a").first().attr("abs:href").trim());
+                        break;
+                    }
 				case 28:
 					isLineManager=row.select("td").text().trim();
 					if(isLineManager.equalsIgnoreCase("YES")) {
@@ -165,7 +172,7 @@ public class PeopleFinderPerser {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String signum = "EBICHAK";
+		String signum = "ESHYJEN";
 		PeopleFinderPerser pfs = new PeopleFinderPerser();
 		String pfUrl;
 		String managedPeopleListUrl="";

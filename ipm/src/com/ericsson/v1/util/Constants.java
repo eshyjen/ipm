@@ -6,8 +6,6 @@ package com.ericsson.v1.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.configuration.Configuration;
-
 /**
  * @author iqbal.hosain.khan@ericsson.com
  * 
@@ -19,8 +17,7 @@ public class Constants {
 	public static final String BLANK = "";
 	public static final String COMMA = ",";
 	
-	private static final Configuration CONFIG = AdaptersConfiguration
-			.getInstance().getConfiguration();
+	//private static final Configuration CONFIG = AdaptersConfiguration.getInstance().getConfiguration();
 	
 		public static final Map<String, String> APPUSER2TWITTER_MAP = new HashMap<String, String>();
 	public static final Map<String, String> APPUSER2FACEBOOK_MAP = new HashMap<String, String>();
@@ -168,7 +165,7 @@ public class Constants {
 	MANAGED PEOPLE LIST URL:ATTEMPT-1: http://gp.internal.ericsson.com/wps/portal/pf/pf_default/!ut/p/a1/hY1dC4IwFIZ_kZy1PnSX6oKNhBCL2m5i2KhR05ER2a9vo6Ar7Vy-53nfByTsQTbqYU7qbtpGXUGAkPFhwgjGBGG-LjBFPCtnhM0ZRjSGCiTI7lafc05BLDOes3QVMlWHiU3vNAin20orD_0eILpPsrXqaax56WOQy8WwDHlAeAANXIr-9XfBP4IU-AuMKJy1ydRGSR9dyjdMCrqs/dl5/d5/L2dBISEvZ0FBIS9nQSEh/pw/Z7_1H922902IOL2D0IBQ49H5H20D7/act/id=0/p=actionType=peoSearch/p=action=search/p=actionList=listOfPeople/p=srchMGR=EBICHAK/p=srchMOD=exact/p=srchEMP=Workforce/293477565668/=/
 	MANAGED-PEOPLE-MAP: {ENAMLAK=Naman Lakhani, ERSVWWX=Sumeet Kumar, ESUVBOS=Suvankar Bose, EBISSAH=Bishnu Saha, EMUKKAU=Kaustuv Mukherjee, ERATNCH=Ratnopam Chakrabarti, ESUDASA=Sudarsan Sahoo, EFHJLMU=Mukesh Kumar, ESRSANT=Santosh Kumar Srivastava, EJAISCH=Chandra Prakash Jaiswal, ESIHALK=Alok Singh, EMSEKUM=M Senthil Kumar, ESUVGHO=Suvendu Ghosh, EABCHOU=Abhishek Choudhury, ENASUMA=Suman Nandi, ERANAKU=Rana Kundu, EYACDEL=Rajesh Kumar Singh, ESREROY=Sreemoyee Roy, ECHOAVI=Avishek Pal Chowdhury, EASHICH=Ashish Chatterjee, ERAYRAJ=Rajarshi Ray, ERANSUS=Sushanta Rana, ESHYJEN=Shyam Sundar Jena, ESAHASA=Sandip Saha, ETANROU=Tanushri Routh, EARNMAJ=Arnab Majumdar, ESAYAPA=Sayan Pal, EVYZZCS=Sandipan Sen, ERANJSE=Ranjan Sen, EKHIQBA=Iqbal Hosain Khan}
 	*/
-	public static final String CA_OPTIONS = "T,A,B,C,D";
+	public static final String CA_OPTIONS = " ,T,A,B,C,D";
 	
 	public final static String CA_LIST = "CADTOs";
 	

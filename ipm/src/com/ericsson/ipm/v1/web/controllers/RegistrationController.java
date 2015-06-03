@@ -92,7 +92,8 @@ public class RegistrationController {
         final UserProfile registered = createUserAccount(registrationDTO);
         if (registered == null) {
             result.rejectValue("emailId", "message.regError");
-            return new ModelAndView("public/registration", "user", registrationDTO);
+            model.addAttribute("roles", roleService.findAll()); 
+            return new ModelAndView("public/registration", "registrationDTO", registrationDTO);
         }
         try {
             final String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
