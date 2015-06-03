@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.EmployeeSkill;
+import com.ericsson.ipm.v1.domain.JobStage;
 import com.ericsson.ipm.v1.domain.SkillMaster;
 import com.ericsson.ipm.v1.dto.CADTO;
 
@@ -20,4 +21,6 @@ public interface SkillCategoryService {
 	public Employee getRefByEmployeeId(int id);
 
 	public void deleteEmployeeSkill( int eid, List<Integer> smIds);
+	
+	public JobStage getJobStageId(int jsId);
 }

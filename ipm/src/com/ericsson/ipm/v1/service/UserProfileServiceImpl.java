@@ -10,7 +10,11 @@ import java.util.UUID;
 
 
 
+
+
+
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.dao.UserProfileDAO;
 import com.ericsson.ipm.v1.dao.VerificationTokenDAO;
+import com.ericsson.ipm.v1.domain.Employee;
+import com.ericsson.ipm.v1.domain.JobStage;
 import com.ericsson.ipm.v1.domain.Role;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.domain.UserRoleAssignment;
@@ -44,6 +50,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private RoleService roleService;
 	
 	private VerificationTokenDAO verificationTokenDAO;
+	
+	private SkillCategoryService skillCategoryService;
 	
 	@Override
 	public List<UserProfile> findBySignumId(String signumId) {
@@ -239,6 +247,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 	        return user;
 	    }
 	    
+	    
+	    
 	    /*
 	    @Override
 	    public void createPasswordResetTokenForUser(final User user, final String token) {
@@ -257,7 +267,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	    }*/
 
 	 
-	    public UserProfile register(String signum) {
+		public UserProfile register(String signum) {
 	    	
 	    	PeopleFinderPerser pfs = new PeopleFinderPerser();
 	    	
@@ -287,6 +297,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 					}	*/		
 				}
 		    	
+		    	
+		    	String jobStage = getJobStage(pfDetailsMap.get("POSITIONNAME"));
+		    	JobStage jobStageEntity = null;
+		    	if(StringUtils.isNotBlank(jobStage)){
+		    		jobStageEntity = skillCategoryService.getJobStageId(Integer.parseInt(jobStage));
+		    	}
+		    	
+		    	
 		    	UserProfile profile = new UserProfile();
 		    	profile.setCostCenter(pfDetailsMap.get("COSTCENTRE"));
 		    	profile.setUserFristName(pfDetailsMap.get("FNAME")); 
@@ -300,11 +318,18 @@ public class UserProfileServiceImpl implements UserProfileService {
 	    		//pfDetailsMap.get("FULLNAME"));
 		    	profile.setCurrentLineManager(pfDetailsMap.get("CURRENTLINEMANGER")); 
 		    	profile.setEmailId(pfDetailsMap.get("EMAIL")); 
-	    		//pfDetailsMap.get("JOBROLE");
+		    	profile.setJobRole(pfDetailsMap.get("JOBROLE"));
 		    	profile.setRole(role);
 		    	Object defaultPassword = CONFIG.getProperty("ipm.default.user.password");
 		    	profile.setPassword(defaultPassword.toString());
 		    	profile.setIsEnabled(true);
+		    	
+		    	if(jobStageEntity != null){
+		    		Employee employee = new Employee();
+					employee.setUserprofile(profile);
+					employee.setJobStage(jobStageEntity);
+					profile.setEmployee(employee);
+		    	}
 		    	
 		        return userProfileDAO.save(profile);
 	    	}catch(Exception e){
@@ -314,6 +339,26 @@ public class UserProfileServiceImpl implements UserProfileService {
 	    	
 	    	return null;
 	    }
+		
+		private String getJobStage(String positionName){
+			
+			String jobStage4 = "5";
+			String jobStage5 = "5";
+			String jobStage6 = "6";
+			
+			if("Senior Software Developer".equalsIgnoreCase(positionName)){
+				return jobStage5;
+			} else if("Senior Solution Integrator".equalsIgnoreCase(positionName)){
+				return jobStage5;
+			} else if("Solution Architect".equalsIgnoreCase(positionName)){
+				return jobStage6;
+			} else if("Solution Integrator - CSI ADM & PMO".equalsIgnoreCase(positionName)){
+				return jobStage4;
+			} else if("Solution Integrator".equalsIgnoreCase(positionName)){
+				return jobStage4;
+			}
+			return null;
+		}
 	
 	    
 	    
@@ -331,6 +376,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Autowired
 	public void setVerificationTokenDAO(VerificationTokenDAO verificationTokenDAO) {
 		this.verificationTokenDAO = verificationTokenDAO;
+	}
+	
+	@Autowired
+    public void setSkillCategoryService(SkillCategoryService skillCategoryService) {
+		this.skillCategoryService = skillCategoryService;
 	}
 
 	@Override

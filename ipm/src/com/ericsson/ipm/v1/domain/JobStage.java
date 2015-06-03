@@ -22,7 +22,8 @@ public class JobStage implements Serializable {
 	@Column(name = "ID")
 	private int id;
 
-	private int JSid;
+	@Column(name = "JS_ID")
+	private int jsId;
 
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="jobStage")
@@ -43,12 +44,12 @@ public class JobStage implements Serializable {
 		this.id = id;
 	}
 
-	public int getJSid() {
-		return this.JSid;
+	public int getJsId() {
+		return jsId;
 	}
 
-	public void setJSid(int JSid) {
-		this.JSid = JSid;
+	public void setJsId(int jsId) {
+		this.jsId = jsId;
 	}
 
 	public List<Employee> getEmployees() {

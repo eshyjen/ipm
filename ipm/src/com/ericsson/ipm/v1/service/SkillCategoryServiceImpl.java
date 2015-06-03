@@ -13,6 +13,7 @@ import com.ericsson.ipm.v1.dao.EmployeeDAO;
 import com.ericsson.ipm.v1.dao.SkillCategoryDAO;
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.EmployeeSkill;
+import com.ericsson.ipm.v1.domain.JobStage;
 import com.ericsson.ipm.v1.domain.SkillMaster;
 import com.ericsson.ipm.v1.dto.CADTO;
 import com.ericsson.ipm.v1.dto.NameIdDTO;
@@ -62,6 +63,7 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 		}
 	}
 
+	//Sreemoyee : 9432488637
 	public void deleteEmployeeSkill( int eid, List<Integer> smIds){
 		skillCategoryDAO.deleteEmployeeSkill(eid, smIds);
 	}
@@ -69,6 +71,11 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 	@Override
 	public SkillMaster getRefById(int id) {
 		return skillCategoryDAO.getRefById(id);
+	}
+	
+	@Override
+	public JobStage getJobStageId(int jsId) {
+		return employeeDAO.getJobStageId(jsId);
 	}
 
 	@Autowired

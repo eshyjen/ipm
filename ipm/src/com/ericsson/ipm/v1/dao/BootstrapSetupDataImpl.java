@@ -121,6 +121,11 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		
 		if(bootStrapData != null && "true".equalsIgnoreCase(bootStrapData.toString())){
 
+			List<UserProfile> profiles = userProfileService.findBySignumId("EKHIQBA");
+			if(profiles != null && !profiles.isEmpty()){
+				return;
+				//UserProfile profile = profiles.get(0);
+			}
 			List<KPI> kpisSWD = populateSWDKPIGoal(kpiService) ;
 
 			List<KPI> kpisSSWD = populateSSWDKPIGoal(kpiService) ;
@@ -139,7 +144,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		}
 
 		findQueryOnUserProfile(userProfileService);
-		//findQueryOnSkillCategory(skillCategoryService);
+		findQueryOnSkillCategory(skillCategoryService);
 		
 		
 	}
@@ -1118,7 +1123,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		SkillCat skillcat = skillcats.get(0);
 
 		JobStage jobstage = new JobStage();
-		jobstage.setJSid(5);
+		jobstage.setJsId(5);
 
 		List<ReqSkill> reqskills = new ArrayList<ReqSkill>();
 
