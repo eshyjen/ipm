@@ -1,6 +1,7 @@
 package com.ericsson.ipm.v1.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -317,7 +318,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			query.setParameter("propertyValue", id);
 			List<UserProfile> userProfiles = query.getResultList();
 			for(UserProfile profile : userProfiles){
-				List<Asset> assets = profile.getAssets();
+				Set<Asset> assets = profile.getAssets();
 				LOGGER.debug("assets : "+ assets);
 			}
 			return userProfiles;
@@ -336,7 +337,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			query.setParameter("propertyValue", id);
 			List<UserProfile> userProfiles = query.getResultList();
 			for(UserProfile profile : userProfiles){
-				List<DeliveryQuality> deliveryQualities = profile.getDeliveryQualities();
+				Set<DeliveryQuality> deliveryQualities = profile.getDeliveryQualities();
 				LOGGER.debug("deliveryQualities : "+ deliveryQualities);
 			}
 			return userProfiles;
@@ -355,7 +356,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			query.setParameter("propertyValue", id);
 			List<UserProfile> userProfiles = query.getResultList();
 			for(UserProfile profile : userProfiles){
-				List<OperationalDiscipline> operationalDiscipline = profile.getOperationaldiscplines();
+				Set<OperationalDiscipline> operationalDiscipline = profile.getOperationaldiscplines();
 				LOGGER.debug("deliveryQualities : "+ operationalDiscipline);
 			}
 			return userProfiles;
@@ -363,6 +364,25 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			LOGGER.info("UserProfile find by property name failed"+ re);
 			throw re;
 		}
+	}
+	
+	public UserProfile getUserDetails(String signunid){
+		List<UserProfile> profiles = findBySignunid(signunid);
+		UserProfile profile = null;
+		
+		
+		final String queryString = "SELECT model from UserProfile model JOIN FETCH model.assets JOIN FETCH model.operationaldiscplines JOIN FETCH model.deliveryQualities where model.signunId= :propertyValue";
+		if(profiles != null && !profiles.isEmpty()){
+			
+			Query query = getEntityManager().createQuery(queryString);
+			query.setParameter("propertyValue", signunid);
+			List<UserProfile> userProfiles = query.getResultList();
+			if(userProfiles != null && userProfiles.size() > 0)
+				return userProfiles.get(0);
+		} else {
+			return null;
+		}
+		return profile;
 	}
 
 }

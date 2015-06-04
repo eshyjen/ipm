@@ -89,5 +89,6 @@ public interface UserProfileDAO {
 	public List<UserProfile> findByIdWithDeliveryQuality(Object id);
 
 	public List<UserProfile> findByIdWithOperationalDiscipline(Object id);
+	public UserProfile getUserDetails(String signunid);
 
 }

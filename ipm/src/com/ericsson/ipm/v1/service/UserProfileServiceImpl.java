@@ -488,5 +488,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return managedPeopleMap;
 	}
 	 
+	public UserProfile getUserDetails(String signunid){
+		return userProfileDAO.getUserDetails(signunid);
+	}
 	
 }

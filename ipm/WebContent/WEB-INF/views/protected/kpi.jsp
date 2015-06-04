@@ -29,11 +29,11 @@
 		<div id="dataview" style="position: relative; float: left width :   100%; height: 20%; background-color: #ffffff; padding: 12px 12px 12px 0px">
 			<form name="myform" id="myform">
 			<FONT face="Calibri" size="2">
-				<h3 align="center">Asset Details Page</h3>
+				<h3 align="center">KPI Details Page</h3>
 			</FONT> 
-			<a id="add" onclick="addformChanged();">
+			<%-- <a id="add" onclick="addformChanged();">
 				<img src="<%=request.getContextPath()%>/skin/images/add_button.gif" />
-			</a>
+			</a> --%>
 
 				<%-- <div id="tablediv">
 				
@@ -60,13 +60,7 @@
 	
 					 <display:table id="usertable1" name="<%=Constants.KPI_LIST1 %>" class="list" sort="page" pagesize="5" 
 					 	export="true" requestURI="kpisDetails.html"  >
-				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id">
-				   	 <a href="javascript:checkRow(${usertable1_rowNum});">
-				   	 <img src="<%=request.getContextPath()%>/skin/images/edit_icon.gif" title="Edit" border="0"></a>
-				   	 <img src="<%=request.getContextPath()%>/skin/images/spacer.gif">
-				   	 <a href="javascript:checkDelete(${usertable1_rowNum});">
-				   	 <img src="<%=request.getContextPath()%>/skin/images/remove_icon.gif" title="Remove" border="0"></a>
-				   	 </display:column>
+				   	 
 					 <display:column property="id" sortable="true" title="Id" />
 				     <display:column property="kpiDisplayName" title="Kpi Display Name" sortable="true"/>
 				    <%--  <display:column property="kpiName" sortable="true" title="Kpi Name"/> --%>

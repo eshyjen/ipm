@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.Domain;
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.JobStage;
@@ -61,7 +62,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 	private EmployeeDAO employeeDAO;
 	
-	
+	private AssetDAO assetDAO;
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -146,7 +147,38 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		findQueryOnUserProfile(userProfileService);
 		findQueryOnSkillCategory(skillCategoryService);
 		
+		UserProfile profile= userProfileService.getUserDetails("EKHIQBA"); 
 		
+		///  Create Dummy Asset///
+		
+		 /*Asset asset1 = new Asset();
+		
+		 asset1.setApprovalStatus("APPROVED");
+		 asset1.setAssetName("assetName");
+		 asset1.setAssetShortDescription("assetShortDescription");
+		 asset1.setCreationDate(new Date());
+		 asset1.setEffortSave("effortSave");
+		 asset1.setModifiedDate(new Date());
+		 asset1.setProjectName("projectName");
+		 asset1.setRegisteredInAssetPortal("registeredInAssetPortal");
+		 asset1.setReusedInOtherProjectsName("reusedInOtherProjectsName");
+		 asset1.setUserprofile(profile);
+		 assetDAO.save(asset1);
+		 
+		 Asset asset12 = new Asset();
+			
+		 asset12.setApprovalStatus("APPROVED1");
+		 asset12.setAssetName("assetName1");
+		 asset12.setAssetShortDescription("assetShortDescription1");
+		 asset12.setCreationDate(new Date());
+		 asset12.setEffortSave("effortSave1");
+		 asset12.setModifiedDate(new Date());
+		 asset12.setProjectName("projectName1");
+		 asset12.setRegisteredInAssetPortal("registeredInAssetPortal1");
+		 asset12.setReusedInOtherProjectsName("reusedInOtherProjectsName1");
+		 asset12.setUserprofile(profile);
+		 assetDAO.save(asset12);
+		*/
 	}
 
 	@Autowired
@@ -1424,6 +1456,11 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 		return jobstage;
 
+	}
+
+	@Autowired
+	public void setAssetDAO(AssetDAO assetDAO) {
+		this.assetDAO = assetDAO;
 	}
 	
 	

@@ -53,6 +53,8 @@ public interface UserProfileService {
 	
 
 	 public UserProfile findByIdWithOperationalDiscipline(Object id);
+	 
+	 public UserProfile getUserDetails(String signunid);
 
 
 
