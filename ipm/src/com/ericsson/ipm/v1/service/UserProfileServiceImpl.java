@@ -7,12 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
-
-
-
-
-
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -178,7 +172,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		userProfile.setTotalEricssonExperienceInMonths(accountDto.getTotalEricssonExperienceInMonths());
 		userProfile.setTotalITExperience(accountDto.getTotalITExperience());
 		userProfile.setTotalYearsOfExperience(accountDto.getTotalYearsOfExperience());
-		userProfile.setUserFristName(accountDto.getUserFristName());
+		userProfile.setUserFristName(accountDto.getUserFirstName());
 		userProfile.setUserLastName(accountDto.getUserLastName());
 		userProfile.setYearOfIPM("2015");
 		userProfile.setYearOfLastPromotion("N/A");

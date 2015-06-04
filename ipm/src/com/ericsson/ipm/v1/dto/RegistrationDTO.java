@@ -1,9 +1,7 @@
 package com.ericsson.ipm.v1.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -94,11 +92,11 @@ public class RegistrationDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserFristName() {
+	public String getUserFirstName() {
 		return userFristName;
 	}
 
-	public void setUserFristName(String userFristName) {
+	public void setUserFirstName(String userFristName) {
 		this.userFristName = userFristName;
 	}
 

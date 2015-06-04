@@ -50,18 +50,10 @@ function back2ProtectedHome() {
          <li class='last'><a href='#'><span>Employer Profile</span></a></li>
       </ul>
    </li>
-	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   
-	
-			<%
-				if (request.getRemoteUser() != null) {
-					out.print(request.getRemoteUser());
-				} else {
-					out.print("Anonymous");
-				}
-			%> &#9662;</span></a>
+	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   &#9662;</span></a>
 <ul>
 <li><a href='#'><span>Options</span></a></li>
-<li><a href="/ipm/v1/public/logout.html"><span>Logout</span></a></li>
+<li><a href='#'><span>Logout</span></a></li>
 </ul>
 </li>
 </ul>

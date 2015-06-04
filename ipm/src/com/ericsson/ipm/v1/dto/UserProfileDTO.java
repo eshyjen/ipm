@@ -2,10 +2,7 @@ package com.ericsson.ipm.v1.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-
 
 import com.ericsson.ipm.v1.domain.UserRoleAssignment;
 
@@ -17,7 +14,7 @@ public class UserProfileDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private int id;
+	//private int id;
 	
 	private String userFristName;
 	
@@ -30,9 +27,9 @@ public class UserProfileDTO implements Serializable {
 	private Boolean role = Boolean.FALSE;
 	
 	private String currentLineManager;
-	
-	private Date dateOfJoinInMediaAccount;
-	
+
+	private String dateOfJoinInMediaAccountInString;
+
 	private String educationalQualification;
 	
 	private String emailId;
@@ -46,15 +43,15 @@ public class UserProfileDTO implements Serializable {
 	private String lastYearIPMRating;
 	
 	private String manHourRate;
-	
-	private Date modifiedDate;
-	
+
+	private String modifiedDateInString;
+
 	private String previousLineManeger;
 	
 	private String previousOrganisation;
-	
-	private Date registrationDate;
-	
+
+	private String registrationDateInString;
+
 	private String signunId;
 	
 	private int totalEricssonExperienceInMonths;
@@ -69,12 +66,30 @@ public class UserProfileDTO implements Serializable {
 
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
 
-	public int getId() {
-		return id;
+
+	public String getDateOfJoinInMediaAccountInString() {
+		return dateOfJoinInMediaAccountInString;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDateOfJoinInMediaAccountInString(
+			String dateOfJoinInMediaAccountInString) {
+		this.dateOfJoinInMediaAccountInString = dateOfJoinInMediaAccountInString;
+	}
+
+	public String getModifiedDateInString() {
+		return modifiedDateInString;
+	}
+
+	public void setModifiedDateInString(String modifiedDateInString) {
+		this.modifiedDateInString = modifiedDateInString;
+	}
+
+	public String getRegistrationDateInString() {
+		return registrationDateInString;
+	}
+
+	public void setRegistrationDateInString(String registrationDateInString) {
+		this.registrationDateInString = registrationDateInString;
 	}
 
 	public String getUserFristName() {
@@ -123,14 +138,6 @@ public class UserProfileDTO implements Serializable {
 
 	public void setCurrentLineManager(String currentLineManager) {
 		this.currentLineManager = currentLineManager;
-	}
-
-	public Date getDateOfJoinInMediaAccount() {
-		return dateOfJoinInMediaAccount;
-	}
-
-	public void setDateOfJoinInMediaAccount(Date dateOfJoinInMediaAccount) {
-		this.dateOfJoinInMediaAccount = dateOfJoinInMediaAccount;
 	}
 
 	public String getEducationalQualification() {
@@ -189,13 +196,6 @@ public class UserProfileDTO implements Serializable {
 		this.manHourRate = manHourRate;
 	}
 
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
 
 	public String getPreviousLineManeger() {
 		return previousLineManeger;
@@ -213,13 +213,6 @@ public class UserProfileDTO implements Serializable {
 		this.previousOrganisation = previousOrganisation;
 	}
 
-	public Date getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
 
 	public String getSignunId() {
 		return signunId;

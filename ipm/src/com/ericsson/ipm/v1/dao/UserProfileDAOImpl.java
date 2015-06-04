@@ -147,7 +147,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
-	/*public UserProfile update(UserProfile entity) {
+	public UserProfile update(UserProfile entity) {
 		LOGGER.info("updating Userprofile instance");
 		try {
 			UserProfile result = getEntityManager().merge(entity);
@@ -159,7 +159,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 		}
 	}
 
-	public UserProfile findById(Integer id) {
+	/*public UserProfile findById(Integer id) {
 		LOGGER.info("finding Userprofile instance with id: " + id);
 		try {
 			UserProfile instance = getEntityManager().find(UserProfile.class,

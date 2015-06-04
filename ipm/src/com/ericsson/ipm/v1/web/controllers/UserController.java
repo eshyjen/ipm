@@ -25,6 +25,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,8 +34,8 @@ import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
 import com.ericsson.ipm.v1.domain.Role;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.domain.UserRoleAssignment;
-import com.ericsson.ipm.v1.dto.EmployeeDTO;
 import com.ericsson.ipm.v1.dto.KPIIdNameDTO;
+import com.ericsson.ipm.v1.dto.UserProfileDTO;
 import com.ericsson.ipm.v1.security.authentication.vo.ContextAuthenticatedUserDetailsVO;
 import com.ericsson.ipm.v1.service.UserProfileService;
 import com.ericsson.v1.util.Constants;
@@ -66,9 +67,22 @@ public class UserController extends BaseController {
 	@RequestMapping(value="userDetails.html", method=RequestMethod.GET)
 	public String getUserDetails(Model model) {
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
-		LOGGER.debug("loggedInUser : "+loggedInUser);
-		model.addAttribute(loggedInUser.getProfile());
-		return "protected/userdetails";
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LOGGER.debug("principal : "+principal);
+		String signum = null;
+
+
+	    if (principal instanceof UserDetails)
+	    {
+	        signum = ((UserDetails) principal).getUsername();
+	        LOGGER.debug("signum : "+signum);
+	    }
+		List<UserProfile> list = userProfileService.findBySignumId(signum);
+		model.addAttribute(list.get(0));
+		final UserProfileDTO userProfileDTO = new UserProfileDTO();
+		model.addAttribute("userProfileDTO", userProfileDTO);
+		//model.addAttribute(userProfileDTO);
+		return "protected/userProfile";
 	}
 	
 	/*<%
@@ -127,47 +141,16 @@ public class UserController extends BaseController {
 	
 	
 	@RequestMapping(value="updateUserDetails.html", method=RequestMethod.POST)
-	public String updateUserDetails(HttpServletRequest request, Model model) {
-		String[] props = {
-		"userFristName",
-		"userLastName",
-		"emailId",
-		"costCenter",
-		"currentLineManager",
-		"educationalQualification",
-		"employeeId",
-		"jobRole",
-		"jobStage",
-		"lastYearIPMRating",
-		"manHourRate",
-		"previousLineManeger",
-		"previousOrganisation",
-		"signunId",
-		"yearOfIPM",
-		"yearOfLastPromotion"};
-		
-		// "dateOfJoinInMediaAccount",
-		// "id",
-		// "totalEricssonExperienceInMonths",
-		// "totalITExperience",
-		// "totalYearsOfExperience",
-		
-		LOGGER.debug("updateUserDetails : "+request);
-		
-		/*ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
-		LOGGER.debug("loggedInUser : "+loggedInUser);
-			UserProfile profile = loggedInUser.getProfile();
-			LOGGER.debug("profile : "+profile);*/
-			
-			List<UserProfile> userProfiles = userProfileService.findBySignumId(request.getParameter("signunId"));
+	public String updateUserDetails(@ModelAttribute("userProfileDTO") UserProfileDTO userProfileDTO, HttpServletRequest request, Model model) {
+				LOGGER.debug("updateUserDetails : "+request);
+
+			List<UserProfile> userProfiles = userProfileService.findBySignumId(userProfileDTO.getSignunId());
 			UserProfile profile = null;
 			if (userProfiles != null && userProfiles.size() > 0) {
 				profile = userProfiles.get(0);
 			}
-			for (int i = 0; i < props.length; i++) {
-			String value = request.getParameter(props[i]);
 			try {
-				BeanUtils.copyProperty(profile, props[i], value);
+				BeanUtils.copyProperties(profile, userProfileDTO);
 			} catch (IllegalAccessException e) {
 				LOGGER.error("updateUserDetails IllegalAccessException : "+profile);
 				e.printStackTrace();
@@ -175,59 +158,13 @@ public class UserController extends BaseController {
 				LOGGER.error("updateUserDetails InvocationTargetException : "+profile);
 				e.printStackTrace();
 			}
-		}
-		
-			profile = userProfileService.update(profile);
+					profile = userProfileService.update(profile);
 			model.addAttribute(profile);
 			LOGGER.debug("updateUserDetails profile : "+profile);
-		return "protected/userdetails";
+		return "protected/userProfile";
 	}
-	
-	
-	
-	@RequestMapping(value="orgChartDetails.html", method=RequestMethod.GET)
-	public String getOrgChartDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
-		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
-		LOGGER.debug("loggedInUser : "+loggedInUser);
-		//model.addAttribute(loggedInUser.getProfile());
-		return "protected/OrgChart";
-	}
-	
-	@RequestMapping(value="managedPeopleDetails.html", method=RequestMethod.GET)
-	public String getManagedPeopleDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
-		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
-		LOGGER.debug("loggedInUser : "+loggedInUser);
 		
-		String signum = null;
-		ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
-		Map<String, String> managedPeopleMap = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		LOGGER.debug("principal : "+principal);
-	    if (principal instanceof UserDetails) 
-	    {
-	        signum = ((UserDetails) principal).getUsername();
-	        LOGGER.debug("signum : "+signum);
-	    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
-	    }
-	    if(StringUtils.isNotBlank(signum)){
-	    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
-	    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
-	    }
 		
-	    List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
-		
-	    Set<String> set = managedPeopleMap.keySet();
-		for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
-			EmployeeDTO employeeDTO = new EmployeeDTO();
-			String string = (String) iterator.next();
-			employeeDTO.setSignum(string);
-			employeeDTO.setName(managedPeopleMap.get(string));
-			employeeDTOs.add(employeeDTO);
-		}
-	    
-		model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
-		return "protected/managedPeople";
-	}
 	
 	
 	@RequestMapping(value="orgChart.html", method=RequestMethod.GET)
@@ -310,25 +247,36 @@ public class UserController extends BaseController {
 		return data;
 	}
 	
+	/*String signum = null;
+	ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
+	Map<String, String> managedPeopleMap = null;
+	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	LOGGER.debug("principal : "+principal);
+    if (principal instanceof UserDetails) 
+    {
+        signum = ((UserDetails) principal).getUsername();
+        LOGGER.debug("signum : "+signum);
+    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
+    }
+    if(StringUtils.isNotBlank(signum)){
+    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
+    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
+    }
 	
-	/*private static UserService userService;
+    List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
 	
-	@Autowired
-	public void setUserService(UserService userService) {
-		UserController.userService = userService;
+    Set<String> set = managedPeopleMap.keySet();
+	for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
+		EmployeeDTO employeeDTO = new EmployeeDTO();
+		String string = (String) iterator.next();
+		employeeDTO.setSignum(string);
+		employeeDTO.setName(managedPeopleMap.get(string));
+		employeeDTOs.add(employeeDTO);
 	}
-	
-	public static User getCurrentUser()
-	{
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	    if (principal instanceof UserDetails) 
-	    {
-	    	String email = ((UserDetails) principal).getUsername();
-	    	User loginUser = userService.findUserByEmail(email);
-	    	return new SecurityUser(loginUser);
-	    }
-
-	    return null;
+    
+	model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
+	return "protected/managedPeople";
 	}*/
+	
 }
 
