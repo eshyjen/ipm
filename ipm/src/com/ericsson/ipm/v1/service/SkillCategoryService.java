@@ -29,4 +29,6 @@ public interface SkillCategoryService {
 	public Domain findByDomainName(Object d_name);
 	
 	public SkillCat findBySkillCatName(Object skillName);
+	
+	public SkillMaster save(SkillMaster entity);
 }

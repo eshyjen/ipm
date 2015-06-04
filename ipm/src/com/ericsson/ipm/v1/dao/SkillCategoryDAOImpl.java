@@ -61,5 +61,6 @@ public class SkillCategoryDAOImpl extends BaseDAO<Integer, SkillMaster> implemen
 		int result = query.executeUpdate();
 
 	}
+	
 
 }

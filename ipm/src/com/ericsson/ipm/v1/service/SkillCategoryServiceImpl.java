@@ -131,4 +131,9 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
 		return null ;
 	}
 
+	@Override
+	public SkillMaster save(SkillMaster entity) {
+		return skillCategoryDAO.save(entity);
+	}
+
 }

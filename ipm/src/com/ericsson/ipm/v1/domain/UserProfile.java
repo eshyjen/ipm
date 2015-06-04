@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -114,18 +115,18 @@ public class UserProfile implements Serializable {
 
 	//bi-directional many-to-one association to Asset
 	@OneToMany(mappedBy="userprofile")
-	private List<Asset> assets;
+	private Set<Asset> assets;
 
 	//bi-directional many-to-one association to Operationaldiscpline
 	@OneToMany(mappedBy="userprofile")
-	private List<OperationalDiscipline> operationaldiscplines;
+	private Set<OperationalDiscipline> operationaldiscplines;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
 
 	//bi-directional many-to-one association to deliveryQualities
 	@OneToMany(mappedBy="userprofile")
-	private List<DeliveryQuality> deliveryQualities;
+	private Set<DeliveryQuality> deliveryQualities;
 
 	
 	//@OneToOne/*(mappedBy = "userprofile", cascade= CascadeType.ALL)*/
@@ -331,11 +332,11 @@ public class UserProfile implements Serializable {
 		this.yearOfLastPromotion = yearOfLastPromotion;
 	}
 
-	public List<Asset> getAssets() {
+	public Set<Asset> getAssets() {
 		return this.assets;
 	}
 
-	public void setAssets(List<Asset> assets) {
+	public void setAssets(Set<Asset> assets) {
 		this.assets = assets;
 	}
 
@@ -361,11 +362,11 @@ public class UserProfile implements Serializable {
 		return asset;
 	}
 
-	public List<OperationalDiscipline> getOperationaldiscplines() {
+	public Set<OperationalDiscipline> getOperationaldiscplines() {
 		return this.operationaldiscplines;
 	}
 
-	public void setOperationaldiscplines(List<OperationalDiscipline> operationaldiscplines) {
+	public void setOperationaldiscplines(Set<OperationalDiscipline> operationaldiscplines) {
 		this.operationaldiscplines = operationaldiscplines;
 	}
 
@@ -417,11 +418,11 @@ public class UserProfile implements Serializable {
 			return userRoles;
 		}
 
-		public List<DeliveryQuality> getDeliveryQualities() {
+		public Set<DeliveryQuality> getDeliveryQualities() {
 			return deliveryQualities;
 		}
 
-		public void setDeliveryQualities(List<DeliveryQuality> deliveryQualities) {
+		public void setDeliveryQualities(Set<DeliveryQuality> deliveryQualities) {
 			this.deliveryQualities = deliveryQualities;
 		}
 

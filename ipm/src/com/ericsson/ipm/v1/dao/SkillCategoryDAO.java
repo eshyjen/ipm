@@ -14,5 +14,8 @@ public interface SkillCategoryDAO {
 	public SkillMaster getRefById(int id);
 
 	public void deleteEmployeeSkill( int eid, List<Integer> smIds);
+	
+	
+	public SkillMaster save(SkillMaster entity);
 
 }

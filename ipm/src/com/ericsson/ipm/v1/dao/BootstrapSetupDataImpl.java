@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
@@ -137,11 +138,19 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 			doOriginateSkillCat(skillCatDAO);
 			doOriginateDomain(domainDAO);
+			
+			
+			doOriginateJobStage();
+			List<SkillMaster> skillMasters = doOriginateForCommonTechnology_SkillCA();
+			persistCommonTechnologySkillCA(skillMasters);
+			doOriginateForTechnology_SkillCA4();
+			doOriginateForTechnology_SkillCA5();
+			doOriginateForTechnology_SkillCA6();
 
-			JobStage jobstage = doOriginateForTechnology_SkillCA5();
-			LOGGER.debug("jobstage : " + jobstage.getId());
+			//JobStage jobstage = doOriginateForTechnology_SkillCA5();
+			//LOGGER.debug("jobstage : " + jobstage.getId());
 			//doOriginateEmployee(employeeDAO, userProfile, jobstage);
-			UserProfile userProfile = doOriginateUserProfile(jobstage, userProfileService, roleService);
+			//UserProfile userProfile = doOriginateUserProfile(jobstage, userProfileService, roleService);
 		}
 
 		findQueryOnUserProfile(userProfileService);
@@ -1145,8 +1154,316 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		}
 
 	}
+	
+	public void doOriginateJobStage() {
+		
+		JobStage jobstage4 = new JobStage();
+		jobstage4.setJsId(4);
+		
+		JobStage jobstage5 = new JobStage();
+		jobstage5.setJsId(5);
+		
+		JobStage jobstage6 = new JobStage();
+		jobstage6.setJsId(6);
+		
+		JobStage jobstage7 = new JobStage();
+		jobstage7.setJsId(7);
+		
+		JobStage jobstage8 = new JobStage();
+		jobstage8.setJsId(8);
+		
+		JobStage jobstage9 = new JobStage();
+		jobstage9.setJsId(9);
+		
+		JobStage jobstage10 = new JobStage();
+		jobstage10.setJsId(10);
+		
+		setUp(jobstage4);
+		setUp(jobstage5);
+		setUp(jobstage6);
+		setUp(jobstage7);
+		setUp(jobstage8);
+		setUp(jobstage9);
+		setUp(jobstage10);
+		
+	}
+	
+	
+	public void doOriginateForTechnology_SkillCA4() {
+		
+		
+	}
+	
+	public void doOriginateForTechnology_SkillCA5() {
+		
+	}
+	
+	public void persistCommonTechnologySkillCA(List<SkillMaster> skillMasters) {
+		if(skillMasters != null && !skillMasters.isEmpty()){
+			for(SkillMaster entity : skillMasters){
+				skillCategoryService.save(entity);
+			}
+		}
+		
+	}
+	
+	
+	public void doOriginateForTechnology_SkillCA6() {
+		
+		
+		List<Domain> domains = this.findByDomainName("Technology_Skill");
+		List<SkillCat> skillcats = this.findBySkillCatName("Generic");
 
-	public JobStage doOriginateForTechnology_SkillCA5() {
+		Domain domain = domains.get(0);
+		SkillCat skillcat = skillcats.get(0);
+		
+		SkillMaster skillmaster1 = new SkillMaster();
+		skillmaster1.setDomain(domain);
+		skillmaster1.setSkillCat(skillcat);
+		skillmaster1.setSkillName("Hardware Dimentioning");
+		
+		
+		SkillMaster skillmaster2 = new SkillMaster();
+		skillmaster2.setDomain(domain);
+		skillmaster2.setSkillCat(skillcat);
+		skillmaster2.setSkillName("Performance Optimization and Scalability");
+
+
+
+
+		SkillMaster skillmaster3 = new SkillMaster();
+		skillmaster3.setDomain(domain);
+		skillmaster3.setSkillCat(skillcat);
+		skillmaster3.setSkillName("Presales and Estimation");
+		
+		skillCategoryService.save(skillmaster1);
+		skillCategoryService.save(skillmaster2);
+		skillCategoryService.save(skillmaster3);
+	}
+	
+	
+	private List<SkillMaster> doOriginateForCommonTechnology_SkillCA() {
+		
+		List<SkillMaster> list = new ArrayList<SkillMaster>();
+				
+		
+		List<Domain> domains = this.findByDomainName("Technology_Skill");
+		List<SkillCat> skillcats = this.findBySkillCatName("Generic");
+
+		Domain domain = domains.get(0);
+		SkillCat skillcat = skillcats.get(0);
+		
+		SkillMaster skillmaster1 = new SkillMaster();
+		skillmaster1.setDomain(domain);
+		skillmaster1.setSkillCat(skillcat);
+		skillmaster1.setSkillName("Core Java");
+		
+
+
+
+		SkillMaster skillmaster2 = new SkillMaster();
+		skillmaster2.setDomain(domain);
+		skillmaster2.setSkillCat(skillcat);
+		skillmaster2.setSkillName("J2EE");
+
+
+
+
+		SkillMaster skillmaster3 = new SkillMaster();
+		skillmaster3.setDomain(domain);
+		skillmaster3.setSkillCat(skillcat);
+		skillmaster3.setSkillName("Hibernate");
+
+
+
+		SkillMaster skillmaster4 = new SkillMaster();
+		skillmaster4.setDomain(domain);
+		skillmaster4.setSkillCat(skillcat);
+		skillmaster4.setSkillName("Spring");
+
+
+
+
+
+		SkillMaster skillmaster5 = new SkillMaster();
+		skillmaster5.setDomain(domain);
+		skillmaster5.setSkillCat(skillcat);
+		skillmaster5.setSkillName("Java API for XML Web Services (JAX-WS)");
+
+
+
+		SkillMaster skillmaster6 = new SkillMaster();
+		skillmaster6.setDomain(domain);
+		skillmaster6.setSkillCat(skillcat);
+		skillmaster6.setSkillName("Oracle PL/SQL");
+
+
+
+
+
+		SkillMaster skillmaster7 = new SkillMaster();
+		skillmaster7.setDomain(domain);
+		skillmaster7.setSkillCat(skillcat);
+		skillmaster7.setSkillName("JavaScript/JSON, CSS, HTML, XHTML");
+
+
+		SkillMaster skillmaster8 = new SkillMaster();
+		skillmaster8.setDomain(domain);
+		skillmaster8.setSkillCat(skillcat);
+		skillmaster8.setSkillName("SOA Architecture");
+
+
+
+		SkillMaster skillmaster9 = new SkillMaster();
+		skillmaster9.setDomain(domain);
+		skillmaster9.setSkillCat(skillcat);
+		skillmaster9.setSkillName("JSP");
+
+
+
+
+		SkillMaster skillmaster10 = new SkillMaster();
+		skillmaster10.setDomain(domain);
+		skillmaster10.setSkillCat(skillcat);
+		skillmaster10.setSkillName("Caching technologies");
+
+
+		SkillMaster skillmaster11 = new SkillMaster();
+		skillmaster11.setDomain(domain);
+		skillmaster11.setSkillCat(skillcat);
+		skillmaster11.setSkillName("Basic Knowledge Of RDBM");
+
+
+		SkillMaster skillmaster12 = new SkillMaster();
+		skillmaster12.setDomain(domain);
+		skillmaster12.setSkillCat(skillcat);
+		skillmaster12.setSkillName("XML");
+
+
+
+		SkillMaster skillmaster13 = new SkillMaster();
+		skillmaster13.setDomain(domain);
+		skillmaster13.setSkillCat(skillcat);
+		skillmaster13.setSkillName("Maven");
+
+
+		SkillMaster skillmaster14 = new SkillMaster();
+		skillmaster14.setDomain(domain);
+		skillmaster14.setSkillCat(skillcat);
+		skillmaster14.setSkillName("Basic Shell Scriptin");
+
+		SkillMaster skillmaster15 = new SkillMaster();
+		skillmaster15.setDomain(domain);
+		skillmaster15.setSkillCat(skillcat);
+		skillmaster15.setSkillName("LDAP Overview");
+
+
+		SkillMaster skillmaster16 = new SkillMaster();
+		skillmaster16.setDomain(domain);
+		skillmaster16.setSkillCat(skillcat);
+		skillmaster16.setSkillName("Design Pattern");
+
+		SkillMaster skillmaster17 = new SkillMaster();
+		skillmaster17.setDomain(domain);
+		skillmaster17.setSkillCat(skillcat);
+		skillmaster17.setSkillName("Cloud Computing Basic");
+
+
+		SkillMaster skillmaster18 = new SkillMaster();
+		skillmaster18.setDomain(domain);
+		skillmaster18.setSkillCat(skillcat);
+		skillmaster18.setSkillName("Big Data Concep");
+
+
+		SkillMaster skillmaster19 = new SkillMaster();
+		skillmaster19.setDomain(domain);
+		skillmaster19.setSkillCat(skillcat);
+		skillmaster19.setSkillName("Rest API -Webservices");
+
+
+
+		SkillMaster skillmaster20 = new SkillMaster();
+		skillmaster20.setDomain(domain);
+		skillmaster20.setSkillCat(skillcat);
+		skillmaster20.setSkillName("Linux");
+
+
+		SkillMaster skillmaster21 = new SkillMaster();
+		skillmaster21.setDomain(domain);
+		skillmaster21.setSkillCat(skillcat);
+		skillmaster21.setSkillName("Network Protocol(HTTP,HTTPS,TCP)");
+
+
+		SkillMaster skillmaster22 = new SkillMaster();
+		skillmaster22.setDomain(domain);
+		skillmaster22.setSkillCat(skillcat);
+		skillmaster22.setSkillName("Version Control Tool(SVN,Git)");
+		
+		list.add(skillmaster1);
+		list.add(skillmaster2);
+		list.add(skillmaster3);
+		list.add(skillmaster4);
+		list.add(skillmaster5);
+		list.add(skillmaster6);
+		list.add(skillmaster7);
+		list.add(skillmaster8);
+		list.add(skillmaster9);
+		list.add(skillmaster10);
+		list.add(skillmaster12);
+		list.add(skillmaster13);
+		list.add(skillmaster14);
+		list.add(skillmaster15);
+		list.add(skillmaster16);
+		list.add(skillmaster17);
+		list.add(skillmaster18);
+		list.add(skillmaster19);
+		list.add(skillmaster20);
+		list.add(skillmaster21);
+
+		return list;
+		
+	}
+	
+	public void doOriginateForReqSkillTechnology_SkillCA4() {
+		
+
+		
+		Query query =  getEntityManager().createQuery("from JobStage model where model.jsId=:jsId");
+		query.setParameter("jsId", 4);
+		JobStage jobstage = (JobStage)query.getSingleResult();
+		
+		
+		
+		ReqSkill reqskill1 = new ReqSkill();
+		SkillMaster skillmaster1 = getSkill("Core Java");
+		reqskill1.setJobStage(jobstage);
+		reqskill1.setReqSkill("A");
+		reqskill1.setSkillMaster(skillmaster1);
+		
+		
+		ReqSkill reqskill2 = new ReqSkill();
+		SkillMaster skillmaster2 = getSkill("J2EE");
+		reqskill2.setJobStage(jobstage);
+		reqskill2.setReqSkill("A");
+		reqskill2.setSkillMaster(skillmaster2);
+		
+		
+		
+		return ;
+	}
+	
+	
+	
+	private SkillMaster getSkill( String skillName){
+		
+		Query query =  getEntityManager().createQuery("from SkillMaster model where model.skillName=:skillName");
+		query.setParameter("skillName", skillName);
+		SkillMaster skillmaster = (SkillMaster)query.getSingleResult();
+		return skillmaster;
+	}
+	 
+
+	/*public JobStage doOriginateForTechnology_SkillCA5() {
 
 		List<Domain> domains = this.findByDomainName("Technology_Skill");
 		List<SkillCat> skillcats = this.findBySkillCatName("Generic");
@@ -1456,7 +1773,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 		return jobstage;
 
-	}
+	}*/
 
 	@Autowired
 	public void setAssetDAO(AssetDAO assetDAO) {
