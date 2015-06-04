@@ -42,7 +42,7 @@ import com.ericsson.v1.util.IPMUtility;
 @Repository("bootstrapSetupData")
 @Transactional
 public class BootstrapSetupDataImpl implements BootstrapSetupData {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(BootstrapSetupDataImpl.class);
 
 	private static final Configuration CONFIG = AdaptersConfiguration
@@ -52,7 +52,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 	private DomainDAO domainDAO;
 
 	private SkillCatDAO skillCatDAO;
-	
+
 	private UserProfileService userProfileService;
 
 	private RoleService roleService;
@@ -62,7 +62,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 	private SkillCategoryService skillCategoryService;
 
 	private EmployeeDAO employeeDAO;
-	
+
 	private AssetDAO assetDAO;
 
 	@PersistenceContext
@@ -115,12 +115,12 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 	public List<SkillCat> findBySkillCatName(Object skillName) {
 		return skillCatDAO.findBySkillCatName(skillName);
 	}
-	
-	
+
+
 	public void setUp(){
 		Object bootStrapData = CONFIG.getProperty("ipm.setupbootstrap.data");
 		LOGGER.debug("bootStrapData : " + bootStrapData);
-		
+
 		if(bootStrapData != null && "true".equalsIgnoreCase(bootStrapData.toString())){
 
 			List<UserProfile> profiles = userProfileService.findBySignumId("EKHIQBA");
@@ -134,12 +134,12 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 
 			doOriginateRole(roleService, kpisSWD, kpisSSWD);
-			
+
 
 			doOriginateSkillCat(skillCatDAO);
 			doOriginateDomain(domainDAO);
-			
-			
+
+
 			doOriginateJobStage();
 			List<SkillMaster> skillMasters = doOriginateForCommonTechnology_SkillCA();
 			persistCommonTechnologySkillCA(skillMasters);
@@ -155,13 +155,13 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 
 		findQueryOnUserProfile(userProfileService);
 		findQueryOnSkillCategory(skillCategoryService);
-		
-		UserProfile profile= userProfileService.getUserDetails("EKHIQBA"); 
-		
+
+		UserProfile profile= userProfileService.getUserDetails("EKHIQBA");
+
 		///  Create Dummy Asset///
-		
+
 		 /*Asset asset1 = new Asset();
-		
+
 		 asset1.setApprovalStatus("APPROVED");
 		 asset1.setAssetName("assetName");
 		 asset1.setAssetShortDescription("assetShortDescription");
@@ -173,9 +173,9 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		 asset1.setReusedInOtherProjectsName("reusedInOtherProjectsName");
 		 asset1.setUserprofile(profile);
 		 assetDAO.save(asset1);
-		 
+
 		 Asset asset12 = new Asset();
-			
+
 		 asset12.setApprovalStatus("APPROVED1");
 		 asset12.setAssetName("assetName1");
 		 asset12.setAssetShortDescription("assetShortDescription1");
@@ -226,11 +226,11 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 	}
 
 
-	
+
 	////////////////////////////
-	
-	
-	
+
+
+
 	public List<KPIRoleAssignment> populateKPIRoleAssignment(List<KPI> kpisOfRole, Role role){
 		List<KPIRoleAssignment> kpiRoleAssignments = new ArrayList<KPIRoleAssignment>();
 
@@ -395,9 +395,9 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		employee.setJobStage(jobstage);
 		//employeeDAO.save(employee);
 		userProfile.setEmployee(employee);
-		
+
 		userProfile = userProfileService.save(userProfile);
-		
+
 		return userProfile;
 	}
 
@@ -1154,30 +1154,30 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		}
 
 	}
-	
+
 	public void doOriginateJobStage() {
-		
+
 		JobStage jobstage4 = new JobStage();
 		jobstage4.setJsId(4);
-		
+
 		JobStage jobstage5 = new JobStage();
 		jobstage5.setJsId(5);
-		
+
 		JobStage jobstage6 = new JobStage();
 		jobstage6.setJsId(6);
-		
+
 		JobStage jobstage7 = new JobStage();
 		jobstage7.setJsId(7);
-		
+
 		JobStage jobstage8 = new JobStage();
 		jobstage8.setJsId(8);
-		
+
 		JobStage jobstage9 = new JobStage();
 		jobstage9.setJsId(9);
-		
+
 		JobStage jobstage10 = new JobStage();
 		jobstage10.setJsId(10);
-		
+
 		setUp(jobstage4);
 		setUp(jobstage5);
 		setUp(jobstage6);
@@ -1185,44 +1185,44 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		setUp(jobstage8);
 		setUp(jobstage9);
 		setUp(jobstage10);
-		
+
 	}
-	
-	
+
+
 	public void doOriginateForTechnology_SkillCA4() {
-		
-		
+
+
 	}
-	
+
 	public void doOriginateForTechnology_SkillCA5() {
-		
+
 	}
-	
+
 	public void persistCommonTechnologySkillCA(List<SkillMaster> skillMasters) {
 		if(skillMasters != null && !skillMasters.isEmpty()){
 			for(SkillMaster entity : skillMasters){
 				skillCategoryService.save(entity);
 			}
 		}
-		
+
 	}
-	
-	
+
+
 	public void doOriginateForTechnology_SkillCA6() {
-		
-		
+
+
 		List<Domain> domains = this.findByDomainName("Technology_Skill");
 		List<SkillCat> skillcats = this.findBySkillCatName("Generic");
 
 		Domain domain = domains.get(0);
 		SkillCat skillcat = skillcats.get(0);
-		
+
 		SkillMaster skillmaster1 = new SkillMaster();
 		skillmaster1.setDomain(domain);
 		skillmaster1.setSkillCat(skillcat);
 		skillmaster1.setSkillName("Hardware Dimentioning");
-		
-		
+
+
 		SkillMaster skillmaster2 = new SkillMaster();
 		skillmaster2.setDomain(domain);
 		skillmaster2.setSkillCat(skillcat);
@@ -1235,29 +1235,29 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		skillmaster3.setDomain(domain);
 		skillmaster3.setSkillCat(skillcat);
 		skillmaster3.setSkillName("Presales and Estimation");
-		
+
 		skillCategoryService.save(skillmaster1);
 		skillCategoryService.save(skillmaster2);
 		skillCategoryService.save(skillmaster3);
 	}
-	
-	
+
+
 	private List<SkillMaster> doOriginateForCommonTechnology_SkillCA() {
-		
+
 		List<SkillMaster> list = new ArrayList<SkillMaster>();
-				
-		
+
+
 		List<Domain> domains = this.findByDomainName("Technology_Skill");
 		List<SkillCat> skillcats = this.findBySkillCatName("Generic");
 
 		Domain domain = domains.get(0);
 		SkillCat skillcat = skillcats.get(0);
-		
+
 		SkillMaster skillmaster1 = new SkillMaster();
 		skillmaster1.setDomain(domain);
 		skillmaster1.setSkillCat(skillcat);
 		skillmaster1.setSkillName("Core Java");
-		
+
 
 
 
@@ -1398,7 +1398,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		skillmaster22.setDomain(domain);
 		skillmaster22.setSkillCat(skillcat);
 		skillmaster22.setSkillName("Version Control Tool(SVN,Git)");
-		
+
 		list.add(skillmaster1);
 		list.add(skillmaster2);
 		list.add(skillmaster3);
@@ -1421,47 +1421,493 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		list.add(skillmaster21);
 
 		return list;
-		
-	}
-	
-	public void doOriginateForReqSkillTechnology_SkillCA4() {
-		
 
-		
+	}
+
+	public void doOriginateForReqSkillTechnology_SkillCA4() {
+
+
+
 		Query query =  getEntityManager().createQuery("from JobStage model where model.jsId=:jsId");
 		query.setParameter("jsId", 4);
 		JobStage jobstage = (JobStage)query.getSingleResult();
-		
-		
-		
+
+
+
 		ReqSkill reqskill1 = new ReqSkill();
 		SkillMaster skillmaster1 = getSkill("Core Java");
 		reqskill1.setJobStage(jobstage);
-		reqskill1.setReqSkill("A");
+		reqskill1.setReqSkill("B");
 		reqskill1.setSkillMaster(skillmaster1);
-		
-		
+
+
 		ReqSkill reqskill2 = new ReqSkill();
 		SkillMaster skillmaster2 = getSkill("J2EE");
 		reqskill2.setJobStage(jobstage);
 		reqskill2.setReqSkill("A");
 		reqskill2.setSkillMaster(skillmaster2);
-		
-		
-		
+
+		ReqSkill reqskill3 = new ReqSkill();
+		SkillMaster skillmaster3 = getSkill("Hibernate");
+		reqskill3.setJobStage(jobstage);
+		reqskill3.setReqSkill("A");
+		reqskill3.setSkillMaster(skillmaster3);
+
+		ReqSkill reqskill4 = new ReqSkill();
+		SkillMaster skillmaster4 = getSkill("Spring");
+		reqskill4.setJobStage(jobstage);
+		reqskill4.setReqSkill("A");
+		reqskill4.setSkillMaster(skillmaster4);
+
+		ReqSkill reqskill5 = new ReqSkill();
+		SkillMaster skillmaster5 = getSkill("Java API for XML Web Services (JAX-WS)");
+		reqskill5.setJobStage(jobstage);
+		reqskill5.setReqSkill("A");
+		reqskill5.setSkillMaster(skillmaster5);
+
+		ReqSkill reqskill6 = new ReqSkill();
+		SkillMaster skillmaster6 = getSkill("Oracle PL/SQL");
+		reqskill6.setJobStage(jobstage);
+		reqskill6.setReqSkill("A");
+		reqskill6.setSkillMaster(skillmaster6);
+
+		ReqSkill reqskill7 = new ReqSkill();
+		SkillMaster skillmaster7 = getSkill("JavaScript/JSON, CSS, HTML, XHTML");
+		reqskill7.setJobStage(jobstage);
+		reqskill7.setReqSkill("B");
+		reqskill7.setSkillMaster(skillmaster7);
+
+		ReqSkill reqskill8 = new ReqSkill();
+		SkillMaster skillmaster8= getSkill("SOA Architecture");
+		reqskill8.setJobStage(jobstage);
+		reqskill8.setReqSkill("T");
+		reqskill8.setSkillMaster(skillmaster8);
+
+		ReqSkill reqskill9 = new ReqSkill();
+		SkillMaster skillmaster9 = getSkill("JSP");
+		reqskill9.setJobStage(jobstage);
+		reqskill9.setReqSkill("B");
+		reqskill9.setSkillMaster(skillmaster9);
+
+
+
+		ReqSkill reqskill10= new ReqSkill();
+		SkillMaster skillmaster10= getSkill("Caching technologies");
+		reqskill10.setJobStage(jobstage);
+		reqskill10.setReqSkill("A");
+		reqskill10.setSkillMaster(skillmaster10);
+
+		ReqSkill reqskill11 = new ReqSkill();
+		SkillMaster skillmaster11 = getSkill("Basic Knowledge Of RDBMS");
+		reqskill11.setJobStage(jobstage);
+		reqskill11.setReqSkill("B");
+		reqskill11.setSkillMaster(skillmaster11);
+
+		ReqSkill reqskill12 = new ReqSkill();
+		SkillMaster skillmaster12 = getSkill("XML");
+		reqskill12.setJobStage(jobstage);
+		reqskill12.setReqSkill("A");
+		reqskill12.setSkillMaster(skillmaster12);
+
+		ReqSkill reqskill13 = new ReqSkill();
+		SkillMaster skillmaster13 = getSkill("Maven");
+		reqskill13.setJobStage(jobstage);
+		reqskill13.setReqSkill("A");
+		reqskill13.setSkillMaster(skillmaster13);
+
+		ReqSkill reqskill14 = new ReqSkill();
+		SkillMaster skillmaster14 = getSkill("Basic Shell Scripting");
+		reqskill14.setJobStage(jobstage);
+		reqskill14.setReqSkill("A");
+		reqskill14.setSkillMaster(skillmaster14);
+
+		ReqSkill reqskill15 = new ReqSkill();
+		SkillMaster skillmaster15 = getSkill("LDAP Overview");
+		reqskill15.setJobStage(jobstage);
+		reqskill15.setReqSkill("A");
+		reqskill15.setSkillMaster(skillmaster15);
+
+		ReqSkill reqskill16 = new ReqSkill();
+		SkillMaster skillmaster16 = getSkill("Design Pattern");
+		reqskill16.setJobStage(jobstage);
+		reqskill16.setReqSkill("A");
+		reqskill16.setSkillMaster(skillmaster16);
+
+		ReqSkill reqskill17 = new ReqSkill();
+		SkillMaster skillmaster17 = getSkill("Cloud Computing Basic");
+		reqskill17.setJobStage(jobstage);
+		reqskill17.setReqSkill("T");
+		reqskill17.setSkillMaster(skillmaster17);
+
+		ReqSkill reqskill18 = new ReqSkill();
+		SkillMaster skillmaster18 = getSkill("Big Data Concept");
+		reqskill18.setJobStage(jobstage);
+		reqskill18.setReqSkill("T");
+		reqskill18.setSkillMaster(skillmaster18);
+
+		ReqSkill reqskill19 = new ReqSkill();
+		SkillMaster skillmaster19 = getSkill("Rest API -Webservices");
+		reqskill19.setJobStage(jobstage);
+		reqskill19.setReqSkill("T");
+		reqskill19.setSkillMaster(skillmaster19);
+
+		ReqSkill reqskill20= new ReqSkill();
+		SkillMaster skillmaster20= getSkill("Linux");
+		reqskill20.setJobStage(jobstage);
+		reqskill20.setReqSkill("A");
+		reqskill20.setSkillMaster(skillmaster20);
+
+		ReqSkill reqskill21 = new ReqSkill();
+		SkillMaster skillmaster21= getSkill("Network Protocol(HTTP,HTTPS,TCP)");
+		reqskill21.setJobStage(jobstage);
+		reqskill21.setReqSkill("A");
+		reqskill21.setSkillMaster(skillmaster21);
+
+		ReqSkill reqskill22= new ReqSkill();
+		SkillMaster skillmaster22= getSkill("Version Control Tool(SVN,Git)");
+		reqskill22.setJobStage(jobstage);
+		reqskill22.setReqSkill("T");
+		reqskill22.setSkillMaster(skillmaster22);
+
+
+
+
 		return ;
 	}
-	
-	
-	
+
+
+	public void doOriginateForReqSkillTechnology_SkillCA5() {
+
+
+
+		Query query =  getEntityManager().createQuery("from JobStage model where model.jsId=:jsId");
+		query.setParameter("jsId", 5);
+		JobStage jobstage = (JobStage)query.getSingleResult();
+
+
+
+		ReqSkill reqskill1 = new ReqSkill();
+		SkillMaster skillmaster1 = getSkill("Core Java");
+		reqskill1.setJobStage(jobstage);
+		reqskill1.setReqSkill("C");
+		reqskill1.setSkillMaster(skillmaster1);
+
+
+		ReqSkill reqskill2 = new ReqSkill();
+		SkillMaster skillmaster2 = getSkill("J2EE");
+		reqskill2.setJobStage(jobstage);
+		reqskill2.setReqSkill("B");
+		reqskill2.setSkillMaster(skillmaster2);
+
+		ReqSkill reqskill3 = new ReqSkill();
+		SkillMaster skillmaster3 = getSkill("Hibernate");
+		reqskill3.setJobStage(jobstage);
+		reqskill3.setReqSkill("B");
+		reqskill3.setSkillMaster(skillmaster3);
+
+		ReqSkill reqskill4 = new ReqSkill();
+		SkillMaster skillmaster4 = getSkill("Spring");
+		reqskill4.setJobStage(jobstage);
+		reqskill4.setReqSkill("B");
+		reqskill4.setSkillMaster(skillmaster4);
+
+		ReqSkill reqskill5 = new ReqSkill();
+		SkillMaster skillmaster5 = getSkill("Java API for XML Web Services (JAX-WS)");
+		reqskill5.setJobStage(jobstage);
+		reqskill5.setReqSkill("B");
+		reqskill5.setSkillMaster(skillmaster5);
+
+		ReqSkill reqskill6 = new ReqSkill();
+		SkillMaster skillmaster6 = getSkill("Oracle PL/SQL");
+		reqskill6.setJobStage(jobstage);
+		reqskill6.setReqSkill("B");
+		reqskill6.setSkillMaster(skillmaster6);
+
+		ReqSkill reqskill7 = new ReqSkill();
+		SkillMaster skillmaster7 = getSkill("JavaScript/JSON, CSS, HTML, XHTML");
+		reqskill7.setJobStage(jobstage);
+		reqskill7.setReqSkill("C");
+		reqskill7.setSkillMaster(skillmaster7);
+
+		ReqSkill reqskill8 = new ReqSkill();
+		SkillMaster skillmaster8= getSkill("SOA Architecture");
+		reqskill8.setJobStage(jobstage);
+		reqskill8.setReqSkill("A");
+		reqskill8.setSkillMaster(skillmaster8);
+
+		ReqSkill reqskill9 = new ReqSkill();
+		SkillMaster skillmaster9 = getSkill("JSP");
+		reqskill9.setJobStage(jobstage);
+		reqskill9.setReqSkill("C");
+		reqskill9.setSkillMaster(skillmaster9);
+
+
+
+		ReqSkill reqskill10= new ReqSkill();
+		SkillMaster skillmaster10= getSkill("Caching technologies");
+		reqskill10.setJobStage(jobstage);
+		reqskill10.setReqSkill("B");
+		reqskill10.setSkillMaster(skillmaster10);
+
+		ReqSkill reqskill11 = new ReqSkill();
+		SkillMaster skillmaster11 = getSkill("Basic Knowledge Of RDBMS");
+		reqskill11.setJobStage(jobstage);
+		reqskill11.setReqSkill("C");
+		reqskill11.setSkillMaster(skillmaster11);
+
+		ReqSkill reqskill12 = new ReqSkill();
+		SkillMaster skillmaster12 = getSkill("XML");
+		reqskill12.setJobStage(jobstage);
+		reqskill12.setReqSkill("C");
+		reqskill12.setSkillMaster(skillmaster12);
+
+		ReqSkill reqskill13 = new ReqSkill();
+		SkillMaster skillmaster13 = getSkill("Maven");
+		reqskill13.setJobStage(jobstage);
+		reqskill13.setReqSkill("C");
+		reqskill13.setSkillMaster(skillmaster13);
+
+		ReqSkill reqskill14 = new ReqSkill();
+		SkillMaster skillmaster14 = getSkill("Basic Shell Scripting");
+		reqskill14.setJobStage(jobstage);
+		reqskill14.setReqSkill("C");
+		reqskill14.setSkillMaster(skillmaster14);
+
+		ReqSkill reqskill15 = new ReqSkill();
+		SkillMaster skillmaster15 = getSkill("LDAP Overview");
+		reqskill15.setJobStage(jobstage);
+		reqskill15.setReqSkill("B");
+		reqskill15.setSkillMaster(skillmaster15);
+
+		ReqSkill reqskill16 = new ReqSkill();
+		SkillMaster skillmaster16 = getSkill("Design Pattern");
+		reqskill16.setJobStage(jobstage);
+		reqskill16.setReqSkill("C");
+		reqskill16.setSkillMaster(skillmaster16);
+
+		ReqSkill reqskill17 = new ReqSkill();
+		SkillMaster skillmaster17 = getSkill("Cloud Computing Basic");
+		reqskill17.setJobStage(jobstage);
+		reqskill17.setReqSkill("A");
+		reqskill17.setSkillMaster(skillmaster17);
+
+		ReqSkill reqskill18 = new ReqSkill();
+		SkillMaster skillmaster18 = getSkill("Big Data Concept");
+		reqskill18.setJobStage(jobstage);
+		reqskill18.setReqSkill("A");
+		reqskill18.setSkillMaster(skillmaster18);
+
+		ReqSkill reqskill19 = new ReqSkill();
+		SkillMaster skillmaster19 = getSkill("Rest API -Webservices");
+		reqskill19.setJobStage(jobstage);
+		reqskill19.setReqSkill("B");
+		reqskill19.setSkillMaster(skillmaster19);
+
+		ReqSkill reqskill20= new ReqSkill();
+		SkillMaster skillmaster20= getSkill("Linux");
+		reqskill20.setJobStage(jobstage);
+		reqskill20.setReqSkill("B");
+		reqskill20.setSkillMaster(skillmaster20);
+
+		ReqSkill reqskill21 = new ReqSkill();
+		SkillMaster skillmaster21= getSkill("Network Protocol(HTTP,HTTPS,TCP)");
+		reqskill21.setJobStage(jobstage);
+		reqskill21.setReqSkill("B");
+		reqskill21.setSkillMaster(skillmaster21);
+
+		ReqSkill reqskill22= new ReqSkill();
+		SkillMaster skillmaster22= getSkill("Version Control Tool(SVN,Git)");
+		reqskill22.setJobStage(jobstage);
+		reqskill22.setReqSkill("C");
+		reqskill22.setSkillMaster(skillmaster22);
+
+
+
+
+
+
+		return ;
+	}
+
+	public void doOriginateForReqSkillTechnology_SkillCA6() {
+
+
+
+		Query query =  getEntityManager().createQuery("from JobStage model where model.jsId=:jsId");
+		query.setParameter("jsId", 6);
+		JobStage jobstage = (JobStage)query.getSingleResult();
+
+
+
+		ReqSkill reqskill1 = new ReqSkill();
+		SkillMaster skillmaster1 = getSkill("Core Java");
+		reqskill1.setJobStage(jobstage);
+		reqskill1.setReqSkill("D");
+		reqskill1.setSkillMaster(skillmaster1);
+
+
+		ReqSkill reqskill2 = new ReqSkill();
+		SkillMaster skillmaster2 = getSkill("J2EE");
+		reqskill2.setJobStage(jobstage);
+		reqskill2.setReqSkill("C");
+		reqskill2.setSkillMaster(skillmaster2);
+
+		ReqSkill reqskill3 = new ReqSkill();
+		SkillMaster skillmaster3 = getSkill("Hibernate");
+		reqskill3.setJobStage(jobstage);
+		reqskill3.setReqSkill("C");
+		reqskill3.setSkillMaster(skillmaster3);
+
+		ReqSkill reqskill4 = new ReqSkill();
+		SkillMaster skillmaster4 = getSkill("Spring");
+		reqskill4.setJobStage(jobstage);
+		reqskill4.setReqSkill("C");
+		reqskill4.setSkillMaster(skillmaster4);
+
+		ReqSkill reqskill5 = new ReqSkill();
+		SkillMaster skillmaster5 = getSkill("Java API for XML Web Services (JAX-WS)");
+		reqskill5.setJobStage(jobstage);
+		reqskill5.setReqSkill("C");
+		reqskill5.setSkillMaster(skillmaster5);
+
+		ReqSkill reqskill6 = new ReqSkill();
+		SkillMaster skillmaster6 = getSkill("Oracle PL/SQL");
+		reqskill6.setJobStage(jobstage);
+		reqskill6.setReqSkill("C");
+		reqskill6.setSkillMaster(skillmaster6);
+
+		ReqSkill reqskill7 = new ReqSkill();
+		SkillMaster skillmaster7 = getSkill("JavaScript/JSON, CSS, HTML, XHTML");
+		reqskill7.setJobStage(jobstage);
+		reqskill7.setReqSkill("C");
+		reqskill7.setSkillMaster(skillmaster7);
+
+		ReqSkill reqskill8 = new ReqSkill();
+		SkillMaster skillmaster8= getSkill("SOA Architecture");
+		reqskill8.setJobStage(jobstage);
+		reqskill8.setReqSkill("B");
+		reqskill8.setSkillMaster(skillmaster8);
+
+		ReqSkill reqskill9 = new ReqSkill();
+		SkillMaster skillmaster9 = getSkill("JSP");
+		reqskill9.setJobStage(jobstage);
+		reqskill9.setReqSkill("C");
+		reqskill9.setSkillMaster(skillmaster9);
+
+
+
+		ReqSkill reqskill10= new ReqSkill();
+		SkillMaster skillmaster10= getSkill("Caching technologies");
+		reqskill10.setJobStage(jobstage);
+		reqskill10.setReqSkill("B");
+		reqskill10.setSkillMaster(skillmaster10);
+
+		ReqSkill reqskill11 = new ReqSkill();
+		SkillMaster skillmaster11 = getSkill("Basic Knowledge Of RDBMS");
+		reqskill11.setJobStage(jobstage);
+		reqskill11.setReqSkill("C");
+		reqskill11.setSkillMaster(skillmaster11);
+
+		ReqSkill reqskill12 = new ReqSkill();
+		SkillMaster skillmaster12 = getSkill("XML");
+		reqskill12.setJobStage(jobstage);
+		reqskill12.setReqSkill("C");
+		reqskill12.setSkillMaster(skillmaster12);
+
+		ReqSkill reqskill13 = new ReqSkill();
+		SkillMaster skillmaster13 = getSkill("Maven");
+		reqskill13.setJobStage(jobstage);
+		reqskill13.setReqSkill("C");
+		reqskill13.setSkillMaster(skillmaster13);
+
+		ReqSkill reqskill14 = new ReqSkill();
+		SkillMaster skillmaster14 = getSkill("Basic Shell Scripting");
+		reqskill14.setJobStage(jobstage);
+		reqskill14.setReqSkill("C");
+		reqskill14.setSkillMaster(skillmaster14);
+
+		ReqSkill reqskill15 = new ReqSkill();
+		SkillMaster skillmaster15 = getSkill("LDAP Overview");
+		reqskill15.setJobStage(jobstage);
+		reqskill15.setReqSkill("C");
+		reqskill15.setSkillMaster(skillmaster15);
+
+		ReqSkill reqskill16 = new ReqSkill();
+		SkillMaster skillmaster16 = getSkill("Design Pattern");
+		reqskill16.setJobStage(jobstage);
+		reqskill16.setReqSkill("C");
+		reqskill16.setSkillMaster(skillmaster16);
+
+		ReqSkill reqskill17 = new ReqSkill();
+		SkillMaster skillmaster17 = getSkill("Cloud Computing Basic");
+		reqskill17.setJobStage(jobstage);
+		reqskill17.setReqSkill("B");
+		reqskill17.setSkillMaster(skillmaster17);
+
+		ReqSkill reqskill18 = new ReqSkill();
+		SkillMaster skillmaster18 = getSkill("Big Data Concept");
+		reqskill18.setJobStage(jobstage);
+		reqskill18.setReqSkill("B");
+		reqskill18.setSkillMaster(skillmaster18);
+
+		ReqSkill reqskill19 = new ReqSkill();
+		SkillMaster skillmaster19 = getSkill("Rest API -Webservices");
+		reqskill19.setJobStage(jobstage);
+		reqskill19.setReqSkill("C");
+		reqskill19.setSkillMaster(skillmaster19);
+
+		ReqSkill reqskill20= new ReqSkill();
+		SkillMaster skillmaster20= getSkill("Linux");
+		reqskill20.setJobStage(jobstage);
+		reqskill20.setReqSkill("C");
+		reqskill20.setSkillMaster(skillmaster20);
+
+		ReqSkill reqskill21 = new ReqSkill();
+		SkillMaster skillmaster21= getSkill("Network Protocol(HTTP,HTTPS,TCP)");
+		reqskill21.setJobStage(jobstage);
+		reqskill21.setReqSkill("C");
+		reqskill21.setSkillMaster(skillmaster21);
+
+		ReqSkill reqskill22= new ReqSkill();
+		SkillMaster skillmaster22= getSkill("Version Control Tool(SVN,Git)");
+		reqskill22.setJobStage(jobstage);
+		reqskill22.setReqSkill("C");
+		reqskill22.setSkillMaster(skillmaster22);
+
+		ReqSkill reqskill23= new ReqSkill();
+		SkillMaster skillmaster23= getSkill("Hardware Dimentioning");
+		reqskill23.setJobStage(jobstage);
+		reqskill23.setReqSkill("B");
+		reqskill23.setSkillMaster(skillmaster23);
+
+		ReqSkill reqskill24= new ReqSkill();
+		SkillMaster skillmaster24= getSkill("Performance Optimization and Scalability");
+		reqskill24.setJobStage(jobstage);
+		reqskill24.setReqSkill("C");
+		reqskill24.setSkillMaster(skillmaster24);
+
+		ReqSkill reqskill25= new ReqSkill();
+		SkillMaster skillmaster25= getSkill("Presales and Estimation");
+		reqskill25.setJobStage(jobstage);
+		reqskill25.setReqSkill("B");
+		reqskill25.setSkillMaster(skillmaster25);
+
+
+
+
+
+
+		return ;
+	}
+
 	private SkillMaster getSkill( String skillName){
-		
+
 		Query query =  getEntityManager().createQuery("from SkillMaster model where model.skillName=:skillName");
 		query.setParameter("skillName", skillName);
 		SkillMaster skillmaster = (SkillMaster)query.getSingleResult();
 		return skillmaster;
 	}
-	 
+
 
 	/*public JobStage doOriginateForTechnology_SkillCA5() {
 
@@ -1779,15 +2225,15 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 	public void setAssetDAO(AssetDAO assetDAO) {
 		this.assetDAO = assetDAO;
 	}
-	
-	
+
+
 	///////////////////////////
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 
 
