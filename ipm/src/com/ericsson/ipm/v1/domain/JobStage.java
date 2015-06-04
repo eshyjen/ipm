@@ -30,7 +30,7 @@ public class JobStage implements Serializable {
 	private List<Employee> employees;
 
 	//bi-directional many-to-one association to Reqskill
-	@OneToMany(mappedBy="jobStage", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="jobStage")
 	private List<ReqSkill> reqSkills;
 
 	public JobStage() {

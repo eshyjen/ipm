@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.Domain;
 import com.ericsson.ipm.v1.domain.Employee;
 import com.ericsson.ipm.v1.domain.JobStage;
@@ -146,11 +145,18 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 			doOriginateForTechnology_SkillCA4();
 			doOriginateForTechnology_SkillCA5();
 			doOriginateForTechnology_SkillCA6();
+			
+			doOriginateForReqSkillTechnology_SkillCA4();
+			doOriginateForReqSkillTechnology_SkillCA5();
+			doOriginateForReqSkillTechnology_SkillCA6();
 
 			//JobStage jobstage = doOriginateForTechnology_SkillCA5();
 			//LOGGER.debug("jobstage : " + jobstage.getId());
 			//doOriginateEmployee(employeeDAO, userProfile, jobstage);
-			//UserProfile userProfile = doOriginateUserProfile(jobstage, userProfileService, roleService);
+			Query query =  getEntityManager().createQuery("from JobStage model where model.jsId=:jsId");
+			query.setParameter("jsId", 4);
+			JobStage jobstage = (JobStage)query.getSingleResult();
+			UserProfile userProfile = doOriginateUserProfile(jobstage, userProfileService, roleService);
 		}
 
 		findQueryOnUserProfile(userProfileService);
@@ -1331,7 +1337,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		SkillMaster skillmaster11 = new SkillMaster();
 		skillmaster11.setDomain(domain);
 		skillmaster11.setSkillCat(skillcat);
-		skillmaster11.setSkillName("Basic Knowledge Of RDBM");
+		skillmaster11.setSkillName("Basic Knowledge Of RDBMS");
 
 
 		SkillMaster skillmaster12 = new SkillMaster();
@@ -1350,7 +1356,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		SkillMaster skillmaster14 = new SkillMaster();
 		skillmaster14.setDomain(domain);
 		skillmaster14.setSkillCat(skillcat);
-		skillmaster14.setSkillName("Basic Shell Scriptin");
+		skillmaster14.setSkillName("Basic Shell Scripting");
 
 		SkillMaster skillmaster15 = new SkillMaster();
 		skillmaster15.setDomain(domain);
@@ -1372,7 +1378,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		SkillMaster skillmaster18 = new SkillMaster();
 		skillmaster18.setDomain(domain);
 		skillmaster18.setSkillCat(skillcat);
-		skillmaster18.setSkillName("Big Data Concep");
+		skillmaster18.setSkillName("Big Data Concept");
 
 
 		SkillMaster skillmaster19 = new SkillMaster();
@@ -1409,6 +1415,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		list.add(skillmaster8);
 		list.add(skillmaster9);
 		list.add(skillmaster10);
+		list.add(skillmaster11);
 		list.add(skillmaster12);
 		list.add(skillmaster13);
 		list.add(skillmaster14);
@@ -1419,6 +1426,7 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		list.add(skillmaster19);
 		list.add(skillmaster20);
 		list.add(skillmaster21);
+		list.add(skillmaster22);
 
 		return list;
 
@@ -1569,6 +1577,33 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		reqskill22.setReqSkill("T");
 		reqskill22.setSkillMaster(skillmaster22);
 
+		List<ReqSkill> reqskills = new ArrayList<ReqSkill>();
+		
+		reqskills.add(reqskill1);
+		reqskills.add(reqskill2);
+		reqskills.add(reqskill3);
+		reqskills.add(reqskill4);
+		reqskills.add(reqskill5);
+		reqskills.add(reqskill6);
+		reqskills.add(reqskill7);
+		reqskills.add(reqskill8);
+		reqskills.add(reqskill9);
+		reqskills.add(reqskill10);
+		reqskills.add(reqskill12);
+		reqskills.add(reqskill13);
+		reqskills.add(reqskill14);
+		reqskills.add(reqskill15);
+		reqskills.add(reqskill16);
+		reqskills.add(reqskill17);
+		reqskills.add(reqskill18);
+		reqskills.add(reqskill19);
+		reqskills.add(reqskill20);
+		reqskills.add(reqskill21);
+		reqskills.add(reqskill22);
+		
+		for(ReqSkill reqSkill : reqskills){
+			getEntityManager().persist(reqSkill);
+		}
 
 
 
@@ -1721,6 +1756,35 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		reqskill22.setReqSkill("C");
 		reqskill22.setSkillMaster(skillmaster22);
 
+
+		
+		List<ReqSkill> reqskills = new ArrayList<ReqSkill>();
+		
+		reqskills.add(reqskill1);
+		reqskills.add(reqskill2);
+		reqskills.add(reqskill3);
+		reqskills.add(reqskill4);
+		reqskills.add(reqskill5);
+		reqskills.add(reqskill6);
+		reqskills.add(reqskill7);
+		reqskills.add(reqskill8);
+		reqskills.add(reqskill9);
+		reqskills.add(reqskill10);
+		reqskills.add(reqskill12);
+		reqskills.add(reqskill13);
+		reqskills.add(reqskill14);
+		reqskills.add(reqskill15);
+		reqskills.add(reqskill16);
+		reqskills.add(reqskill17);
+		reqskills.add(reqskill18);
+		reqskills.add(reqskill19);
+		reqskills.add(reqskill20);
+		reqskills.add(reqskill21);
+		reqskills.add(reqskill22);
+		
+		for(ReqSkill reqSkill : reqskills){
+			getEntityManager().persist(reqSkill);
+		}
 
 
 
@@ -1893,9 +1957,36 @@ public class BootstrapSetupDataImpl implements BootstrapSetupData {
 		reqskill25.setSkillMaster(skillmaster25);
 
 
-
-
-
+		List<ReqSkill> reqskills = new ArrayList<ReqSkill>();
+		
+		reqskills.add(reqskill1);
+		reqskills.add(reqskill2);
+		reqskills.add(reqskill3);
+		reqskills.add(reqskill4);
+		reqskills.add(reqskill5);
+		reqskills.add(reqskill6);
+		reqskills.add(reqskill7);
+		reqskills.add(reqskill8);
+		reqskills.add(reqskill9);
+		reqskills.add(reqskill10);
+		reqskills.add(reqskill12);
+		reqskills.add(reqskill13);
+		reqskills.add(reqskill14);
+		reqskills.add(reqskill15);
+		reqskills.add(reqskill16);
+		reqskills.add(reqskill17);
+		reqskills.add(reqskill18);
+		reqskills.add(reqskill19);
+		reqskills.add(reqskill20);
+		reqskills.add(reqskill21);
+		reqskills.add(reqskill22);
+		reqskills.add(reqskill23);
+		reqskills.add(reqskill24);
+		reqskills.add(reqskill25);
+		
+		for(ReqSkill reqSkill : reqskills){
+			getEntityManager().persist(reqSkill);
+		}
 
 		return ;
 	}

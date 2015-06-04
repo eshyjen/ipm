@@ -24,7 +24,7 @@ public class ReqSkill implements Serializable {
 	private String reqSkill;
 
 	//bi-directional many-to-one association to Skillmaster
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="SMid")
 	private SkillMaster skillMaster;
 
