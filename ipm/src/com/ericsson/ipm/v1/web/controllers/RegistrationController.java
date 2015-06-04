@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,8 +179,18 @@ public class RegistrationController {
     public String employeeRegistration(final HttpServletRequest request, final Model model) {
         LOGGER.debug("Rendering show Employee Registration Form page.");
         String j_username = request.getParameter("j_username");
+        if(StringUtils.isBlank(j_username)){
+        	request.setAttribute("userNameEmpty", "User Name can't be empty");
+        	 return "public/employeeRegistration";
+        }
         LOGGER.info("j_usernam " +j_username);
-        userProfileService.register(j_username);
+        try {
+        	userProfileService.register(j_username);
+		} catch (Exception e) {
+			request.setAttribute("userNameEmpty", e.getMessage());
+			 return "public/employeeRegistration";
+		}
+        
         return "public/login";
     }
 	

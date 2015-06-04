@@ -39,21 +39,31 @@ function back2ProtectedHome() {
 <ul>
    <li class='has-sub' style=" font-size: 15px;" ><a href="#"><span>Home  &#9662;</span></a>
       <ul>
-         <li><a href='#'><span>Home</span></a></li>
+         <li><a href="ipmDashboard.html"><span>Home</span></a></li>
          <li><a href='#'><span>Goals</span></a></li>
          <li><a href='#'><span>Performance</span></a></li>
-         <li><a href='#'><span>Learning</span></a></li>
-         <li><a href='#'><span>My Development Plan</span></a></li>
-         <li><a href='#'><span>Career</span></a></li>
-         <li><a href='#'><span>Recruiting</span></a></li>
-         <li><a href='#'><span>Company Info</span></a></li>
-         <li class='last'><a href='#'><span>Employer Profile</span></a></li>
+         <li><a href='assetDetails.html'><span>Asset</span></a></li>
+         <li><a href='deliveryQualityDetails.html'><span>Delivery Quality</span></a></li>
+         <li><a href='kpisDetails.html'><span>KPI(s) Matrix</span></a></li>
+         <li><a href='operationalDisciplineList.html'><span>Operational Discipline</span></a></li>
+         <li><a href="managedPeopleDetails.html"><span>Manager Home</span></a></li>
+         <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
-	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   &#9662;</span></a>
+	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   &#9662;
+	
+			<%
+				if (request.getRemoteUser() != null) {
+					out.print(request.getRemoteUser());
+				} else {
+					out.print("Anonymous");
+				}
+			%>
+	
+	</span></a>
 <ul>
 <li><a href='#'><span>Options</span></a></li>
-<li><a href='#'><span>Logout</span></a></li>
+<li><a href='<%=request.getContextPath()%>/v1/public/logout.html'><span>Logout</span></a></li>
 </ul>
 </li>
 </ul>

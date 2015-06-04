@@ -145,11 +145,11 @@ public class KPIController extends BaseController {
 			
 			List<KPIRoleAssignment> kpiRoleAssignments = IPMUtility.populateKPIRoleFromUI(kpiDTO, roleService, request);
 			
-			for(KPIRoleAssignment kpiRoleAssignment : kpiRoleAssignments){
+			/*for(KPIRoleAssignment kpiRoleAssignment : kpiRoleAssignments){
 				LOGGER.info("kpiRoleAssignment : "+kpiRoleAssignment);
 				LOGGER.info("kpiRoleAssignment getKpi : "+kpiRoleAssignment.getKpi());
 				LOGGER.info("kpiRoleAssignment getRole : "+kpiRoleAssignment.getRole().getId());
-			}
+			}*/
 		}
 		
 		List<KPIRoleDTO> kpiRoleDTOs = kpiService.getKPIRoleDetails();

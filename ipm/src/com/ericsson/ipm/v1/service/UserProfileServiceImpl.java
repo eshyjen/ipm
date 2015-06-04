@@ -365,9 +365,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	    	}catch(Exception e){
 	    		e.printStackTrace();
 	    		LOGGER.error("error : " +e);
+	    		
+	    		throw new RuntimeException(e);
 	    	}
 	    	
-	    	return null;
+	    	//return null;
 	    }
 		
 		private String getJobStage(String positionName){

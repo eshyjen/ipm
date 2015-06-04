@@ -19,7 +19,10 @@
 </head>
 <body>
 		
-	
+	<% 
+	if(request.getAttribute("userNameEmpty") != null);
+		out.print(request.getAttribute("userNameEmpty"));
+	%>
             
      <div class="row">
 		<div class="col-md-6 col-md-offset-2">	
@@ -45,8 +48,6 @@
 				href="<c:url value="/v1/public/registration.html" />"><spring:message
 					code="label.form.loginSignUp"></spring:message></a>
 			<br><br><br>
-            <a href="<c:url value="/forgetPassword.html" />"><spring:message
-              code="message.resetPassword"></spring:message></a>
 		
 	</div>
 </div>
