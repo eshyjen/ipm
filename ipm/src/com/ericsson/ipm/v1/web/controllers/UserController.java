@@ -34,6 +34,7 @@ import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
 import com.ericsson.ipm.v1.domain.Role;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.domain.UserRoleAssignment;
+import com.ericsson.ipm.v1.dto.EmployeeDTO;
 import com.ericsson.ipm.v1.dto.KPIIdNameDTO;
 import com.ericsson.ipm.v1.dto.UserProfileDTO;
 import com.ericsson.ipm.v1.security.authentication.vo.ContextAuthenticatedUserDetailsVO;
@@ -165,7 +166,13 @@ public class UserController extends BaseController {
 	}
 		
 		
-	
+	@RequestMapping(value="orgChartDetails.html", method=RequestMethod.GET)
+	public String getOrgChartDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		//model.addAttribute(loggedInUser.getProfile());
+		return "protected/OrgChart";
+	}
 	
 	@RequestMapping(value="orgChart.html", method=RequestMethod.GET)
 	public void getOrgChartDetail(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -215,12 +222,7 @@ public class UserController extends BaseController {
 		return ;
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	
 	private DataTable generateMyDataTable(String signum, ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO, 
 			Map<String, String> managedPeopleMap) {
@@ -247,36 +249,42 @@ public class UserController extends BaseController {
 		return data;
 	}
 	
-	/*String signum = null;
-	ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
-	Map<String, String> managedPeopleMap = null;
-	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	LOGGER.debug("principal : "+principal);
-    if (principal instanceof UserDetails) 
-    {
-        signum = ((UserDetails) principal).getUsername();
-        LOGGER.debug("signum : "+signum);
-    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
-    }
-    if(StringUtils.isNotBlank(signum)){
-    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
-    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
-    }
-	
-    List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
-	
-    Set<String> set = managedPeopleMap.keySet();
-	for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
-		EmployeeDTO employeeDTO = new EmployeeDTO();
-		String string = (String) iterator.next();
-		employeeDTO.setSignum(string);
-		employeeDTO.setName(managedPeopleMap.get(string));
-		employeeDTOs.add(employeeDTO);
+	@RequestMapping(value="managedPeopleDetails.html", method=RequestMethod.GET)
+	public String getManagedPeopleDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		
+		String signum = null;
+		ContextAuthenticatedUserDetailsVO authenticatedUserDetailsVO = null;
+		Map<String, String> managedPeopleMap = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LOGGER.debug("principal : "+principal);
+	    if (principal instanceof UserDetails) 
+	    {
+	        signum = ((UserDetails) principal).getUsername();
+	        LOGGER.debug("signum : "+signum);
+	    	authenticatedUserDetailsVO = (ContextAuthenticatedUserDetailsVO)principal;
+	    }
+	    if(StringUtils.isNotBlank(signum)){
+	    	Map<String, String> pfDetailsMap = userProfileService.generateExactPfUrl(signum);
+	    	managedPeopleMap = userProfileService.fetchManagedPeopleList(pfDetailsMap);
+	    }
+		
+	    List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		
+	    Set<String> set = managedPeopleMap.keySet();
+		for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			String string = (String) iterator.next();
+			employeeDTO.setSignum(string);
+			employeeDTO.setName(managedPeopleMap.get(string));
+			employeeDTOs.add(employeeDTO);
+		}
+	    
+		model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
+		return "protected/managedPeople";
 	}
-    
-	model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
-	return "protected/managedPeople";
-	}*/
+	
 	
 }
 
