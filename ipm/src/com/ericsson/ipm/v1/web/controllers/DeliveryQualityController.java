@@ -59,7 +59,7 @@ public class DeliveryQualityController extends BaseController {
 		String resultMessage = " ";
 */
 
-		String pattern = "MM/dd/yyyy";
+		String pattern = "yyyy-MM-dd";
 	    SimpleDateFormat format = new SimpleDateFormat(pattern);
 
 
@@ -143,8 +143,8 @@ public class DeliveryQualityController extends BaseController {
 			deliveryQualityDTO.setProjectName(deliveryQuality.getProjectName());
 			deliveryQualityDTO.setProjectType(deliveryQuality.getProjectType());
 			deliveryQualityDTO.setDpiScore(deliveryQuality.getDpiScore());
-			deliveryQualityDTO.setDqiDate(deliveryQuality.getDqiScore());
-			deliveryQualityDTO.setDqiScore(deliveryQuality.getDqiDate().toString());
+			deliveryQualityDTO.setDqiScore(deliveryQuality.getDqiScore());
+			deliveryQualityDTO.setDqiDate(deliveryQuality.getDqiDate().toString());
 			deliveryQualityDTO.setPmOrSpmName(deliveryQuality.getPmOrSpmName());
 			deliveryQualityDTO.setSwArchitectName(deliveryQuality.getSwArchitectName());
 			deliveryQualityDTO.setTlName(deliveryQuality.getTlName());

@@ -64,7 +64,11 @@ function back2ProtectedHome() {
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
+<<<<<<< HEAD
 	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome 
+=======
+	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   
+>>>>>>> branch 'master' of https://github.com/eshyjen/ipm.git
 	
 			<%
 				if (request.getRemoteUser() != null) {

@@ -14,9 +14,7 @@
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
 
-	<FONT face="Calibri" size="2">
-				<h3 align="center">Delivery Quality Page</h3>
-			</FONT>
+
 
 
 	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
@@ -38,7 +36,7 @@
 	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/common_style.css" />
 
-		<title>Delivery Quality</title>
+		<title>Asset Details</title>
 
 
 		<style type='text/css'>
@@ -128,7 +126,7 @@
 <div class="container" align="center">
 		<div id="loginbox">
 
-        <div class='logintitle ericssonfont'> Delivery Quality List</div>
+        <div class='logintitle ericssonfont'> Asset Details List</div>
         <div class='separator'></div>
 <div id=newpaper>
 <div id="dataview"><br>

@@ -168,7 +168,7 @@
             <a href="<c:url value="/forgetPassword.html" />"><spring:message
               code="message.resetPassword"></spring:message></a>
               &nbsp;
-            <a href="<c:url value="/v1/public/employeeRegistration.html" />"><spring:message
+            <a href="<c:url value="/v1/public/employeeRegistration.jsp" />"><spring:message
               code="message.employeeRegistration"></spring:message></a>
 		
 	</div>

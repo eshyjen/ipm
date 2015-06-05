@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/common_style.css" />
 	<script src="http://eriteamtracker.egi.ericsson.com/js/jquery-1.2.6.min.js" type="text/javascript"></script>
 
-		<title>Delivery Quality</title>
+		<title>Asset Details</title>
 
 
 		<style type='text/css'>
@@ -114,7 +114,7 @@
 		<div class="container" align="center">
 		<div id="loginbox">
 
-        <div class='logintitle ericssonfont'> Asset Details Page</div>
+        <div class='logintitle ericssonfont'> Asset Details</div>
         <div class='separator'></div>
  <form:form method="post" action="saveAssetDetails.html" modelAttribute="assetDTO" name="updateAssetDetailForm">
 	<label for="login_name" class='ericssonfont'>Asset Name*:</label>
