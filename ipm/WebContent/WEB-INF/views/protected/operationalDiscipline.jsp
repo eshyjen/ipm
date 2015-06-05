@@ -13,9 +13,6 @@
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
 
-	<FONT face="Calibri" size="2">
-				<h3 align="center">Delivery Quality Page</h3>
-			</FONT>
 
 
 	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
@@ -106,7 +103,7 @@
 <div class="container" align="center">
 		<div id="loginbox">
 
-        <div class='logintitle ericssonfont'> Delivery Quality List</div>
+        <div class='logintitle ericssonfont'> Operational Discipline List</div>
         <div class='separator'></div>
 <div id="dataview" >
 			<form:form name="myform" id="myform">

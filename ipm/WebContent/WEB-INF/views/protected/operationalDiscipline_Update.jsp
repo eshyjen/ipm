@@ -120,7 +120,7 @@
 <body>
 		<div class="container" align="center">
 		<div id="loginbox">
-        <div class='logintitle ericssonfont'> Operational Discipline Details Page</div>
+        <div class='logintitle ericssonfont'> Operational Discipline Details</div>
         <div class='separator'></div>
    <form:form method="post" action="saveOrUpdateOperationalDiscipline.html" modelAttribute="operationalDisciplineDTO" name="updateOperationalDisciplineForm">
 

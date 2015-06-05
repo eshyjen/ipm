@@ -107,8 +107,14 @@ if (datefield.type != "date") { //if browser doesn't support input type="date", 
 
 		<div class="container" align="center">
 		<div id="loginbox">
-
-        <div class='logintitle ericssonfont'> Delivery Quality Details Page</div>
+       <%--  <%
+        	if(request.getParameter("id") != null){
+        		<%= "<div class='logintitle ericssonfont'>" +"Edit Delivery Quality"+"</div>" %>
+        	}else{
+        		<div class='logintitle ericssonfont'> Add Delivery Quality</div>
+        	}
+        %> --%>
+<div class='logintitle ericssonfont'>Delivery Quality Details</div>
         <div class='separator'></div>
  <form:form method="post" action="saveDeliveryQualityDetails.html" modelAttribute="deliveryQualityDTO" name="updateDeliveryQualityForm">
 	<label for="login_name" class='ericssonfont'>Project Name*:</label>
