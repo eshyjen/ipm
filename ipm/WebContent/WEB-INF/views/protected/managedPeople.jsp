@@ -8,6 +8,8 @@
 	
 	<%@page import="com.ericsson.v1.util.Constants"%>
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
+	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
+	<fmt:setBundle basename="messages" />
 <html>
 	<head>
 	

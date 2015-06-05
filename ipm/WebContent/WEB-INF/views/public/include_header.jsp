@@ -46,7 +46,9 @@ function back2ProtectedHome() {
          <li><a href='deliveryQualityList.html'><span>Delivery Quality</span></a></li>
          <li><a href='kpisDetails.html'><span>KPI(s) Matrix</span></a></li>
          <li><a href='operationalDisciplineList.html'><span>Operational Discipline</span></a></li>
-         <li><a href="managedPeopleDetails.html"><span>Manager Home</span></a></li>
+         <sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+  			<li><a href="managedPeopleDetails.html"><span>Manager Home</span></a></li>
+		</sec:authorize>
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
