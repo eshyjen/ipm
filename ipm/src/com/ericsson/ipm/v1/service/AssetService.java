@@ -13,5 +13,8 @@ public interface AssetService {
 	public Asset findById(Integer id);
 	
 
+	public Asset saveOrUpdate(Asset entity);
+
+	public Asset getAssetDetail(String id);
 
 }

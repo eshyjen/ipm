@@ -79,6 +79,8 @@ public interface AssetDAO {
 	 */
 	public Asset update(Asset entity);
 
+	public Asset saveOrUpdate(Asset entity);
+
 	public Asset findById(Integer id);
 
 	/**
@@ -114,4 +116,6 @@ public interface AssetDAO {
 	 * @return List<Asset> all Asset entities
 	 */
 	public List<Asset> findAll();
+
+	public Asset getAssetDetail(String id);
 }

@@ -15,7 +15,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="http://eriteamtracker.egi.ericsson.com/img/favicon.ico">
 	<link rel="shortcut icon" type="image/png" href="http://eriteamtracker.egi.ericsson.com/img/favicon.png">
 	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
-	<link rel="stylesheet" type="text/css" href="http://eriteamtracker.egi.ericsson.com/css/common_style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/common_style.css" />
 	<script src="http://eriteamtracker.egi.ericsson.com/js/jquery-1.2.6.min.js" type="text/javascript"></script>
 
 	<style type='text/css'>

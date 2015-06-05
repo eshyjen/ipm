@@ -40,6 +40,20 @@ public class AssetServiceImpl implements AssetService {
 		return assetDAO.findById(id);
 	}
 
+	@Override
+	public Asset saveOrUpdate(Asset asset) {
+		// TODO Auto-generated method stub
+		return assetDAO.saveOrUpdate(asset);
+
+	}
+
+	@Override
+	public Asset getAssetDetail(String id) {
+		// TODO Auto-generated method stub
+		return assetDAO.getAssetDetail(id);
+	}
+
+
 	@Autowired
 	public void setAssetDAO(AssetDAO assetDAO) {
 		this.assetDAO = assetDAO;

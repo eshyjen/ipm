@@ -21,6 +21,8 @@ public class OperationalDisciplineServiceImpl implements OperationalDisciplineSe
 
 	private OperationalDisciplineDAO operationalDisciplineDAO;
 
+	private UserProfileService userProfileService;
+
 	public List<OperationalDiscipline> findByOperationalDisciplineName(
 			String operationalDisciplineName) {
 		LOGGER.debug("operationalDisciplineName : "+operationalDisciplineName);
@@ -68,6 +70,7 @@ public class OperationalDisciplineServiceImpl implements OperationalDisciplineSe
 		if(id != null && !id.equals("")){
 			operationalDiscipline.setId(Integer.parseInt(id));
 		}
+		operationalDiscipline.setUserprofile(userProfileService.findById(operationalDisciplineDTO.getUserId()));
 		return operationalDisciplineDAO.saveOrUpdate(operationalDiscipline);
 
 	}
@@ -103,6 +106,16 @@ public class OperationalDisciplineServiceImpl implements OperationalDisciplineSe
 			OperationalDisciplineDAO operationalDisciplineDAO) {
 		this.operationalDisciplineDAO = operationalDisciplineDAO;
 	}
+
+	/**
+	 * @param userProfileService the userProfileService to set
+	 */
+	@Autowired
+	public void setUserProfileService(UserProfileService userProfileService) {
+		this.userProfileService = userProfileService;
+	}
+
+
 
 
 }

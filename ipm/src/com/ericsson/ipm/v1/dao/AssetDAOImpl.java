@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.domain.Asset;
+import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
 /**
  * A data access object (DAO) providing persistence and search support for Asset
@@ -228,6 +229,34 @@ public class AssetDAOImpl extends BaseDAO<Integer, Asset> implements AssetDAO {
 		Integer asset_id = Integer.parseInt(assetId);
 		Asset entity = findById(asset_id);
 		remove(entity);
+	}
+
+	public Asset saveOrUpdate(Asset asset) {
+		LOGGER.info("updating Asset instance");
+		try {
+			Asset result = getEntityManager().merge(asset);
+			LOGGER.info("update successful");
+			return result;
+		} catch (RuntimeException re) {
+			LOGGER.info("update failed"+ re);
+			throw re;
+		}
+	}
+
+	@Override
+	public Asset getAssetDetail(String id) {
+		// TODO Auto-generated method stub
+		LOGGER.info(
+				"finding AssetDetail instance with id: "+ id);
+		try {
+			final String queryString = "select model from Asset model where model.id= :propertyValue";
+			Query query = getEntityManager().createQuery(queryString);
+			query.setParameter("propertyValue", Integer.parseInt(id));
+			return (Asset) query.getSingleResult();
+		} catch (RuntimeException re) {
+			LOGGER.info("find by property name failed"+ re);
+			throw re;
+		}
 	}
 
 }

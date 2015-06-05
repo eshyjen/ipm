@@ -3,6 +3,7 @@ package com.ericsson.ipm.v1.dao;
 import java.util.List;
 
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
+import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
 public interface DeliveryQualityDAO {
 
@@ -71,6 +72,10 @@ public interface DeliveryQualityDAO {
 	 * @throws RuntimeException
 	 *             if the operation fails
 	 */
+	public DeliveryQuality getDeliveryQualityDetail(String id);
+
+	public DeliveryQuality saveOrUpdate(DeliveryQuality entity);
+
 	public DeliveryQuality update(DeliveryQuality entity);
 
 	public DeliveryQuality findById(Integer id);

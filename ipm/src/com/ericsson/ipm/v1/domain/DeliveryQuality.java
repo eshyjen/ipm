@@ -133,6 +133,14 @@ public class DeliveryQuality implements Serializable {
 			this.pmOrSpmName = pmOrSpmName;
 		}
 
+		public String getProjectName() {
+			return projectName;
+		}
+
+		public void setProjectName(String projectName) {
+			this.projectName = projectName;
+		}
+
 
 
 

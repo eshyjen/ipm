@@ -28,6 +28,8 @@ public class OperationalDisciplineDTO implements Serializable {
 	private String nonCompliance;
 
 	private String id;
+	
+	private Integer userId;
 	/**
 	 * @return the operationalDisciplineName
 	 */
@@ -88,6 +90,20 @@ public class OperationalDisciplineDTO implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	/**
+	 * @return the userId
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+
 
 
 }

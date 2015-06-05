@@ -1,6 +1,4 @@
-<html>
-	<head>
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"%>
 	<%
 		response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
@@ -12,30 +10,14 @@
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
+<html>
+	<head>
 
-	<FONT face="Calibri" size="2">
-				<h3 align="center">Delivery Quality Page</h3>
-			</FONT>
-
-
-	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
-				media="screen" rel="stylesheet" type="text/css" />
-				<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
-				<link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
-			<script type="text/javascript"
-				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
-			<script type="text/javascript"
-				src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
-			<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script>
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
-<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 <link rel="shortcut icon" type="image/x-icon" href="http://eriteamtracker.egi.ericsson.com/img/favicon.ico">
 	<link rel="shortcut icon" type="image/png" href="http://eriteamtracker.egi.ericsson.com/img/favicon.png">
 	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/common_style.css" />
+	<script src="http://eriteamtracker.egi.ericsson.com/js/jquery-1.2.6.min.js" type="text/javascript"></script>
 
 		<title>Delivery Quality</title>
 
@@ -59,8 +41,8 @@
 
 
             #loginbox {
-      width: 700px;
-      height: 350px;
+      width: 500px;
+      height: 500px;
 
       background-color: #7B68F2;
       background: linear-gradient(to bottom, #CFCFCF, #FFFFFF);
@@ -92,11 +74,6 @@
        margin:auto;
        clear:both;
     }
-    .newspaper {
-    -webkit-column-count: 4px;
-    -moz-column-count: 4px;
-    column-count: 4px;
-}
 
         </style>
 
@@ -127,44 +104,54 @@
 </head>
 
 
+
+
+
+
 <body>
-<div class="container" align="center">
+
+
+		<div class="container" align="center">
 		<div id="loginbox">
 
-        <div class='logintitle ericssonfont'> Delivery Quality List</div>
+        <div class='logintitle ericssonfont'> Asset Details Page</div>
         <div class='separator'></div>
-<div id=newpaper>
-<div id="dataview"><br>
-			<form:form name="myform" id="myform">
-			<!-- <font  size="1"/> -->
+ <form:form method="post" action="saveAssetDetails.html" modelAttribute="assetDTO" name="updateAssetDetailForm">
+	<label for="login_name" class='ericssonfont'>Asset Name*:</label>
 
-			<a id="add" href="deliveryQuality.html">
-				<img src="<%=request.getContextPath()%>/resources/images/add_button.gif" />
-			</a>
-             <br>
-				<div id="tablediv" >
+	<form:input path="assetName" style="width:140px;" id="assetName" required="required"/>
+	<%-- <br><br>
+	<label for="login_name" class='ericssonfont'>Asset ID *:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Project Type*: </font> -->
+	<form:input path="id" style="width:140px;" id="id" required="required"/> --%>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Project name</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DQI Score*:</font> -->
+	<form:input path="projectName" style="width:140px;" id="projectName" required="required"/>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Reused in Other Projects Name*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DPI Score*: </font> -->
+	<form:input path="reusedInOtherProjectsName" style="width:140px;" id="reusedInOtherProjectsName" required="required"/>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Asset Description*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Date*: </font> -->
+	<form:input path="assetShortDescription"  style="width:140px;" id="assetShortDescription" required="required"/>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Effort Save*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">PM/SPM Name*: </font> -->
+	<form:input path="effortSave" style="width:140px;" id="effortSave" required="required"/>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Registered In Asset Portal*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">TL name*: </font> -->
+	<form:input path="registeredInAssetPortal" style="width:140px;" id="registeredInAssetPortal" required="required"/>
+	<br><br>
+	<label for="login_name" class='ericssonfont'>Approval Status*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">TL name*: </font> -->
+	<form:input path="approvalStatus" style="width:140px;" id="approvalStatus" required="required"/>
+	<br><br>
+	<form:hidden path="id" style="width:140px;" id="id"/>
+	<input type="submit" style="width:100px;" value="Save/Update" />
+</form:form>
 
-					 <display:table id="usertable" name="<%=Constants.DELIVERY_QUALITY_LIST %>" class="list" sort="page" pagesize="5"
-					 export="true" requestURI="deliveryQualityList.html"  >
-				   	 <display:column class='ericssonfont' title="Edit/Delete"  paramProperty="id" paramId="id" >
-				   	 <a href="deliveryQualityForUpdate.html?id=${usertable.id}">
-				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
-				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
-				   			<a href="javascript:checkDelete(${usertable_rowNum});">
-				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
-				   	 </display:column>
-					 <display:column class='ericssonfont' property="projectName"  sortable="true" title="ProjectName"/>
-				     <display:column class='ericssonfont' property="dqiScore"   title="DQI Score" sortable="true" sortProperty="dqiScore"/>
-				     <display:column class='ericssonfont' property="dpiScore"  title="DPI Score" sortable="true" />
-				     <display:column class='ericssonfont' property="pmOrSpmName"    title="PM/SPM Name" sortable="true" />
-				     <display:column class='ericssonfont' property="swArchitectName"  title="ArchitectName" sortable="true" />
-				     </display:table>
-
-				</div>
-
-
-			</form:form>
-		</div>
-		</div>
 </body>
 </html>

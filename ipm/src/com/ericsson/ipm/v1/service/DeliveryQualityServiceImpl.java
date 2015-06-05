@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.dao.DeliveryQualityDAO;
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
+import com.ericsson.ipm.v1.domain.OperationalDiscipline;
+import com.ericsson.ipm.v1.dto.OperationalDisciplineDTO;
 
 @Service("deliveryQualityService")
 @Transactional
@@ -41,6 +43,19 @@ public class DeliveryQualityServiceImpl implements DeliveryQualityService {
 
 	public DeliveryQualityDAO getDeliveryQualityDAO() {
 		return deliveryQualityDAO;
+	}
+
+	@Override
+	public DeliveryQuality saveOrUpdate(DeliveryQuality deliveryQuality) {
+		// TODO Auto-generated method stub
+		return deliveryQualityDAO.saveOrUpdate(deliveryQuality);
+
+	}
+	
+	@Override
+	public DeliveryQuality getDeliveryQualityDetail(String id) {
+		// TODO Auto-generated method stub
+		return deliveryQualityDAO.getDeliveryQualityDetail(id);
 	}
 
 	@Autowired
