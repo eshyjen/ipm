@@ -1,6 +1,7 @@
 package com.ericsson.v1.util;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,24 +9,17 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.ericsson.ipm.v1.domain.Asset;
+import org.apache.commons.beanutils.PropertyUtils;
+
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.service.UserProfileService;
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Cell;
-import com.lowagie.text.Chapter;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Section;
 import com.lowagie.text.Table;
-import com.lowagie.text.pdf.CMYKColor;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class PdfUtil {
@@ -182,6 +176,8 @@ public class PdfUtil {
 						      
 						      
 						      document.add(new Paragraph("This is a multi-page document."));
+						      
+						      document.add( makeTableUserDetails(profile));
 							
 						      document.add( makeGeneralRequestDetailsElement(request) );
 							
@@ -404,6 +400,117 @@ public class PdfUtil {
 		return tab;
 	}
 	
+	
+	private static Table makeTableUserDetails(UserProfile profile )
+	{
+		Table tab = null;
+
+		try
+		{
+			tab = new Table(2 /* columns */);
+		}
+		catch (BadElementException ex)
+		{
+			throw new RuntimeException(ex);
+		}
+		
+		tab.setBorderWidth(1.0f);
+		tab.setPadding(5);
+		tab.setSpacing(5);
+
+		//tab.addCell(new Cell(firstColumnTitle));
+		//tab.addCell(new Cell(secondColumnTitle));
+		
+		//tab.endHeaders();
+
+		if (profile == null)
+		{
+			Cell c = new Cell("none");
+			c.setColspan(tab.columns());
+			tab.addCell(c);
+		}
+		else
+		{
+			//Iterator iter = m.keySet().iterator();
+			//while (iter.hasNext())
+			//{
+				
+			/*Field[] fields = UserProfile.class.getDeclaredFields();
+			
+			for(Field field : fields){
+				Object fieldType = field.getType();
+				System.out.println(" field "+fieldType);
+				if (fieldType instanceof String || 
+						fieldType instanceof Date ||
+						fieldType instanceof Double){
+					System.out.println(" field "+field);
+				}
+			}*/
+			
+			
+			String props = "userFristName:userFristName,userLastName:userLastName,costCenter:costCenter,"
+					+ "currentLineManager:currentLineManager,dateOfJoinInMediaAccount:dateOfJoinInMediaAccount,"
+					+ "educationalQualification:educationalQualification,emailId:emailId,employeeId:employeeId,"
+					+ "jobRole:jobRole,jobStage:jobStage,lastYearIPMRating:lastYearIPMRating,manHourRate:manHourRate,"
+					+ "modifiedDate:modifiedDate,previousLineManeger:previousLineManeger,"
+					+ "previousOrganisation:previousOrganisation,registrationDate:registrationDate,"
+					+ "signunId:signunId,totalEricssonExperienceInMonths:totalEricssonExperienceInMonths,"
+					+ "totalITExperience:totalITExperience,totalYearsOfExperience:totalYearsOfExperience,"
+					+ "yearOfIPM:yearOfIPM,yearOfLastPromotion:yearOfLastPromotion";
+			
+			String[] propArray = props.split(",");
+			try {
+			for(String prop : propArray){
+				String[] propKeyVlaue = prop.split(":");
+				Object value;
+					value = PropertyUtils.getProperty(profile, propKeyVlaue[1]);
+					//System.out.println(" propKeyVlaue[0] "+propKeyVlaue[0]);
+					//System.out.println(" propKeyVlaue[1] "+propKeyVlaue[1]);
+					makeTableUserDetails(tab, propKeyVlaue[0], value);
+				} 
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+			
+			
+			}
+		//}
+		
+		return tab;
+	}
+	
+	private static void makeTableUserDetails(Table tab, String paramName, Object value)
+	{
+		
+		String strValue = null;
+		if (value == null)
+		{
+			strValue = "";
+		}
+		else if (value instanceof String[])
+		{
+			String[] aValues = (String[]) value;   
+			strValue = aValues[0];
+		}
+		else
+		{
+			strValue = value.toString();
+		}
+		
+		tab.addCell(new Cell(paramName));
+		tab.addCell(new Cell(strValue));
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		UserProfile profile = new UserProfile();
+		makeTableUserDetails(profile);
+	}
 	
 	
 }

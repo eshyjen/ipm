@@ -371,14 +371,21 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 		UserProfile profile = null;
 		
 		
-		final String queryString = "SELECT model from UserProfile model JOIN FETCH model.assets JOIN FETCH model.operationaldiscplines JOIN FETCH model.deliveryQualities where model.signunId= :propertyValue";
+		//final String queryString = "SELECT model from UserProfile model JOIN FETCH model.assets JOIN FETCH model.operationaldiscplines JOIN FETCH model.deliveryQualities where model.signunId= :propertyValue";
+		final String queryString = "SELECT model from UserProfile model where model.signunId= :propertyValue";
+		
 		if(profiles != null && !profiles.isEmpty()){
 			
 			Query query = getEntityManager().createQuery(queryString);
 			query.setParameter("propertyValue", signunid);
 			List<UserProfile> userProfiles = query.getResultList();
-			if(userProfiles != null && userProfiles.size() > 0)
-				return userProfiles.get(0);
+			if(userProfiles != null && userProfiles.size() > 0){
+				profile = userProfiles.get(0);
+				profile.getAssets();
+				profile.getDeliveryQualities();
+				profile.getOperationaldiscplines();
+				return profile;
+			}
 		} else {
 			return null;
 		}
