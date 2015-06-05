@@ -23,7 +23,7 @@
 	<link href="${pageContext.request.contextPath }/resources/css/commonStyle.css" rel="stylesheet" type="text/css" />
 		
 		
-		<title>Delivery Quality</title>
+		<title>Login</title>
 			<!-- <link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
 				<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />

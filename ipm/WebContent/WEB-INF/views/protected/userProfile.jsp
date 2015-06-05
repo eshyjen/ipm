@@ -6,13 +6,23 @@
 		response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 	%>
 
-
+	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
 	<fmt:setBundle basename="messages" />
 <html>
 <head>
+			<link href="${rootURL}/resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+		
 
-<title> joining form </title>
+	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
+	
+	<link href="${pageContext.request.contextPath }/resources/css/common_style.css" rel="stylesheet" type="text/css" />
+	
+	<link href="${pageContext.request.contextPath }/resources/css/style1.css" rel="stylesheet" type="text/css" />
+		
+	<link href="${pageContext.request.contextPath }/resources/css/commonStyle.css" rel="stylesheet" type="text/css" />
+		
+<title> User Profile </title>
 <style type="text/css">
 .styled-button-5 {
 	background-color:#404040 ;
@@ -30,6 +40,67 @@
 }
 input{ align:center; }
 </style>
+
+<style type='text/css'>
+
+
+
+    fieldset { padding:0; border:0; margin-top:25px; }
+
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+
+
+
+
+
+
+            #loginbox {
+      width: 1000px;
+      height: 495px;
+
+      background-color: #7B68F2;
+      background: linear-gradient(to bottom, #CFCFCF, #FFFFFF);
+      background:-webkit-linear-gradient(top, #CFCFCF, #FFFFFF);
+      background:-moz-linear-gradient(top, #CFCFCF, #FFFFFF);
+      background-clip: padding-box;
+      border-radius: 12px 12px 12px 12px;
+
+      box-shadow:10px 10px 15px #272727;
+    }
+
+    .box_text_style {
+      color: #FFFFFF;
+      text-shadow: 1px 1px 3px #888888;
+    }
+
+    .logintitle {
+      font-size: 20px;
+      font-weight: 300;
+      height: 60px;
+      line-height: 60px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .separator {
+       border-bottom: 1px solid #FFFFFF;
+       width:90%;
+       margin:auto;
+       clear:both;
+    }
+    .newspaper {
+    -webkit-column-count: 4px;
+    -moz-column-count: 4px;
+    column-count: 4px;
+}
+
+        </style>
+
 <!-- <link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
 <script type="text/javascript" src="jsDatePick.min.1.3.js"></script> -->
 <!-- <script type="text/javascript">
@@ -151,32 +222,28 @@ function validateForm1() {
 </head>
 <body align="center" bgcolor="">
 	<font weight=900 face="Arial" color="#001D55">
+<div class="container" align="center">
+		<div id="loginbox">
 
-		<h2 style="text-align: center" font-face="Verdana">
-			<b>User Details :</b>
-		</h2>
+        <div class='logintitle ericssonfont'> User Details</div>
+        <div class='separator'></div>
+		
 		<br>
 			<div class="row">
 
 
 
 				<form:form name="userDetailsForm" method="POST" action="updateUserDetails.html" modelAttribute="userProfileDTO">
-					<table align="center" font-face="Arial">
+					<table align="center" font-face="Arial" style="width:1000px; align:center;">
 						<tr>
-							<td align="left">First Name:</td>
-							<td width="300px">
-								 <form:input path="userFristName" id="userFristName" value="${userProfile.userFristName}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>   <font
+							<td align="right"  width="250px"  >First Name:</td>
+							<td align="center"  width="250px"   >
+								 <form:input path="userFristName" id="userFristName" value="${userProfile.userFristName}" />   <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td width="300px" align="left">Last Name:</td>
-							<td>
-								<form:input path="userLastName" id="userLastName"  value="${userProfile.userLastName}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px" >Last Name:</td>
+							<td align="center"  width="250px">
+								<form:input path="userLastName" id="userLastName"  value="${userProfile.userLastName}"  />  <font
 								color="red"><span id="ttt"></span></font>
 							</td>
 						</tr>
@@ -189,22 +256,15 @@ function validateForm1() {
 						<tr></tr>
 
 						<tr>
-							<td align="left">Cost Center:</td>
-							<td>
-								<form:input path="costCenter"  id="costCenter"  value="${userProfile.costCenter}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />   <font
+							<td align="right"  width="250px">Cost Center:</td>
+							<td align="center"  width="250px"  >
+								<form:input path="costCenter"  id="costCenter"  value="${userProfile.costCenter}"  />   <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td align="left">Role:</td>
-							<%-- <td>
-								 <form:input path="role"   id="role"  value="${userProfile.role}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font color="red"><span
-									id="msg"></span></font>
-							</td> --%>
+							<td align="right"  width="250px">Email-Id:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="emailId" id="emailId"  value="${userProfile.emailId}"  />
+							</td>
 						</tr>
 						<tr></tr>
 						<tr></tr>
@@ -215,8 +275,11 @@ function validateForm1() {
 
 
 						<tr>
-							<%-- <td align="left">D.O.J In Media Account:</td>
-							<td>
+						<td align="right"  width="250px">Job Role:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="jobRole" id="jobRole"  value="${userProfile.jobRole}"  /> 
+							<%-- <td align="center"  width="250px"  width="250px"   align="left">D.O.J In Media Account:</td>
+							<td align="center"  width="250px"  width="250px"  >
 								 <form:input path="dateOfJoinInMediaAccount" size="12" value="${userProfile.dateOfJoinInMediaAccount}"
 								 id="dateOfJoinInMediaAccount"  style="border:1px solid #A0A0A0 ;
 			border-radius:10px;
@@ -224,12 +287,9 @@ function validateForm1() {
 			width: 150px;"/>
 								<font color="red"><span id="msg"></span></font>
 							</td> --%>
-							<td align="left">Current Line Manager:</td>
-							<td>
-								 <form:input path="currentLineManager"  id="currentLineManager"  value="${userProfile.currentLineManager}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px">Current Line Manager:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="currentLineManager"  id="currentLineManager"  value="${userProfile.currentLineManager}"  />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
 						</tr>
@@ -242,20 +302,14 @@ function validateForm1() {
 
 
 						<tr>
-							<td align="left">Educational Qualification:</td>
-							<td>
-								 <form:input path="educationalQualification" id="educationalQualification"  value="${userProfile.educationalQualification}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>  <font
+							<td align="right"  width="250px" >Educational Qualification:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="educationalQualification" id="educationalQualification"  value="${userProfile.educationalQualification}" />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td align="left">Email-Id:</td>
-							<td>
-								 <form:input path="emailId" id="emailId"  value="${userProfile.emailId}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"  />
+							<td align="right"  width="250px">Last Year IPM Rating:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="lastYearIPMRating" id="lastYearIPMRating"  value="${userProfile.lastYearIPMRating}"  /> 
 							</td>
 						</tr>
 						<tr></tr>
@@ -267,20 +321,14 @@ function validateForm1() {
 
 
 						<tr>
-							<td align="left">Employee-ID:</td>
-							<td>
-								 <form:input path="employeeId" id="employeeId"  value="${userProfile.employeeId}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px" >Employee-ID:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="employeeId" id="employeeId"  value="${userProfile.employeeId}"  />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td align="left">Job Role:</td>
-							<td>
-								 <form:input path="jobRole" id="jobRole"  value="${userProfile.jobRole}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font color="red"><span
+							<td align="right"  width="250px" >Year Of IPM:</td>
+							<td align="center"  width="250px">
+								 <form:input path="yearOfIPM" id="yearOfIPM"  value="${userProfile.yearOfIPM}"  />   <font color="red"><span
 									id="msg"></span></font>
 							</td>
 						</tr>
@@ -294,20 +342,14 @@ function validateForm1() {
 
 
 						<tr>
-							<td align="left">Job Stage:</td>
-							<td>
-								 <form:input path="jobStage" id="jobStage"  value="${userProfile.jobStage}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font color="red"><span
+							<td align="right"  width="250px" >Job Stage:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="jobStage" id="jobStage"  value="${userProfile.jobStage}"  />  <font color="red"><span
 									id="msg"></span></font>
 							</td>
-							<td align="left">Last Year IPM Rating:</td>
-							<td>
-								 <form:input path="lastYearIPMRating" id="lastYearIPMRating"  value="${userProfile.lastYearIPMRating}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px" >Previous Organisation:</td>
+							<td align="center"  width="250px" >
+								<form:input path="previousOrganisation" id="previousOrganisation"  value="${userProfile.previousOrganisation}" />   <font
 								color="red"><span id="msg"></span></font>
 							</td>
 						</tr>
@@ -320,16 +362,15 @@ function validateForm1() {
 
 
 						<tr>
-							<td align="left">Man Hour Rate:</td>
-							<td>
-								 <form:input path="manHourRate" id="manHourRate"  value="${userProfile.manHourRate}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px">Man Hour Rate:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="manHourRate" id="manHourRate"  value="${userProfile.manHourRate}"  />  <font
 								color="red"><span id="msg"></span></font>
-							</td>
-							<%-- <td align="left">Last Modified Date:</td>
-							<td>
+							</td><td align="right"  width="250px" >Total Ericsson Experience In Months:</td>
+							<td align="center"  width="250px">
+								 <form:input path="totalEricssonExperienceInMonths" id="totalEricssonExperienceInMonths"  value="${userProfile.totalEricssonExperienceInMonths}" /> 
+							<%-- <td align="center"  width="250px"  width="250px"   align="left">Last Modified Date:</td>
+							<td align="center"  width="250px"  width="250px"  >
 								 <form:input path="modifiedDate" id="modifiedDate"  value="${userProfile.modifiedDate}" style="border:1px solid #A0A0A0 ;
 			border-radius:10px;
 			height: 22px;
@@ -345,20 +386,14 @@ function validateForm1() {
 						<tr></tr>
 
 						<tr>
-							<td align="left">Previous Line Manager:</td>
-							<td>
-								 <form:input path="previousLineManeger" id="previousLineManeger"  value="${userProfile.previousLineManeger}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>  <font
+							<td align="right"  width="250px">Previous Line Manager:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="previousLineManeger" id="previousLineManeger"  value="${userProfile.previousLineManeger}" />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td align="left">Previous Organisation:</td>
-							<td>
-								<form:input path="previousOrganisation" id="previousOrganisation"  value="${userProfile.previousOrganisation}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>  <font
+							<td align="right"  width="250px">Total Years Of Experience:</td>
+							<td align="center"  width="250px">
+								 <form:input path="totalYearsOfExperience" id="totalYearsOfExperience"  value="${userProfile.totalYearsOfExperience}"  />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
 						</tr>
@@ -370,20 +405,14 @@ function validateForm1() {
 						<tr></tr>
 
 						<tr>
-							<td align="left">Signum-ID:</td>
-							<td>
-								  <form:input path="signunId" id="signunId"  value="${userProfile.signunId}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>  <font color="red"><span
+							<td align="right"  width="250px">Signum-ID:</td>
+							<td align="center"  width="250px" >
+								  <form:input path="signunId" id="signunId"  value="${userProfile.signunId}" />  <font color="red"><span
 									id="msg"></span></font>
 							</td>
-							<td align="left">Total Ericsson Experience In Months:</td>
-							<td>
-								 <form:input path="totalEricssonExperienceInMonths" id="totalEricssonExperienceInMonths"  value="${userProfile.totalEricssonExperienceInMonths}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font color="red"><span
+							<td align="right"  width="250px">Year Of Last Promotion:</td>
+							<td align="center"  width="250px" >
+								 <form:input path="yearOfLastPromotion" id="yearOfLastPromotion"  value="${userProfile.yearOfLastPromotion}" />  <font color="red"><span
 									id="msg"></span></font>
 							</td>
 						</tr>
@@ -396,22 +425,13 @@ function validateForm1() {
 
 
 						<tr>
-							<td align="left">Total IT Experience:</td>
-							<td>
-								 <form:input path="totalITExperience" id="totalITExperience"  value="${userProfile.totalITExperience}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />  <font
+							<td align="right"  width="250px">Total IT Experience:</td>
+							<td align="center"  width="250px">
+								 <form:input path="totalITExperience" id="totalITExperience"  value="${userProfile.totalITExperience}" />  <font
 								color="red"><span id="msg"></span></font>
 							</td>
-							<td align="left">Total Years Of Experience:</td>
-							<td>
-								 <form:input path="totalYearsOfExperience" id="totalYearsOfExperience"  value="${userProfile.totalYearsOfExperience}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;" />   <font
-								color="red"><span id="msg"></span></font>
-							</td>
+							
+							
 						</tr>
 						<tr></tr>
 						<tr></tr>
@@ -420,24 +440,7 @@ function validateForm1() {
 						<tr></tr>
 						<tr></tr>
 
-						<tr>
-							<td align="left">Year Of IPM:</td>
-							<td>
-								 <form:input path="yearOfIPM" id="yearOfIPM"  value="${userProfile.yearOfIPM}"  style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>  <font color="red"><span
-									id="msg"></span></font>
-							</td>
-							<td align="left">Year Of Last Promotion:</td>
-							<td>
-								 <form:input path="yearOfLastPromotion" id="yearOfLastPromotion"  value="${userProfile.yearOfLastPromotion}" style="border:1px solid #A0A0A0 ;
-			border-radius:10px;
-			height: 22px;
-			width: 150px;"/>   <font
-								color="red"><span id="msg"></span></font>
-							</td>
-						</tr>
+					
 						<tr></tr>
 						<tr></tr>
 						<tr></tr>
@@ -452,16 +455,13 @@ function validateForm1() {
 						<tr></tr>
 
 						<tr>
-							<td>&nbsp; &nbsp;</td>
-							<td><input type="submit" class="styled-button-5"
-								value="submit" ></td>
-							<td><input type="reset" class="styled-button-5"
-								value="reset"></td>
-							<td>&nbsp; &nbsp; &nbsp;</td> </tr>
+							<td align="center"  width="250px">&nbsp; &nbsp;</td>
+							<td align="center"  width="250px"><input type="submit"  style="width:100px;" value="Save" /></td>
+							<td align="center"  width="250px" ><input type="submit" style="width:100px;" value="Reset" /></td>
+							<td align="center"  width="250px" >&nbsp; &nbsp; &nbsp;</td> </tr>
 					</table>
 				</form:form>
 			</div>
 	</font>
 </body>
 </html>
-

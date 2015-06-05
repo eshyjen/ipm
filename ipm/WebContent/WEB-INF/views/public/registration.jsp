@@ -13,7 +13,7 @@
 
 <%@include file="taglib.jsp" %>
 <%@ page session="false"%>
-<<html>
+<html>
 <head>
 
 <link href="${rootURL}/resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
@@ -23,6 +23,16 @@
 	<link rel="shortcut icon" type="image/png" href="http://eriteamtracker.egi.ericsson.com/img/favicon.png">
 	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
 	<link rel="stylesheet" type="text/css" href="http://eriteamtracker.egi.ericsson.com/css/common_style.css" />
+
+
+
+	
+	<link href="${pageContext.request.contextPath }/resources/css/style1.css" rel="stylesheet" type="text/css" />
+		
+	<link href="${pageContext.request.contextPath }/resources/css/commonStyle.css" rel="stylesheet" type="text/css" />
+		
+		
+
 <style type='text/css'>
 
 
@@ -136,33 +146,33 @@ function validateEmail() {
 </head>
 
 
-<body>
-<div class="container" align="center">
+<body> 
+<div class="container" align="center"> 
 		<div id="loginbox">
-        <div class='logintitle ericssonfont'> Registration Page</div>
+        <div class='logintitle ericssonfont'> REGISTRATION</div>
         <div class='separator'></div>
 	<%-- <spring:message code="label.form.title"></spring:message></font></h1> --%>
 
 <form:form modelAttribute="registrationDTO" method="POST" action="registration.html" enctype="utf8" name="myForm" >
 
 
-<ul>
-  <li>
-					<label class='ericssonfont'><spring:message code="label.user.firstName"></spring:message></label>
+<table>
+  <tr><td>
+					<label class='ericssonfont'><spring:message code="label.user.firstName"></spring:message></label> 
 					<form:input path="userFirstName" value="" size="26"/>
 					<form:errors path="userFirstName" cssClass="alert alert-error"/>
- </li>
+</td> </tr> <tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
 
-		<li>
+		<tr><td>
 				<label class='ericssonfont'><spring:message code="label.user.lastName"></spring:message></label>
 					<form:input path="userLastName" value="" size="26"/>
 					<form:errors path="userLastName" cssClass="alert alert-error"/>
-					 </li>
-		<li>	<label class='ericssonfont'><spring:message code="label.user.email"></spring:message></label>
+					</td> </tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
+		<tr><td>	<label class='ericssonfont'><spring:message code="label.user.email"></spring:message></label>
 					<form:input path="emailId" value="" size="26"/>
 					<form:errors path="emailId" cssClass="alert alert-error"/>
-					</li>
-					<li>
+					</td></tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
+					<tr><td>
 				<label class='ericssonfont'><spring:message code="label.form.loginRole" /></label>
 
 		<form:select path="userSelectedRole">
@@ -175,16 +185,17 @@ function validateEmail() {
 
 
 			<form:errors path="userSelectedRole" cssClass="alert alert-error" />
-				</li>
-			<li>
+			</td>	</tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
+			<tr><td>
 		<label class='ericssonfont'>
 		<spring:message code="label.user.password"></spring:message></label>
 					<form:input path="password" value="" type="password" size="26"/>
-					<form:errors path="password" cssClass="alert alert-error"/>
+					<form:errors path="password" cssClass="alert alert-error"/></td></tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
+					<tr><td>
 				<label class='ericssonfont'><spring:message code="label.user.confirmPass"></spring:message></label>
 					<form:input path="matchingPassword" value="" type="password" size="26"/>
 					<form:errors cssClass="alert alert-error" />
-					</li>
+					</td></tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
 
 					<%-- <li>
 					<label class='ericssonfont'>
@@ -200,24 +211,29 @@ function validateEmail() {
 					<form:input path="captchaCode" size="26"/>
 					<form:errors path="captchaCode" cssClass="alert alert-error" />
 					</li>
-					--%>											<li>
-				<button type="submit" class="btn btn-primary">
-					<spring:message code="label.form.submit"></spring:message>
-				</button>
-				<button type="Reset" class="btn btn-primary">
-					<spring:message code="label.form.reset"></spring:message>
-				</button>
-				</li>
-				</ul>
+					--%>		<tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
+				<tr><td align="center">
+		
+				<input type="submit" class="btn btn-primary"/>
+					<%-- <spring:message code="label.form.submit"></spring:message> --%>
+				 
+				
+				
+				
+				 <input type="submit" class="btn btn-primary" value="Reset"/>
+					<%-- <spring:message code="label.form.reset"></spring:message> --%>
+				
+				</td> </tr>
+				
+				</table>
 			</form:form>
 
-			<br> <a href="<c:url value="login.html" />"><spring:message code="label.form.loginLink"></spring:message></a>
-		</div>
+			<br> <a href="<c:url value="login.html" />"> <spring:message code="label.form.loginLink"></spring:message> </a>
+		</div> 
 	</div>
 
 </body>
 </html>
-
 
 
 

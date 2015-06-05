@@ -18,10 +18,10 @@
 			</FONT>
 
 
-	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
+			<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
-				<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
-				<link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
+			<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
+			<link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
 			<script type="text/javascript"
 				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
 			<script type="text/javascript"

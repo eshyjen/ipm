@@ -64,7 +64,7 @@ function back2ProtectedHome() {
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
-	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   &#9662;
+	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome 
 	
 			<%
 				if (request.getRemoteUser() != null) {
@@ -72,7 +72,7 @@ function back2ProtectedHome() {
 				} else {
 					out.print("Anonymous");
 				}
-			%>
+			%>  &#9662;
 	
 	</span></a>
 <ul>
