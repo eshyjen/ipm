@@ -49,7 +49,7 @@ function back2ProtectedHome() {
          <sec:authorize access="hasAnyRole('ROLE_MANAGER')">
   			<li><a href="managedPeopleDetails.html"><span>Manager Home</span></a></li>
 		 </sec:authorize>
-		
+
 		<sec:authorize access="hasAnyRole('ROLE_SWD,ROLE_SSWD,ROLE_SA')">
   			<li><a href="caDetails.html?domain=Technology_Skill&skill=Generic"><span>Technology Skill</span></a></li>
   			<li><a href="caDetails.html?domain=MIO&skill=Adaptation"><span>MIO Skill</span></a></li>
@@ -58,18 +58,16 @@ function back2ProtectedHome() {
   			<li><a href="caDetails.html?domain=MSDP&skill=System_Integration"><span>MSDP SI Skill</span></a></li>
   			<li><a href="caDetails.html?domain=MSP&skill=Adaptation"><span>MSP Skill</span></a></li>
   			<li><a href="caDetails.html?domain=MSP&skill=System_Integration"><span>MSP SI Skill</span></a></li>
-  			
+
 		 </sec:authorize>
-		
+
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
-<<<<<<< HEAD
-	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome 
-=======
-	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome   
->>>>>>> branch 'master' of https://github.com/eshyjen/ipm.git
-	
+
+	<li style="float:right;" class='has-sub'><a href="#"> <span>Welcome
+
+
 			<%
 				if (request.getRemoteUser() != null) {
 					out.print(request.getRemoteUser());
@@ -77,7 +75,7 @@ function back2ProtectedHome() {
 					out.print("Anonymous");
 				}
 			%>  &#9662;
-	
+
 	</span></a>
 <ul>
 <li><a href='#'><span>Options</span></a></li>
