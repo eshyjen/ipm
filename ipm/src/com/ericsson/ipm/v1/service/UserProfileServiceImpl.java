@@ -339,7 +339,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		    	String userRole = getEmployeeRole(pfDetailsMap.get("POSITIONNAME"), pfDetailsMap.get("JOBROLE"));
 		    	
 		    			if(StringUtils.isNotBlank(userRole)){
-		    				List<Role> roles = roleService.findByCode("SSWD");
+		    				List<Role> roles = roleService.findByCode(userRole);
 		    				UserRoleAssignment userRoleAssignment = new UserRoleAssignment();
 
 		    				Role role0 = roles.get(0);
@@ -418,11 +418,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 				return "SPM";
 			} else if(jobRole.equalsIgnoreCase("DESIGN AUTHORITY") || jobRole.equalsIgnoreCase("CHIEF ARCHITECT") ){
 				return "CA";
-			} else if(jobRole.equalsIgnoreCase("Senior Solution Integrator")){
+			} /*else if(jobRole.equalsIgnoreCase("Senior Solution Integrator")){
 				return "";
 			} else if(jobRole.equalsIgnoreCase("Senior Solution Integrator")){
-				return "";
-			}
+				return jobStage5;
+			}*/
 			return null;
 		}
 	

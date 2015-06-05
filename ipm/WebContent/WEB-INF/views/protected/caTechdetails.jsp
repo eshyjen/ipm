@@ -7,8 +7,8 @@
 		response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 	%>
 	
-	
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
+	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>

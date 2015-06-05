@@ -48,7 +48,19 @@ function back2ProtectedHome() {
          <li><a href='operationalDisciplineList.html'><span>Operational Discipline</span></a></li>
          <sec:authorize access="hasAnyRole('ROLE_MANAGER')">
   			<li><a href="managedPeopleDetails.html"><span>Manager Home</span></a></li>
-		</sec:authorize>
+		 </sec:authorize>
+		
+		<sec:authorize access="hasAnyRole('ROLE_SWD,ROLE_SSWD,ROLE_SA')">
+  			<li><a href="caDetails.html?domain=Technology_Skill&skill=Generic"><span>Technology Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MIO&skill=Adaptation"><span>MIO Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MIO&skill=System_Integration"><span>MIO SI Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MSDP&skill=Adaptation"><span>MSDP Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MSDP&skill=System_Integration"><span>MSDP SI Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MSP&skill=Adaptation"><span>MSP Skill</span></a></li>
+  			<li><a href="caDetails.html?domain=MSP&skill=System_Integration"><span>MSP SI Skill</span></a></li>
+  			
+		 </sec:authorize>
+		
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>
       </ul>
    </li>
