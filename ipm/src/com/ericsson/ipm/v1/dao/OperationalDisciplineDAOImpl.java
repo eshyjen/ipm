@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
 /**
@@ -236,6 +237,13 @@ public class OperationalDisciplineDAOImpl extends BaseDAO<Integer, OperationalDi
 			LOGGER.info("find by property name failed"+ re);
 			throw re;
 		}
+	}
+	
+	@Override
+	public void remove(String opdId) {
+		Integer id = Integer.parseInt(opdId);
+		OperationalDiscipline entity = findById(id);
+		remove(entity);
 	}
 
 }

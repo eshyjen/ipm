@@ -23,7 +23,7 @@ public interface OperationalDisciplineService {
 
 	public OperationalDiscipline save(OperationalDisciplineDTO operationalDisciplineDTO);
 
-	public void remove(OperationalDisciplineDTO operationalDisciplineDTO);
+	public void remove(String opdId);
 
 	public OperationalDiscipline saveOrUpdate(OperationalDisciplineDTO operationalDisciplineDTO);
 

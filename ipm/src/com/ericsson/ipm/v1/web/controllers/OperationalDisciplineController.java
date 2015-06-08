@@ -49,7 +49,7 @@ public class OperationalDisciplineController extends BaseController {
 			@ModelAttribute("operationalDisciplineDTO") OperationalDisciplineDTO operationalDisciplineDTO,
 			HttpServletRequest request, Model model) {
 		UserProfile profile = null;
-		
+
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
 		if (loggedInUser != null) {
 			 profile = loggedInUser.getProfile();
@@ -162,32 +162,38 @@ public class OperationalDisciplineController extends BaseController {
 		return "protected/operationalDiscipline_Update";
 	}
 
-	/*
-	 * @RequestMapping(value="removeAssetDetail.html",
-	 * method=RequestMethod.POST) public String removeAssetDetail(Model model,
-	 * Principal prinicpal, HttpServletRequest request, HttpServletResponse
-	 * response) { LOGGER.debug("removeAssetDetail : ");
-	 * LOGGER.debug("prinicpal : "+prinicpal); UserProfile userProfile = null;
-	 * UserProfile profile = null; ContextAuthenticatedUserDetailsVO
-	 * loggedInUser = getCurrentUser();
-	 * LOGGER.debug("loggedInUser : "+loggedInUser); if(loggedInUser != null){
-	 * profile = loggedInUser.getProfile(); LOGGER.debug("profile : "+profile);
-	 * //userProfile = userProfileService.findByIdWithAsset(profile.getId()); }
-	 * 
-	 * if(prinicpal != null){ String useName = prinicpal.getName();
-	 * LOGGER.debug("useName : "+useName); }
-	 * 
-	 * String assetId = request.getParameter("id");
-	 * 
-	 * LOGGER.debug("assetId : "+assetId);
-	 * 
-	 * 
-	 * assetService.remove(assetId); userProfile =
-	 * userProfileService.findByIdWithAsset(profile.getId());
-	 * model.addAttribute(Constants.ASSET_LIST, userProfile.getAssets());
-	 * 
-	 * return "protected/asset"; }
-	 */
+	@RequestMapping(value="removeOperationalDiscipline.html", method=RequestMethod.GET)
+	public String removeOperationalDiscipline(Model model, Principal prinicpal, HttpServletRequest request, HttpServletResponse response) {
+		LOGGER.debug("removeOperationalDiscipline : ");
+		LOGGER.debug("prinicpal : "+prinicpal);
+		UserProfile userProfile = null;
+		UserProfile profile = null;
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		LOGGER.debug("loggedInUser : "+loggedInUser);
+		if(loggedInUser != null){
+			profile = loggedInUser.getProfile();
+			LOGGER.debug("profile : "+profile);
+			//userProfile = userProfileService.findByIdWithAsset(profile.getId());
+		}
+
+		if(prinicpal != null){
+			String useName = prinicpal.getName();
+			LOGGER.debug("useName : "+useName);
+		}
+
+		String opdId = request.getParameter("id");
+
+		LOGGER.debug("operationalDisciplineId : "+opdId);
+
+
+		operationalDisciplineService.remove(opdId);
+		userProfile = userProfileService
+				.findByIdWithOperationalDiscipline(profile.getId());
+		model.addAttribute(Constants.OPERATIONAL_DISCIPLINE_LIST,
+				userProfile.getOperationaldiscplines());
+
+		return "protected/operationalDiscipline";
+	}
 
 	/**
 	 * @param operationalDisciplineService

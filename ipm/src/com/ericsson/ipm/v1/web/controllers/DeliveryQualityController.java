@@ -183,15 +183,15 @@ public class DeliveryQualityController extends BaseController {
 
 
 	@RequestMapping(value = "removeDeliveryQualityDetail.html", method = RequestMethod.GET)
-	public void removeDeliveryQualityDetail(Model model, Principal prinicpal,
+	public String removeDeliveryQualityDetail(Model model, Principal prinicpal,
 			HttpServletRequest request, HttpServletResponse response) {
-		LOGGER.debug("removeAssetDetail : ");
+		LOGGER.debug("removeDeliveryQualityDetail : ");
 		LOGGER.debug("prinicpal : " + prinicpal);
-		UserProfile userProfile = null;
+		UserProfile profile = null;
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
 		LOGGER.debug("loggedInUser : " + loggedInUser);
 		if (loggedInUser != null) {
-			UserProfile profile = loggedInUser.getProfile();
+			profile = loggedInUser.getProfile();
 			LOGGER.debug("profile : " + profile);
 			// userProfile =
 			// userProfileService.findByIdWithAsset(profile.getId());
@@ -202,12 +202,14 @@ public class DeliveryQualityController extends BaseController {
 			LOGGER.debug("useName : " + useName);
 		}
 
-			String assetId = request.getParameter("id");
+			String dqId = request.getParameter("id");
 
-		LOGGER.debug("assetId : " + assetId);
-
-		// model.addAttribute(Constants.ASSET_LIST, userProfile.getAssets());
-		return; // "protected/asset";
+		LOGGER.debug("Delivery Quality Id : " + dqId);
+		deliveryQualityService.remove(dqId);
+		UserProfile UProfile  = userProfileService.findByIdWithDeliveryQuality(profile.getId());
+		model.addAttribute(Constants.DELIVERY_QUALITY_LIST,
+				UProfile.getDeliveryQualities());
+		return "protected/deliveryQuality";
 	}
 
 	public UserProfileService getUserProfileService() {

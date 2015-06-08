@@ -5,16 +5,16 @@ import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
 public interface DeliveryQualityService {
 
-	
+
 	public DeliveryQuality save(DeliveryQuality entity);
-	
-	public void remove(DeliveryQuality entity);
+
+	public void remove(String id);
 
 	public DeliveryQuality update(DeliveryQuality entity);
 
 	public DeliveryQuality saveOrUpdate(DeliveryQuality entity);
 
 	public DeliveryQuality findById(Integer id);
-	
+
 	public DeliveryQuality getDeliveryQualityDetail(String id);
 }

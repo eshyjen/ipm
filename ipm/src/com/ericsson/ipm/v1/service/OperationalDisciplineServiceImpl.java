@@ -53,9 +53,9 @@ public class OperationalDisciplineServiceImpl implements OperationalDisciplineSe
 	}
 
 	@Override
-	public void remove(OperationalDisciplineDTO operationalDisciplineDTO) {
+	public void remove(String opdId) {
 		// TODO Auto-generated method stub
-
+		operationalDisciplineDAO.remove(opdId);
 	}
 
 	@Override

@@ -99,6 +99,12 @@
 
         </style>
 
+<script type="text/javascript">
+function deleteMsg(){
+	return confirm("Do you want to delete it?");
+}
+
+</script>
 
 		<!-- <script type="text/javascript">
 		var datefield = document.createElement("input")
@@ -143,7 +149,7 @@
 				   	 <a href="assetForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
 				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
-				   			<a href="javascript:checkDelete(${usertable_rowNum});">
+				   			<a href="removeAssetDetail.html?id=${usertable.id}" onclick="return deleteMsg()">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
 					 <display:column property="id" sortable="true" title="Id"/>

@@ -15,13 +15,13 @@ public interface DeliveryQualityDAO {
 	 * persistence store, i.e., database. This method uses the
 	 * {@link javax.persistence.EntityManager#persist(Object)
 	 * EntityManager#persist} operation.
-	 * 
+	 *
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
 	 * IAssetDAO.save(entity);
 	 * EntityManagerHelper.commit();
 	 * </pre>
-	 * 
+	 *
 	 * @param entity
 	 *            Asset entity to persist
 	 * @throws RuntimeException
@@ -35,20 +35,20 @@ public interface DeliveryQualityDAO {
 	 * permanently deleted from the persistence store, i.e., database. This
 	 * method uses the {@link javax.persistence.EntityManager#remove(Object)
 	 * EntityManager#delete} operation.
-	 * 
+	 *
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
 	 * IAssetDAO.delete(entity);
 	 * EntityManagerHelper.commit();
 	 * entity = null;
 	 * </pre>
-	 * 
+	 *
 	 * @param entity
 	 *            Asset entity to delete
 	 * @throws RuntimeException
 	 *             when the operation fails
 	 */
-	public void remove(DeliveryQuality entity);
+	public void remove(String dqId);
 
 	/**
 	 * Persist a previously saved Asset entity and return it or a copy of it to
@@ -59,13 +59,13 @@ public interface DeliveryQualityDAO {
 	 * persistence store, i.e., database. This method uses the
 	 * {@link javax.persistence.EntityManager#merge(Object) EntityManager#merge}
 	 * operation.
-	 * 
+	 *
 	 * <pre>
 	 * EntityManagerHelper.beginTransaction();
 	 * entity = IAssetDAO.update(entity);
 	 * EntityManagerHelper.commit();
 	 * </pre>
-	 * 
+	 *
 	 * @param entity
 	 *            Asset entity to update
 	 * @return Asset the persisted Asset entity instance, may not be the same
@@ -79,8 +79,8 @@ public interface DeliveryQualityDAO {
 	public DeliveryQuality update(DeliveryQuality entity);
 
 	public DeliveryQuality findById(Integer id);
-	
+
 	public List<DeliveryQuality> findAll();
 
-	
+
 }

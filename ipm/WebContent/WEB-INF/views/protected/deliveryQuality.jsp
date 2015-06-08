@@ -13,7 +13,7 @@
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
 
-	
+
 
 
 			<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
@@ -120,7 +120,12 @@
 	</script>
 
 
+<script type="text/javascript">
+function deleteMsg(){
+	return confirm("Do you want to delete it?");
+}
 
+</script>
 
 </head>
 
@@ -148,7 +153,7 @@
 				   	 <a href="deliveryQualityForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
 				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
-				   			<a href="javascript:checkDelete(${usertable_rowNum});">
+				   			<a href="removeDeliveryQualityDetail.html?id=${usertable.id}" onclick="return deleteMsg();">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
 					 <display:column class='ericssonfont' property="projectName"  sortable="true" title="ProjectName"/>

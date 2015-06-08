@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
 import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
@@ -47,7 +48,7 @@ public class DeliveryQualityDAOImpl extends BaseDAO<Integer, DeliveryQuality> im
 			throw re;
 		}
 	}
-	
+
 	@Override
 	public DeliveryQuality getDeliveryQualityDetail(String id) {
 		// TODO Auto-generated method stub
@@ -62,6 +63,13 @@ public class DeliveryQualityDAOImpl extends BaseDAO<Integer, DeliveryQuality> im
 			LOGGER.info("find by property name failed"+ re);
 			throw re;
 		}
+	}
+
+	@Override
+	public void remove(String dqId) {
+		Integer Id = Integer.parseInt(dqId);
+		DeliveryQuality entity = findById(Id);
+		remove(entity);
 	}
 
 }

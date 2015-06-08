@@ -96,7 +96,12 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript" src="../resources/js/jquery.autocomplete.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+<script type="text/javascript">
+function deleteMsg(){
+	return confirm("Do you want to delete it?");
+}
 
+</script>
 
 </head>
 <body>
@@ -121,7 +126,7 @@
 				   	 <a href="operationalDisciplineForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
 				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
-				   			<a href="javascript:checkDelete(${usertable_rowNum});">
+				   			<a href="removeOperationalDiscipline.html?id=${usertable.id}" onclick="return deleteMsg();">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
 					 <display:column class='ericssonfont' property="id" sortable="true" title="OpdId"/>
@@ -134,7 +139,7 @@
 
 				</div>
 
-			</form:form>>
+			</form:form>
 
 		</div>
 

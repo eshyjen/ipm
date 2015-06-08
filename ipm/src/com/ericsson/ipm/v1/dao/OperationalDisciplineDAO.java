@@ -114,4 +114,6 @@ public interface OperationalDisciplineDAO {
 	 * @return List<Operationaldiscpline> all Operationaldiscpline entities
 	 */
 	public List<OperationalDiscipline> findAll();
+	
+	public void remove(String opdId);
 }

@@ -32,13 +32,13 @@ import com.ericsson.v1.util.Constants;
 @Controller
 @RequestMapping(Constants.BASE_PROTECTED_URL_PATH)
 public class AssetController extends BaseController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssetController.class);
 
 	private UserProfileService userProfileService;
-	
+
 	private AssetService assetService;
-	
+
 	@RequestMapping(value="assetDetails.html", method=RequestMethod.GET)
 	public String getAssetDetails(Model model, Principal prinicpal, HttpServletRequest request, HttpServletResponse response) {
 		LOGGER.info("prinicpal : "+prinicpal);
@@ -51,12 +51,12 @@ public class AssetController extends BaseController {
 			LOGGER.info("profile.getId() : "+profile.getId());
 			userProfile = userProfileService.findByIdWithAsset(profile.getId());
 		}
-		
+
 		if(prinicpal != null){
 			String useName = prinicpal.getName();
 			LOGGER.info("useName : "+useName);
 		}
-		
+
 		LOGGER.info("userProfile : "+userProfile);
 		if(userProfile != null ){
 			LOGGER.info("userProfile getAssets : "+userProfile.getAssets());
@@ -65,7 +65,7 @@ public class AssetController extends BaseController {
 		model.addAttribute(Constants.ASSET_LIST, userProfile.getAssets());
 		return "protected/asset";
 	}
-	
+
 	@RequestMapping(value="saveAssetDetails.html", method=RequestMethod.POST)
 	public String saveAssetDetails(@ModelAttribute("assetDTO")AssetDTO assetDTO, Model model, Principal prinicpal, HttpServletRequest request, HttpServletResponse response) {
 
@@ -125,7 +125,7 @@ public class AssetController extends BaseController {
 	}
 
 
-	@RequestMapping(value="removeAssetDetail.html", method=RequestMethod.POST)
+	@RequestMapping(value="removeAssetDetail.html", method=RequestMethod.GET)
 	public String removeAssetDetail(Model model, Principal prinicpal, HttpServletRequest request, HttpServletResponse response) {
 		LOGGER.debug("removeAssetDetail : ");
 		LOGGER.debug("prinicpal : "+prinicpal);

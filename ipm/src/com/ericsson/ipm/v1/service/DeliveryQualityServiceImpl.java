@@ -16,19 +16,19 @@ import com.ericsson.ipm.v1.dto.OperationalDisciplineDTO;
 @Service("deliveryQualityService")
 @Transactional
 public class DeliveryQualityServiceImpl implements DeliveryQualityService {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DeliveryQualityServiceImpl.class);
 
 	private DeliveryQualityDAO deliveryQualityDAO;
-	
+
 	@Override
 	public DeliveryQuality save(DeliveryQuality entity) {
 		return deliveryQualityDAO.save(entity);
 	}
 
 	@Override
-	public void remove(DeliveryQuality entity) {
-		
+	public void remove(String dqId) {
+		deliveryQualityDAO.remove(dqId);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class DeliveryQualityServiceImpl implements DeliveryQualityService {
 		return deliveryQualityDAO.saveOrUpdate(deliveryQuality);
 
 	}
-	
+
 	@Override
 	public DeliveryQuality getDeliveryQualityDetail(String id) {
 		// TODO Auto-generated method stub
@@ -63,6 +63,6 @@ public class DeliveryQualityServiceImpl implements DeliveryQualityService {
 		this.deliveryQualityDAO = deliveryQualityDAO;
 	}
 
-	
-	
+
+
 }
