@@ -140,6 +140,18 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return userProfile;
 
 	}
+	
+	public UserProfile findByIdWithMandatoryCertification(Object id) {
+		UserProfile userProfile = null;
+		List<UserProfile> userProfiles = userProfileDAO.findByIdWithMandatoryCertification(id);
+		LOGGER.debug("userProfiles for MandatoryCertification: "+userProfiles);
+		if(userProfiles != null && userProfiles.size() > 0){
+			userProfile = userProfiles.get(0);
+		}
+		LOGGER.debug("userProfile : "+userProfile);
+		return userProfile;
+
+	}
 
 	@Override
     public UserProfile registerNewUserAccount(final RegistrationDTO accountDto) throws EmailExistsException {
@@ -486,6 +498,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	 
 	public UserProfile getUserDetails(String signunid){
 		return userProfileDAO.getUserDetails(signunid);
+	}
+
+	@Override
+	public UserProfile findByTrainingName(String trainingName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -5,22 +5,22 @@
 		response.setHeader("Pragma", "no-cache"); //HTTP 1.0
 		response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 	%>
-	
+
 	<%@page import="com.ericsson.v1.util.Constants"%>
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
 <html>
 	<head>
-	
-	
+
+
 	<link href="${pageContext.request.contextPath }/css/common_style.css" rel="stylesheet" type="text/css" />
-	
+
 	<link href="${pageContext.request.contextPath }/css/style1.css" rel="stylesheet" type="text/css" />
-		
+
 	<link href="${pageContext.request.contextPath }/css/commonStyle.css" rel="stylesheet" type="text/css" />
-		
-		
+
+
 		<title>Delivery Quality</title>
 			<!-- <link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
@@ -31,14 +31,14 @@
 			<script type="text/javascript"
 				src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
 			<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script> -->
-		
-		
+
+
 		<style type='text/css'>
 
 
-	 
+
     fieldset { padding:0; border:0; margin-top:25px; }
-   
+
     div#users-contain { width: 350px; margin: 20px 0; }
     div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
     div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
@@ -87,8 +87,8 @@
     }
 
         </style>
-		
-		
+
+
 		<script type="text/javascript">
 		var datefield = document.createElement("input")
 		datefield.setAttribute("type", "date")
@@ -108,7 +108,7 @@
 			})
 		}
 	</script>
-		
+
 
 
 
@@ -125,29 +125,29 @@
 
 
 <div align='center'>
-<form name="myForm" method="post" >
+<form name="myForm" method="post" action="saveMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
 
 
 
  <font style="float:left; margin-left:20%;"> Training Name:</font>
- <font style="float:right;margin-right:20% "><input type="text" name="field" id="field"  required > </font><br><BR>
+ <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" /> </font><br><BR>
 
 
 
   <font style="float:left; margin-left:20%">Date/WK Planned:</font>
-  <font style="float:right;margin-right:20%"><input   style="width:200px;"  type="date"  Id="joining" name="joining" required></font><br><br>
+  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date"  Id="joining" name="joining" /></font><br><br>
 
 
   <font style="float:left; margin-left:20%">Date Attended    :</font>
-  <font style="float:right;margin-right:20%"><input   style="width:200px;"  type="date" size="12" Id="joining" name="joining" required /></font> <br><BR >
+  <font style="float:right;margin-right:20%"><form:input  path="dateAttended" style="width:200px;"  type="date" size="12" Id="joining" name="joining"  /></font> <br><BR >
 
  <font style="float:left; margin-left:20%">Attach Certificate:</font>
 
-<font style="float:right;margin-right:20%"><input type="file" name="datafile" size="40" required></font>
+<font style="float:right;margin-right:20%"><form:input path="attachCertificate" type="file" name="datafile" size="40"/></font>
 <br><BR>
 
   <font style="float:left; margin-left:20%">Completion Status:</font>
-  <font style="float:right;margin-right:35%"> <input   type="radio" name="option" id="field" value="Yes" required  >Yes
+  <font style="float:right;margin-right:35%"> <form:input path="completionStatus" type="radio" name="option" id="field" value="Yes"   />Yes
 <input   type="radio" name="option" id="field" value="No"  >No  </font><br><br>
 
 <input style="width: 100px;" type="submit" class="styled-button-5" value="submit"></input>

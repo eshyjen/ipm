@@ -392,4 +392,10 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 		return profile;
 	}
 
+	@Override
+	public List<UserProfile> findByIdWithMandatoryCertification(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

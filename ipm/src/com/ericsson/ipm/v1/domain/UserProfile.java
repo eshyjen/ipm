@@ -120,6 +120,10 @@ public class UserProfile implements Serializable {
 	//bi-directional many-to-one association to Operationaldiscpline
 	@OneToMany(mappedBy="userprofile")
 	private Set<OperationalDiscipline> operationaldiscplines;
+	
+	//bi-directional many-to-one association to MandatoryCertification
+		@OneToMany(mappedBy="userprofile")
+		private Set<MandatoryCertification> mandatorycertifications;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
@@ -383,6 +387,34 @@ public class UserProfile implements Serializable {
 
 		return operationaldiscpline;
 	}
+	
+	//MANDATORY CERTIFICATION!!!!!!!!!!!!_--------------------------__!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	
+	public Set<MandatoryCertification> getMandatorycertifications() {
+		return this.mandatorycertifications;
+	}
+
+	public void setMandatorycertifications(Set<MandatoryCertification> mandatorycertifications) {
+		this.mandatorycertifications = mandatorycertifications;
+	}
+
+	public MandatoryCertification addMandatorycertification(MandatoryCertification mandatorycertification) {
+		getMandatorycertifications().add(mandatorycertification);
+		mandatorycertification.setUserprofile(this);
+
+		return mandatorycertification;
+	}
+
+	public MandatoryCertification removeMandatorycertification(MandatoryCertification mandatorycertification) {
+		getMandatorycertifications().remove(mandatorycertification);
+		mandatorycertification.setUserprofile(null);
+
+		return mandatorycertification;
+	}
+	
+	
+	
 
 	   public List<UserRoleAssignment> getRoleAssignments() {
 		return roleAssignments;

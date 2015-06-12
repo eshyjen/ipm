@@ -55,6 +55,7 @@ public class Constants {
 	public final static String ASSET_LIST = "assetlist";
 	public final static String DELIVERY_QUALITIY_LIST = "deliveryQualitiylist";
 	public final static String OPERATIONAL_DISCIPLINE_LIST = "operationalDisciplineList";
+	public final static String MANDATORY_CERTIFICATION_LIST= "mandatoryCertificationList";
 	public final static String DELIVERY_QUALITY_LIST = "deliveryQualityList";
 	public final static String KPI_LIST = "kpilist";
 	public final static String KPI_LIST1 = "kpilist1";

@@ -6,16 +6,15 @@ import com.ericsson.ipm.v1.domain.UserProfile;
 
 /**
  * Interface for UserprofileDAO.
- *
+ * 
  * @author iqbal.hosain.khan@ericsson.com
  */
 
 public interface UserProfileDAO {
 
-
 	/**
 	 * Find all Userprofile entities with a specific property value.
-	 *
+	 * 
 	 * @param propertyName
 	 *            the name of the Userprofile property to query
 	 * @param value
@@ -66,7 +65,7 @@ public interface UserProfileDAO {
 
 	/**
 	 * Find all Userprofile entities.
-	 *
+	 * 
 	 * @return List<Userprofile> all Userprofile entities
 	 */
 	public List<UserProfile> findAll();
@@ -74,7 +73,6 @@ public interface UserProfileDAO {
 	public UserProfile save(UserProfile entity);
 
 	public void remove(UserProfile entity);
-
 
 	public UserProfile update(UserProfile entity);
 
@@ -89,6 +87,9 @@ public interface UserProfileDAO {
 	public List<UserProfile> findByIdWithDeliveryQuality(Object id);
 
 	public List<UserProfile> findByIdWithOperationalDiscipline(Object id);
+
 	public UserProfile getUserDetails(String signunid);
+
+	public List<UserProfile> findByIdWithMandatoryCertification(Object id);
 
 }

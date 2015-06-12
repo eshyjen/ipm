@@ -53,8 +53,12 @@ public interface UserProfileService {
 	
 
 	 public UserProfile findByIdWithOperationalDiscipline(Object id);
+
+	 public UserProfile findByIdWithMandatoryCertification(Object id);
 	 
 	 public UserProfile getUserDetails(String signunid);
+
+	public UserProfile findByTrainingName(String trainingName);
 
 
 
