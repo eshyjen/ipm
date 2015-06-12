@@ -135,11 +135,11 @@
 
 
   <font style="float:left; margin-left:20%">Date/WK Planned:</font>
-  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date"  Id="joining" name="joining" /></font><br><br>
+  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date" /></font><br><br>
 
 
   <font style="float:left; margin-left:20%">Date Attended    :</font>
-  <font style="float:right;margin-right:20%"><form:input  path="dateAttended" style="width:200px;"  type="date" size="12" Id="joining" name="joining"  /></font> <br><BR >
+  <font style="float:right;margin-right:20%"><form:input  path="dateAttended" style="width:200px;" type="date"  size="12" /></font> <br><BR >
 
  <font style="float:left; margin-left:20%">Attach Certificate:</font>
 
@@ -147,8 +147,8 @@
 <br><BR>
 
   <font style="float:left; margin-left:20%">Completion Status:</font>
-  <font style="float:right;margin-right:35%"> <form:input path="completionStatus" type="radio" name="option" id="field" value="Yes"   />Yes
-<input   type="radio" name="option" id="field" value="No"  >No  </font><br><br>
+  <font style="float:right;margin-right:35%"> <form:radiobutton path="completionStatus" name="option" value="Yes"   />Yes
+<form:radiobutton path="completionStatus" name="option" value="No"  />No  </font><br><br>
 
 <input style="width: 100px;" type="submit" class="styled-button-5" value="submit"></input>
 
@@ -156,6 +156,7 @@
 </form:form>
 </div>
 </div>
+<a href="mandatoryCertificationShow.html?id=${usertable.id}">Show</a>
 </body>
 
 
