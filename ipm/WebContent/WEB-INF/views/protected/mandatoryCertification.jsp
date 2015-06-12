@@ -125,7 +125,7 @@
 
 
 <div align='center'>
-<form name="myForm" method="post" action="saveMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
+<form:form  name="myForm" method="post" action="saveMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
 
 
 
@@ -153,7 +153,7 @@
 <input style="width: 100px;" type="submit" class="styled-button-5" value="submit"></input>
 
 
-</form>
+</form:form>
 </div>
 </div>
 </body>
