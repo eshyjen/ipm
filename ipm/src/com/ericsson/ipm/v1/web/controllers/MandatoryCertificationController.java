@@ -62,7 +62,7 @@ public class MandatoryCertificationController extends BaseController{
 		int id=mandatoryCertificationDTO.getId();
 		if (loggedInUser != null) {
 			 profile = loggedInUser.getProfile();
-			 
+
 			 MandatoryCertification mandatoryCertification=new MandatoryCertification();
 			 mandatoryCertification.setId(id);
 			 mandatoryCertification.setTrainingName(mandatoryCertificationDTO.getTrainingName());
@@ -70,9 +70,9 @@ public class MandatoryCertificationController extends BaseController{
 			 mandatoryCertification.setDateAttended(mandatoryCertificationDTO.getDateAttended());
 			 mandatoryCertification.setCompletionStatus(mandatoryCertificationDTO.getCompletionStatus());
 			 mandatoryCertification.setUserprofile(userProfileService.findById(profile.getId()));
-			 
+
 			 mandatoryCertificationService.saveOrUpdate(mandatoryCertification);
-			 
+
 		}
 
 		LOGGER.debug("saveMandatoryCertification TrainingName: "
@@ -88,10 +88,10 @@ public class MandatoryCertificationController extends BaseController{
 		//mandatoryCertificationService.save(mandatoryCertificationDTO);
 		UserProfile userProfile = userProfileService
 				.findByIdWithMandatoryCertification(profile.getId());
-		
-		model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
-				userProfile.getMandatorycertifications());
-		return "protected/mandatoryCertification";
+
+		/*model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
+				userProfile.getMandatorycertifications());*/
+		return "protected/mandatoryCertification_Show";
 
 
 
@@ -109,7 +109,7 @@ public class MandatoryCertificationController extends BaseController{
 		return "protected/mandatoryCertification_Show";
 	}
 
-	
+
 	@Autowired
 	public void setMandatoryCertificationService(
 			MandatoryCertificationService mandatoryCertificationService) {

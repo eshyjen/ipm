@@ -102,7 +102,8 @@ public class UserProfile implements Serializable {
 	private double totalITExperience;
 
 	@Column(name = "TOTAL_YEARS_OF_EXPERIENCE")
-	private double totalYearsOfExperience;
+	private
+	double totalYearsOfExperience;
 
 	@Column(name = "YEAROF_IPM")
 	private String yearOfIPM;
