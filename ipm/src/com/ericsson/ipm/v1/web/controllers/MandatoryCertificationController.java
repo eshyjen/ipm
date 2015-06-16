@@ -99,7 +99,7 @@ public class MandatoryCertificationController extends BaseController{
 
 	}
 
-	@RequestMapping(value="showMandatoryCertification.html", method=RequestMethod.POST)
+	@RequestMapping(value="showMandatoryCertification.html", method=RequestMethod.GET)
 
 	public String showMandatoryCertificationForm1(final HttpServletRequest request, final Model model) {
 		LOGGER.debug("Rendering MandatoryCertification_Show.jsp page.");

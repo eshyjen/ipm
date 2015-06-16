@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<html>
+	<head>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"%>
 	<%
 		response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
@@ -10,19 +12,12 @@
 	<%@include file="/WEB-INF/views/public/taglib.jsp"%>
 	<%@include file="/WEB-INF/views/public/include_header.jsp" %>
 	<fmt:setBundle basename="messages" />
-<html>
+
+
+	<html>
 	<head>
 
-
-	<link href="${pageContext.request.contextPath }/css/common_style.css" rel="stylesheet" type="text/css" />
-
-	<link href="${pageContext.request.contextPath }/css/style1.css" rel="stylesheet" type="text/css" />
-
-	<link href="${pageContext.request.contextPath }/css/commonStyle.css" rel="stylesheet" type="text/css" />
-
-
-		<title>Mandatory Certification</title>
-			<!-- <link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
+	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
 				<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
 				<link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
@@ -30,7 +25,19 @@
 				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
 			<script type="text/javascript"
 				src="${rootURL}/resources/bootstrap/js/bootstrap.js"></script>
-			<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script> -->
+			<script type="text/javascript" src="${rootURL}/resources/js/app.js"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="http://eriteamtracker.egi.ericsson.com/img/favicon.ico">
+	<link rel="shortcut icon" type="image/png" href="http://eriteamtracker.egi.ericsson.com/img/favicon.png">
+	<link rel="stylesheet" href="http://eriteamtracker.egi.ericsson.com/css/style.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/common_style.css" />
+
+
+		<title>Mandatory Certification</title>
 
 
 		<style type='text/css'>
@@ -130,7 +137,7 @@
 
 
  <font style="float:left; margin-left:20%;"> Training Name:</font>
- <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" /> </font><br><BR>
+ <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" style="width:200px;"/> </font><br><BR>
 
 
 
@@ -156,12 +163,6 @@
 </form:form>
 </div>
 </div>
-
-<form:form method="post" action="showMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
-<input type="submit" value="Show"/>
- </form:form>
-</body>
-
 
 
 </html>

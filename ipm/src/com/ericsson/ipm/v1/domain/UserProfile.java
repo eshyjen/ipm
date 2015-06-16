@@ -417,7 +417,7 @@ public class UserProfile implements Serializable {
 	}
 	
 	
-	
+	// end mandatory certification -----------------------------------------------------------------
 
 	   public List<UserRoleAssignment> getRoleAssignments() {
 		return roleAssignments;
