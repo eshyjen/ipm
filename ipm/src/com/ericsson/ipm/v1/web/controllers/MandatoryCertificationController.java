@@ -24,6 +24,7 @@ import com.ericsson.ipm.v1.service.MandatoryCertificationService;
 import com.ericsson.ipm.v1.service.MandatoryCertificationServiceImpl;
 import com.ericsson.ipm.v1.service.UserProfileService;
 import com.ericsson.v1.util.Constants;
+import com.sun.mail.iap.Response;
 
 
 @Controller
@@ -31,7 +32,7 @@ import com.ericsson.v1.util.Constants;
 public class MandatoryCertificationController extends BaseController{
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(OperationalDisciplineController.class);
+			.getLogger(MandatoryCertificationController.class);
 
 	private MandatoryCertificationService mandatoryCertificationService;
 
@@ -58,9 +59,19 @@ public class MandatoryCertificationController extends BaseController{
 		UserProfile profile = null;
 
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
-		String trainingName=mandatoryCertificationDTO.getTrainingName();
+		int id=mandatoryCertificationDTO.getId();
 		if (loggedInUser != null) {
 			 profile = loggedInUser.getProfile();
+			 
+			 MandatoryCertification mandatoryCertification=new MandatoryCertification();
+			 mandatoryCertification.setId(id);
+			 mandatoryCertification.setTrainingName(mandatoryCertificationDTO.getTrainingName());
+			 mandatoryCertification.setDateWeekPlanned(mandatoryCertificationDTO.getDateWeekPlanned());
+			 mandatoryCertification.setDateAttended(mandatoryCertificationDTO.getDateAttended());
+			 mandatoryCertification.setCompletionStatus(mandatoryCertificationDTO.getCompletionStatus());
+			 mandatoryCertification.setUserprofile(userProfileService.findById(profile.getId()));
+			 
+			 mandatoryCertificationService.saveOrUpdate(mandatoryCertification);
 			 
 		}
 
@@ -74,13 +85,13 @@ public class MandatoryCertificationController extends BaseController{
 				+ mandatoryCertificationDTO.getCompletionStatus());
 
 		mandatoryCertificationDTO.setUserId(profile.getId());
-		mandatoryCertificationService.save(mandatoryCertificationDTO);
+		//mandatoryCertificationService.save(mandatoryCertificationDTO);
 		UserProfile userProfile = userProfileService
-				.findByIdWithOperationalDiscipline(profile.getId());
+				.findByIdWithMandatoryCertification(profile.getId());
 		
 		model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
-				userProfile.getOperationaldiscplines());
-		return "protected/mandatoryCertification";
+				userProfile.getMandatorycertifications());
+		return "protected/mandatoryCertification_Show";
 
 
 

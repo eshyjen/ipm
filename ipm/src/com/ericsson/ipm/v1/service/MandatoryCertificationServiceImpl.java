@@ -79,8 +79,8 @@ public class MandatoryCertificationServiceImpl implements MandatoryCertification
 
 	@Override
 	public MandatoryCertification saveOrUpdate(
-			MandatoryCertificationDTO mandatoryCertificationDTO) {
-		// TODO Auto-generated method stub
+			MandatoryCertification mandatoryCertification) {
+		/*
 		MandatoryCertification mandatoryCertification = new MandatoryCertification();
 
 		mandatoryCertification.setTrainingName(mandatoryCertificationDTO.getTrainingName());
@@ -92,6 +92,8 @@ public class MandatoryCertificationServiceImpl implements MandatoryCertification
 			mandatoryCertification.setTrainingName(trngName);
 		}
 		mandatoryCertification.setUserprofile(userProfileService.findByTrainingName(mandatoryCertificationDTO.getTrainingName()));
+		return mandatoryCertificationDAO.saveOrUpdate(mandatoryCertification);*/
+		
 		return mandatoryCertificationDAO.saveOrUpdate(mandatoryCertification);
 
 	}

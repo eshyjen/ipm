@@ -13,6 +13,10 @@ private static final long serialVersionUID = -3270361677712529188L;
 
 @NotNull
 @NotEmpty
+private int id;
+
+@NotNull
+@NotEmpty
 private String trainingName;
 
 @NotNull
@@ -75,6 +79,14 @@ public int getUserId() {
 
 public void setUserId(int userId) {
 	this.userId = userId;
+}
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
 }
 
 

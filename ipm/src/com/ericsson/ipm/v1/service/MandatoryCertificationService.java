@@ -27,7 +27,7 @@ public interface MandatoryCertificationService {
 
 	public void remove(String opdId);
 
-	public MandatoryCertification saveOrUpdate(MandatoryCertificationDTO mandatoryCertificationDTO);
+	public MandatoryCertification saveOrUpdate(MandatoryCertification entity);
 
 	public List<MandatoryCertification> findAll();
 
