@@ -91,7 +91,7 @@ public class MandatoryCertificationController extends BaseController{
 		
 		model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
 				userProfile.getMandatorycertifications());
-		return "protected/mandatoryCertification_Show";
+		return "protected/mandatoryCertification";
 
 
 
