@@ -21,7 +21,7 @@
 	<link href="${pageContext.request.contextPath }/css/commonStyle.css" rel="stylesheet" type="text/css" />
 
 
-		<title>Delivery Quality</title>
+		<title>Mandatory Certification</title>
 			<!-- <link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
 				<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css" type="text/css" />
@@ -119,7 +119,7 @@
 
 <div class="container" align='center'>
 <div id='loginbox' ><font color="#0B2F3A" size="4">
-<div class='logintitle ericssonfont'> Delivery Quality</div>
+<div class='logintitle ericssonfont'> Mandatory Certification</div>
 
 <div class='separator'></div>
 
@@ -156,7 +156,10 @@
 </form:form>
 </div>
 </div>
-<a href="mandatoryCertificationShow.html?id=${usertable.id}">Show</a>
+
+<form:form method="post" action="showMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
+<input type="submit" value="Show"/>
+ </form:form>
 </body>
 
 

@@ -1,6 +1,10 @@
 package com.ericsson.ipm.v1.web.controllers;
 
+import java.security.Principal;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ericsson.ipm.v1.domain.Asset;
+import com.ericsson.ipm.v1.domain.MandatoryCertification;
 import com.ericsson.ipm.v1.domain.UserProfile;
 import com.ericsson.ipm.v1.dto.MandatoryCertificationDTO;
 import com.ericsson.ipm.v1.security.authentication.vo.ContextAuthenticatedUserDetailsVO;
@@ -52,8 +58,10 @@ public class MandatoryCertificationController extends BaseController{
 		UserProfile profile = null;
 
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		String trainingName=mandatoryCertificationDTO.getTrainingName();
 		if (loggedInUser != null) {
 			 profile = loggedInUser.getProfile();
+			 
 		}
 
 		LOGGER.debug("saveMandatoryCertification TrainingName: "
@@ -69,7 +77,7 @@ public class MandatoryCertificationController extends BaseController{
 		mandatoryCertificationService.save(mandatoryCertificationDTO);
 		UserProfile userProfile = userProfileService
 				.findByIdWithOperationalDiscipline(profile.getId());
-
+		
 		model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
 				userProfile.getOperationaldiscplines());
 		return "protected/mandatoryCertification";
@@ -80,7 +88,17 @@ public class MandatoryCertificationController extends BaseController{
 
 	}
 
+	@RequestMapping(value="showMandatoryCertification.html", method=RequestMethod.POST)
 
+	public String showMandatoryCertificationForm1(final HttpServletRequest request, final Model model) {
+		LOGGER.debug("Rendering MandatoryCertification_Show.jsp page.");
+		final MandatoryCertificationDTO mandatoryCertificationDTO = new MandatoryCertificationDTO();
+		model.addAttribute("mandatoryCertificationDTO", mandatoryCertificationDTO);
+		// model.addAttribute("roles", roleService.findAll());
+		return "protected/mandatoryCertification_Show";
+	}
+
+	
 	@Autowired
 	public void setMandatoryCertificationService(
 			MandatoryCertificationService mandatoryCertificationService) {

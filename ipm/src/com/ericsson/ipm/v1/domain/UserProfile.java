@@ -117,6 +117,8 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private Set<Asset> assets;
 
+	
+
 	//bi-directional many-to-one association to Operationaldiscpline
 	@OneToMany(mappedBy="userprofile")
 	private Set<OperationalDiscipline> operationaldiscplines;

@@ -139,7 +139,7 @@ function deleteMsg(){
 			<form:form name="myform" id="myform">
 			<!-- <font  size="1"> -->
 
-			<a id="add" href="asset.html">
+			<a id="add" href="mandatoryCertification.html">
 				<img src="<%=request.getContextPath()%>/resources/images/add_button.gif" />
 			</a>
 				<div id="tablediv">

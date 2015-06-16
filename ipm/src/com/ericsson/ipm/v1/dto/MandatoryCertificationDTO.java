@@ -29,7 +29,7 @@ private String attachCertificate;
 
 private int userId;
 
-public String getTrainingName() {
+	public String getTrainingName() {
 	return trainingName;
 }
 
