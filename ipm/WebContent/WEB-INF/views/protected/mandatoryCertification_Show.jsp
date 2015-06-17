@@ -141,7 +141,8 @@ function deleteMsg(){
 			</a>
 				<div id="tablediv">
 
-					 <display:table id="usertable" name="<%=Constants.MANDATORY_CERTIFICATION_LIST %>" class="list" sort="page" pagesize="5" export="true" requestURI="showMandatoryCertification.html"  >
+					 <display:table id="usertable" name="<%=Constants.MANDATORY_CERTIFICATION_LIST %>" 
+					 class="list" sort="page" pagesize="5" export="true" requestURI="showMandatoryCertification.html"  >
 				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id">
 				   	 <a href="assetForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
@@ -149,7 +150,7 @@ function deleteMsg(){
 				   			<a href="removeAssetDetail.html?id=${usertable.id}" onclick="return deleteMsg()">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
-					 <display:column property="userId" sortable="true" title="Id"/>
+					 <display:column property="id" sortable="true" title="Id"/>
 				     <display:column property="trainingName" title="Training Name" sortable="true" sortProperty="trainingName"/>
 
 				     <display:column property="dateWeekPlanned" title="Date/WK Planned" sortable="true" />

@@ -15,6 +15,7 @@ import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
 import com.ericsson.ipm.v1.domain.KPI;
 import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
+import com.ericsson.ipm.v1.domain.MandatoryCertification;
 import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 import com.ericsson.ipm.v1.domain.Role;
 import com.ericsson.ipm.v1.domain.UserProfile;
@@ -394,8 +395,21 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 
 	@Override
 	public List<UserProfile> findByIdWithMandatoryCertification(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			//final String queryString = "from UserProfile model left join fetch model.assets where model.id= :propertyValue";
+			final String queryString = "from UserProfile model where model.id= :propertyValue";
+			Query query = getEntityManager().createQuery(queryString);
+			query.setParameter("propertyValue", id);
+			List<UserProfile> userProfiles = query.getResultList();
+			for(UserProfile profile : userProfiles){
+				Set<MandatoryCertification> mandatoryCertification = profile.getMandatorycertifications();
+				LOGGER.debug("mandatoryCertification : "+ mandatoryCertification);
+			}
+			return userProfiles;
+		} catch (RuntimeException re) {
+			LOGGER.info("UserProfile find by property name failed"+ re);
+			throw re;
+		}
 	}
 
 }

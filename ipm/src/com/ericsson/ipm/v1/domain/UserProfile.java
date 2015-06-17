@@ -126,7 +126,7 @@ public class UserProfile implements Serializable {
 	
 	//bi-directional many-to-one association to MandatoryCertification
 		@OneToMany(mappedBy="userprofile")
-		private Set<MandatoryCertification> mandatorycertifications;
+		private Set<MandatoryCertification> mandatoryCertification;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
@@ -395,11 +395,11 @@ public class UserProfile implements Serializable {
 	
 	
 	public Set<MandatoryCertification> getMandatorycertifications() {
-		return this.mandatorycertifications;
+		return this.mandatoryCertification;
 	}
 
-	public void setMandatorycertifications(Set<MandatoryCertification> mandatorycertifications) {
-		this.mandatorycertifications = mandatorycertifications;
+	public void setMandatorycertifications(Set<MandatoryCertification> mandatoryCertification) {
+		this.mandatoryCertification = mandatoryCertification;
 	}
 
 	public MandatoryCertification addMandatorycertification(MandatoryCertification mandatorycertification) {

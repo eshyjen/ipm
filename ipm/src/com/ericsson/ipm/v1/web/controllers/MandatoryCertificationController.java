@@ -102,12 +102,22 @@ public class MandatoryCertificationController extends BaseController{
 	@RequestMapping(value="showMandatoryCertification.html", method=RequestMethod.GET)
 
 	public String showMandatoryCertificationForm1(final HttpServletRequest request, final Model model) {
-		LOGGER.debug("Rendering MandatoryCertification_Show.jsp page.");
-		final MandatoryCertificationDTO mandatoryCertificationDTO = new MandatoryCertificationDTO();
-		model.addAttribute("mandatoryCertificationDTO", mandatoryCertificationDTO);
-		// model.addAttribute("roles", roleService.findAll());
+		UserProfile profile = null;
+
+		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
+		if (loggedInUser != null) {
+			 profile = loggedInUser.getProfile();
+		}
+		 System.out.println("PROFILE1------------------------"+profile);
+		UserProfile userProfile = userProfileService
+				.findByIdWithMandatoryCertification(profile.getId());
+ System.out.println("PROFILE------------------------"+profile);
+		model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
+				userProfile.getMandatorycertifications());
+
 		return "protected/mandatoryCertification_Show";
 	}
+
 
 
 	@Autowired
