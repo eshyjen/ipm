@@ -29,7 +29,7 @@ private String dateAttended;
 @NotEmpty
 private String completionStatus;
 
-private String attachCertificate;
+private String attachFile;
 
 private int userId;
 
@@ -65,12 +65,14 @@ public void setCompletionStatus(String completionStatus) {
 	this.completionStatus = completionStatus;
 }
 
-public String getAttachCertificate() {
-	return attachCertificate;
+
+
+public String getAttachFile() {
+	return attachFile;
 }
 
-public void setAttachCertificate(String attachCertificate) {
-	this.attachCertificate = attachCertificate;
+public void setAttachFile(String attachFile) {
+	this.attachFile = attachFile;
 }
 
 public int getUserId() {

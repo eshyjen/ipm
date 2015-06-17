@@ -125,9 +125,10 @@
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Project Type*: </font> -->
 	<form:input path="id" style="width:140px;" id="id" required="required"/> --%>
 	<br><br>
+	
 	<label for="login_name" class='ericssonfont'>Project name</label>
-	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DQI Score*:</font> -->
 	<form:input path="projectName" style="width:140px;" id="projectName" required="required"/>
+	
 	<br><br>
 	<label for="login_name" class='ericssonfont'>Reused in Other Projects Name*:</label>
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DPI Score*: </font> -->

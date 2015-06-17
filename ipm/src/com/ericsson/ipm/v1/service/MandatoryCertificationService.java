@@ -25,7 +25,7 @@ public interface MandatoryCertificationService {
 
 	public MandatoryCertification save(MandatoryCertificationDTO mandatoryCertificationDTO);
 
-	public void remove(String opdId);
+	public void remove(String mcId);
 
 	public MandatoryCertification saveOrUpdate(MandatoryCertification entity);
 

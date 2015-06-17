@@ -144,10 +144,10 @@ function deleteMsg(){
 					 <display:table id="usertable" name="<%=Constants.MANDATORY_CERTIFICATION_LIST %>" 
 					 class="list" sort="page" pagesize="5" export="true" requestURI="showMandatoryCertification.html"  >
 				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id">
-				   	 <a href="assetForUpdate.html?id=${usertable.id}">
+				   	 <a href="mandatoryCertificationForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
 				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
-				   			<a href="removeAssetDetail.html?id=${usertable.id}" onclick="return deleteMsg()">
+				   			<a href="removeMandatoryCertification.html?id=${usertable.id}" onclick="return deleteMsg()">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
 					 <display:column property="id" sortable="true" title="Id"/>
@@ -156,7 +156,7 @@ function deleteMsg(){
 				     <display:column property="dateWeekPlanned" title="Date/WK Planned" sortable="true" />
 				     <display:column property="dateAttended" title="Date Attended" sortable="true" />
 				     <display:column property="completionStatus" title="Completion Status" sortable="true" />
-				     <%-- <display:column property="attachFile" title="Attached File" sortable="true" /> --%>
+				     <display:column property="attachFile" title="Attached File" sortable="true" /> 
 				     </display:table>
 				</div>
 			</form:form>

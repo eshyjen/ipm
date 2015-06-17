@@ -72,9 +72,9 @@ public class MandatoryCertificationServiceImpl implements MandatoryCertification
 	}
 
 	@Override
-	public void remove(String opdId) {/*
+	public void remove(String mcId) {
 		// TODO Auto-generated method stub
-		mandatoryCertificationDAO.remove(opdId);*/
+		mandatoryCertificationDAO.remove(mcId);
 	}
 
 	@Override

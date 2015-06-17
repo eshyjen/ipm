@@ -43,6 +43,10 @@ import javax.persistence.Table;
 
 		@Column(name = "completionStatus")
 		private String completionStatus;
+		
+		@Column(name = "attachFile")
+		private String attachFile;
+		
 
 		public int getId() {
 			return id;
@@ -90,6 +94,14 @@ import javax.persistence.Table;
 
 		public void setCompletionStatus(String completionStatus) {
 			this.completionStatus = completionStatus;
+		}
+
+		public String getAttachFile() {
+			return attachFile;
+		}
+
+		public void setAttachFile(String attachFile) {
+			this.attachFile = attachFile;
 		}
 		
 		

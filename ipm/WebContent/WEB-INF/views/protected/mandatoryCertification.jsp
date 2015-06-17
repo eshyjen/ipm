@@ -137,20 +137,20 @@
 
 
  <font style="float:left; margin-left:20%;"> Training Name:</font>
- <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" style="width:200px;"/> </font><br><BR>
+ <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" style="width:200px;" required="required"/> </font><br><BR>
 
 
 
   <font style="float:left; margin-left:20%">Date/WK Planned:</font>
-  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date" /></font><br><br>
+  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date" required="required" /></font><br><br>
 
 
   <font style="float:left; margin-left:20%">Date Attended    :</font>
-  <font style="float:right;margin-right:20%"><form:input  path="dateAttended" style="width:200px;" type="date"  size="12" /></font> <br><BR >
+  <font style="float:right;margin-right:20%"><form:input  path="dateAttended" style="width:200px;" type="date"  size="12" required="required" /></font> <br><BR >
 
  <font style="float:left; margin-left:20%">Attach Certificate:</font>
 
-<font style="float:right;margin-right:20%"><form:input path="attachCertificate" type="file" name="datafile" size="40"/></font>
+<font style="float:right;margin-right:20%"><form:input path="attachFile" type="file" name="datafile" size="40"/></font>
 <br><BR>
 
   <font style="float:left; margin-left:20%">Completion Status:</font>

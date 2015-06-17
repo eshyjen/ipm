@@ -23,6 +23,9 @@ public interface MandatoryCertificationDAO {
 
 	public List<MandatoryCertification> findByCompletionStatus(
 			Object completionStatus);
+	
+	public List<MandatoryCertification> findByAttachFile(
+			Object attachFile);
 
 	public MandatoryCertification getMandatoryCertificationDetail(String id);
 
