@@ -1,19 +1,29 @@
 package com.ericsson.ipm.v1.web.controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashSet;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.MandatoryCertification;
@@ -52,7 +62,7 @@ public class MandatoryCertificationController extends BaseController {
 	@RequestMapping(value = "saveMandatoryCertification.html", method = RequestMethod.POST)
 	public String saveMandatoryCertificationForm(
 			@ModelAttribute("mandatoryCertificationDTO") MandatoryCertificationDTO mandatoryCertificationDTO,
-			HttpServletRequest request, Model model) {
+			   BindingResult result, HttpServletRequest request, Model model) {
 		UserProfile profile = null;
 		ContextAuthenticatedUserDetailsVO loggedInUser = getCurrentUser();
 		int id = mandatoryCertificationDTO.getId();
@@ -71,10 +81,105 @@ public class MandatoryCertificationController extends BaseController {
 							.getCompletionStatus());
 			mandatoryCertification.setUserprofile(userProfileService
 					.findById(profile.getId()));
-			mandatoryCertification.setAttachFile(mandatoryCertificationDTO
-					.getAttachFile());
+
+
+
+
+			try {
+
+				Part part = request.getPart("uploadedFile");
+				InputStream inputStream = part.getInputStream();
+				System.out.println("inputStream::"+inputStream);
+				String fileName="";
+				HashSet<String> headers=(HashSet<String>)part.getHeaders("content-disposition");
+		        for(String head:headers)
+		        {
+
+		        	if(head.indexOf("filename")>-1)
+		        	{
+						String[] ar =head.split("=");
+
+						String newStr = ar[ar.length-1];
+
+						fileName=newStr.substring(newStr.lastIndexOf(File.separator)+2, newStr.length()-1);
+						mandatoryCertification.setAttachFile(fileName);
+		        	}
+		        }
+		        String signum=request.getRemoteUser();
+		        String path="/home/temp/file/"+signum;
+		        //System.out.println(signum);
+		        boolean success = false;
+		        
+		        File directory = new File(path);
+		        if (directory.exists()==false) 
+		        {
+		        	success = directory.mkdir();
+		        }
+				File newFile = new File("/home/temp/file/"+signum+"/"+fileName);
+				   if (!newFile.exists()) {
+					   	newFile.createNewFile();
+				   }
+				   FileOutputStream outputStream = new FileOutputStream(newFile);
+				   int read = 0;
+				   byte[] bytes = new byte[102400];
+
+				   while ((read = inputStream.read(bytes)) != -1) {
+				    outputStream.write(bytes, 0, read);
+				   }
+				  }
+		       
+			 catch (IllegalStateException | IOException | ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+
+
 			mandatoryCertificationService.saveOrUpdate(mandatoryCertification);
 		}
+
+
+
+		try {
+
+			Part part = request.getPart("uploadedFile");
+			InputStream inputStream = part.getInputStream();
+			System.out.println("inputStream::"+inputStream);
+			String fileName="";
+			HashSet<String> headers=(HashSet<String>)part.getHeaders("content-disposition");
+	        for(String head:headers)
+	        {
+
+	        	if(head.indexOf("filename")>-1)
+	        	{
+					String[] ar =head.split("=");
+
+					String newStr = ar[ar.length-1];
+
+					fileName=newStr.substring(newStr.lastIndexOf(File.separator)+2, newStr.length()-1);
+					//System.out.println("ADSADA:::::::::"+fileName);
+	        	}
+	        }
+
+			File newFile = new File("/home/temp/file/"+fileName);
+			   if (!newFile.exists()) {
+			    newFile.createNewFile();
+			   }
+			   FileOutputStream outputStream = new FileOutputStream(newFile);
+			   int read = 0;
+			   byte[] bytes = new byte[102400];
+
+			   while ((read = inputStream.read(bytes)) != -1) {
+			    outputStream.write(bytes, 0, read);
+			   }
+
+		} catch (IllegalStateException | IOException | ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		  // FILE END
 		LOGGER.debug("saveMandatoryCertification TrainingName: "
 				+ mandatoryCertificationDTO.getTrainingName());
 		LOGGER.debug("saveMandatoryCertification DateWeekPlanned: "

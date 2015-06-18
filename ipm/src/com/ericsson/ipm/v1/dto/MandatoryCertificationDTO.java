@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 public class MandatoryCertificationDTO implements Serializable {
 
 
@@ -30,6 +31,8 @@ private String dateAttended;
 private String completionStatus;
 
 private String attachFile;
+
+private MultipartFile uploadedFile;
 
 private int userId;
 
@@ -66,7 +69,6 @@ public void setCompletionStatus(String completionStatus) {
 }
 
 
-
 public String getAttachFile() {
 	return attachFile;
 }
@@ -89,6 +91,14 @@ public int getId() {
 
 public void setId(int id) {
 	this.id = id;
+}
+
+public MultipartFile getUploadedFile() {
+	return uploadedFile;
+}
+
+public void setUploadedFile(MultipartFile uploadedFile) {
+	this.uploadedFile = uploadedFile;
 }
 
 

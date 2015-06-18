@@ -14,8 +14,6 @@
 	<fmt:setBundle basename="messages" />
 
 
-	<html>
-	<head>
 
 	<link href="${rootURL}/resources/bootstrap/css/bootstrap.css"
 				media="screen" rel="stylesheet" type="text/css" />
@@ -132,7 +130,7 @@
 
 
 <div align='center'>
-<form:form  name="myForm" method="post" action="saveMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO">
+<form:form  name="myForm" method="post" action="saveMandatoryCertification.html" modelAttribute="mandatoryCertificationDTO" enctype="multipart/form-data">
 
 
 
@@ -150,7 +148,7 @@
 
  <font style="float:left; margin-left:20%">Attach Certificate:</font>
 
-<font style="float:right;margin-right:20%"><form:input path="attachFile" type="file" name="datafile" size="40"/></font>
+<font style="float:right;margin-right:20%"><input type="file" name="uploadedFile" size="40"/></font>
 <br><BR>
 
   <font style="float:left; margin-left:20%">Completion Status:</font>

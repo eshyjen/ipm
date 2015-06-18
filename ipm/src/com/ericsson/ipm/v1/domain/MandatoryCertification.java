@@ -14,23 +14,23 @@ import javax.persistence.Table;
 
 
 
-	
+
 	@Entity
 	@Table(name="MANDATORY_CERTIFICATION")
 	@NamedQuery(name="MandatoryCertification.findAll", query="SELECT o FROM MandatoryCertification o")
 	public class MandatoryCertification implements Serializable{
-		
+
 		private static final long serialVersionUID = 1L;
-		
+
 		@Id
 		@GeneratedValue
 		@Column(name = "ID")
 		private int id;
-		
+
 		@ManyToOne(fetch=FetchType.LAZY)
 		@JoinColumn(name="userID")
 		private UserProfile userprofile;
-		
+
 
 		@Column(name = "trainingName")
 		private String trainingName;
@@ -43,10 +43,12 @@ import javax.persistence.Table;
 
 		@Column(name = "completionStatus")
 		private String completionStatus;
-		
+
 		@Column(name = "attachFile")
 		private String attachFile;
-		
+
+		/*@Column(name = "FILE_DATA")
+	    private byte[] data;*/
 
 		public int getId() {
 			return id;
@@ -103,9 +105,17 @@ import javax.persistence.Table;
 		public void setAttachFile(String attachFile) {
 			this.attachFile = attachFile;
 		}
-		
-		
-		
-		
+
+		/*public byte[] getData() {
+			return data;
+		}
+
+		public void setData(byte[] data) {
+			this.data = data;
+		}*/
+
+
+
+
 
 }

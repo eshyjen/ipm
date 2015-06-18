@@ -1,5 +1,4 @@
-
-	<html>
+<html>
 	<head>
 	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"%>
@@ -58,7 +57,7 @@
 
 
             #loginbox {
-      width: 700px;
+      width: 900px;
       height: 350px;
 
       background-color: #7B68F2;
@@ -97,6 +96,9 @@
     column-count: 4px;
 }
 
+		.mod{
+		padding: 8px;
+		}
         </style>
 
 <script type="text/javascript">
@@ -145,20 +147,20 @@ function deleteMsg(){
 				<div id="tablediv">
 
 					 <display:table id="usertable" name="<%=Constants.ASSET_LIST %>" class="list" sort="page" pagesize="5" export="true" requestURI="assetDetails.html"  >
-				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id">
+				   	 <display:column class="mod" title="Edit/Delete"  paramProperty="id" paramId="id">
 				   	 <a href="assetForUpdate.html?id=${usertable.id}">
 				   	 <img src="<%=request.getContextPath()%>/resources/images/edit_icon.gif" title="Edit" border="0">
 				   	 </a><img src="<%=request.getContextPath()%>/resources/images/spacer.gif" width="4" height="1">
 				   			<a href="removeAssetDetail.html?id=${usertable.id}" onclick="return deleteMsg()">
 				   			<img src="<%=request.getContextPath()%>/resources/images/remove_icon.gif" title="Remove" border="0"></a>
 				   	 </display:column>
-					 <display:column property="id" sortable="true" title="Id"/>
-				     <display:column property="assetName" title="Asset Name" sortable="true" sortProperty="assetName"/>
+					 <display:column class="mod" property="id" sortable="true" title="Id"/>
+				     <display:column class="mod" property="assetName" title="Asset Name" sortable="true" sortProperty="assetName"/>
 
-				     <display:column property="projectName" title="Project Name" sortable="true" />
-				     <display:column property="registeredInAssetPortal" title="Registered In Asset Portal" sortable="true" />
-				     <display:column property="reusedInOtherProjectsName" title="Reused In Other Projects Name" sortable="true" />
-				     <display:column property="effortSave" title="Effort Save" sortable="true" />
+				     <display:column class="mod" property="projectName" title="Project Name" sortable="true" />
+				     <display:column class="mod" property="registeredInAssetPortal" title="Registered In Asset Portal" sortable="true" />
+				     <display:column class="mod" property="reusedInOtherProjectsName" title="Reused In Other Projects Name" sortable="true" />
+				     <display:column class="mod" property="effortSave" title="Effort Save" sortable="true" />
 				     </display:table>
 				</div>
 			</form:form>
