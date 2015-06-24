@@ -58,7 +58,8 @@ function back2ProtectedHome() {
   			<li><a href="caDetails.html?domain=MSDP&skill=System_Integration"><span>MSDP SI Skill</span></a></li>
   			<li><a href="caDetails.html?domain=MSP&skill=Adaptation"><span>MSP Skill</span></a></li>
   			<li><a href="caDetails.html?domain=MSP&skill=System_Integration"><span>MSP SI Skill</span></a></li>
-			<li><a href="showMandatoryCertification.html"><span>Mandatory Certification</span></a></li>
+			<li><a href="showMandatoryCertification.html"><span>Mandatory Training</span></a></li>
+			<li><a href="Certification.html"><span>Certification</span></a></li>
 		 </sec:authorize>
 
          <li class='last'><a href='userDetails.html'><span>Employee Profile</span></a></li>

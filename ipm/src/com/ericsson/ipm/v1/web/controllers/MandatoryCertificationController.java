@@ -88,6 +88,7 @@ public class MandatoryCertificationController extends BaseController {
 			try {
 
 				Part part = request.getPart("uploadedFile");
+				System.out.println("part::"+part);
 				InputStream inputStream = part.getInputStream();
 				System.out.println("inputStream::"+inputStream);
 				String fileName="";
@@ -109,9 +110,9 @@ public class MandatoryCertificationController extends BaseController {
 		        String path="/home/temp/file/"+signum;
 		        //System.out.println(signum);
 		        boolean success = false;
-		        
+
 		        File directory = new File(path);
-		        if (directory.exists()==false) 
+		        if (directory.exists()==false)
 		        {
 		        	success = directory.mkdir();
 		        }
@@ -127,7 +128,7 @@ public class MandatoryCertificationController extends BaseController {
 				    outputStream.write(bytes, 0, read);
 				   }
 				  }
-		       
+
 			 catch (IllegalStateException | IOException | ServletException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

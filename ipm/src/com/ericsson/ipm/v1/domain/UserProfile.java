@@ -118,12 +118,12 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private Set<Asset> assets;
 
-	
+
 
 	//bi-directional many-to-one association to Operationaldiscpline
 	@OneToMany(mappedBy="userprofile")
 	private Set<OperationalDiscipline> operationaldiscplines;
-	
+
 	//bi-directional many-to-one association to MandatoryCertification
 		@OneToMany(mappedBy="userprofile")
 		private Set<MandatoryCertification> mandatoryCertification;
@@ -135,13 +135,13 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private Set<DeliveryQuality> deliveryQualities;
 
-	
+
 	//@OneToOne/*(mappedBy = "userprofile", cascade= CascadeType.ALL)*/
 	//@PrimaryKeyJoinColumn(name="ID")
 	//@MapsId
 	@OneToOne(mappedBy = "userprofile", cascade= CascadeType.ALL)
 	private Employee employee;
-	
+
 	public UserProfile() {
 	}
 
@@ -390,10 +390,10 @@ public class UserProfile implements Serializable {
 
 		return operationaldiscpline;
 	}
-	
+
 	//MANDATORY CERTIFICATION!!!!!!!!!!!!_--------------------------__!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
-	
+
+
 	public Set<MandatoryCertification> getMandatorycertifications() {
 		return this.mandatoryCertification;
 	}
@@ -415,8 +415,8 @@ public class UserProfile implements Serializable {
 
 		return mandatorycertification;
 	}
-	
-	
+
+
 	// end mandatory certification -----------------------------------------------------------------
 
 	   public List<UserRoleAssignment> getRoleAssignments() {

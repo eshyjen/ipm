@@ -17,7 +17,7 @@
 
 
 
-	
+
 			<script type="text/javascript"
 				src="${rootURL}/resources/jquery/jquery-1.10.2.js"></script>
 			<script type="text/javascript"
@@ -129,7 +129,7 @@ function deleteMsg(){
 <div class="container" align="center">
 		<div id="loginbox">
 
-        <div class='logintitle ericssonfont'> Mandatory Certifications List</div>
+        <div class='logintitle ericssonfont'> Mandatory Trainings List</div>
         <div class='separator'></div>
 <div id=newpaper>
 <div id="dataview"><br>
@@ -141,7 +141,7 @@ function deleteMsg(){
 			</a>
 				<div id="tablediv">
 
-					 <display:table id="usertable" name="<%=Constants.MANDATORY_CERTIFICATION_LIST %>" 
+					 <display:table id="usertable" name="<%=Constants.MANDATORY_CERTIFICATION_LIST %>"
 					 class="list" sort="page" pagesize="5" export="true" requestURI="showMandatoryCertification.html"  >
 				   	 <display:column title="Edit/Delete"  paramProperty="id" paramId="id">
 				   	 <a href="mandatoryCertificationForUpdate.html?id=${usertable.id}">
@@ -156,11 +156,11 @@ function deleteMsg(){
 				     <display:column property="dateWeekPlanned" title="Date/WK Planned" sortable="true" />
 				     <display:column property="dateAttended" title="Date Attended" sortable="true" />
 				     <display:column property="completionStatus" title="Completion Status" sortable="true" />
-				     <display:column property="attachFile" title="Attached File" sortable="true" /> 
+				     <display:column property="attachFile" title="Attached File" sortable="true" />
 				     </display:table>
 				</div>
 			</form:form>
-		
+
 			</div>
 		</div>
 </body>

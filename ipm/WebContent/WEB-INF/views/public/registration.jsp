@@ -26,12 +26,12 @@
 
 
 
-	
+
 	<link href="${pageContext.request.contextPath }/resources/css/style1.css" rel="stylesheet" type="text/css" />
-		
+
 	<link href="${pageContext.request.contextPath }/resources/css/commonStyle.css" rel="stylesheet" type="text/css" />
-		
-		
+
+
 
 <style type='text/css'>
 
@@ -146,8 +146,8 @@ function validateEmail() {
 </head>
 
 
-<body> 
-<div class="container" align="center"> 
+<body>
+<div class="container" align="center">
 		<div id="loginbox">
         <div class='logintitle ericssonfont'> REGISTRATION</div>
         <div class='separator'></div>
@@ -158,9 +158,9 @@ function validateEmail() {
 
 <table>
   <tr><td>
-					<label class='ericssonfont'><spring:message code="label.user.firstName"></spring:message></label> 
-					<form:input path="userFirstName" value="" size="26"/>
-					<form:errors path="userFirstName" cssClass="alert alert-error"/>
+					<label class='ericssonfont'><spring:message code="label.user.firstName"></spring:message></label>
+					<form:input path="userFristName" value="" size="26"/>
+					<form:errors path="userFristName" cssClass="alert alert-error"/>
 </td> </tr> <tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
 
 		<tr><td>
@@ -213,23 +213,23 @@ function validateEmail() {
 					</li>
 					--%>		<tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr> <tr><td></td></tr><tr><td></td></tr>
 				<tr><td align="center">
-		
+
 				<input type="submit" class="btn btn-primary"/>
 					<%-- <spring:message code="label.form.submit"></spring:message> --%>
-				 
-				
-				
-				
+
+
+
+
 				 <input type="submit" class="btn btn-primary" value="Reset"/>
 					<%-- <spring:message code="label.form.reset"></spring:message> --%>
-				
+
 				</td> </tr>
-				
+
 				</table>
 			</form:form>
 
 			<br> <a href="<c:url value="login.html" />"> <spring:message code="label.form.loginLink"></spring:message> </a>
-		</div> 
+		</div>
 	</div>
 
 </body>

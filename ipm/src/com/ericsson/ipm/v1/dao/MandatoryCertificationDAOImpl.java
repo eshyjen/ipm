@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.domain.Asset;
 import com.ericsson.ipm.v1.domain.MandatoryCertification;
-import com.ericsson.ipm.v1.domain.OperationalDiscipline;
 
 @Repository("mandatoryCertificationDAO")
 @Transactional

@@ -32,11 +32,11 @@ public class Employee implements Serializable {
 	@JoinColumn(name="ID")
     private UserProfile userprofile;
 	//private int id;
-	
+
 	//@GeneratedValue should no auto increment
 	//@Column(name = "ID")
 	//private int id;
-	
+
 	//bi-directional many-to-one association to Jobstage
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Js")
@@ -45,8 +45,8 @@ public class Employee implements Serializable {
 	//bi-directional many-to-one association to Employeeskill
 	@OneToMany(mappedBy="employee")
 	private List<EmployeeSkill> employeeSkills;
-	
-	
+
+
 
 	public Employee() {
 	}
@@ -100,8 +100,8 @@ public class Employee implements Serializable {
 	public void setUserprofile(UserProfile userprofile) {
 		this.userprofile = userprofile;
 	}
-	
-	
-	
+
+
+
 
 }

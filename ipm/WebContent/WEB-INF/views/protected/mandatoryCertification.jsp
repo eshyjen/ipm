@@ -35,7 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/common_style.css" />
 
 
-		<title>Mandatory Certification</title>
+		<title>Mandatory Training</title>
 
 
 		<style type='text/css'>

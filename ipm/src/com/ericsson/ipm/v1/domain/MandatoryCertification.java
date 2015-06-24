@@ -14,10 +14,10 @@ import javax.persistence.Table;
 
 
 
-
 	@Entity
 	@Table(name="MANDATORY_CERTIFICATION")
 	@NamedQuery(name="MandatoryCertification.findAll", query="SELECT o FROM MandatoryCertification o")
+
 	public class MandatoryCertification implements Serializable{
 
 		private static final long serialVersionUID = 1L;
@@ -106,13 +106,6 @@ import javax.persistence.Table;
 			this.attachFile = attachFile;
 		}
 
-		/*public byte[] getData() {
-			return data;
-		}
-
-		public void setData(byte[] data) {
-			this.data = data;
-		}*/
 
 
 
