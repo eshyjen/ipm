@@ -156,7 +156,6 @@ function deleteMsg(){
 				   	 </display:column>
 					 <display:column class="mod" property="id" sortable="true" title="Id"/>
 				     <display:column class="mod" property="assetName" title="Asset Name" sortable="true" sortProperty="assetName"/>
-
 				     <display:column class="mod" property="projectName" title="Project Name" sortable="true" />
 				     <display:column class="mod" property="registeredInAssetPortal" title="Registered In Asset Portal" sortable="true" />
 				     <display:column class="mod" property="reusedInOtherProjectsName" title="Reused In Other Projects Name" sortable="true" />

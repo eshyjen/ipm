@@ -152,11 +152,13 @@ function deleteMsg(){
 				   	 </display:column>
 					 <display:column property="id" sortable="true" title="Id"/>
 				     <display:column property="trainingName" title="Training Name" sortable="true" sortProperty="trainingName"/>
-
-				     <display:column property="dateWeekPlanned" title="Date/WK Planned" sortable="true" />
+				   	 <display:column property="dateWeekPlanned" title="Date/WK Planned" sortable="true" />
 				     <display:column property="dateAttended" title="Date Attended" sortable="true" />
 				     <display:column property="completionStatus" title="Completion Status" sortable="true" />
-				     <display:column property="attachFile" title="Attached File" sortable="true" />
+				     <display:column property="attachFile" paramId="x"
+				     href="file.html?" title="Attached File" sortable="true" />
+
+
 				     </display:table>
 				</div>
 			</form:form>

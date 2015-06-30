@@ -34,15 +34,9 @@
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
 
-
-
-
-
-
-
             #loginbox {
-      width: 500px;
-      height: 500px;
+      width: 750px;
+      height: 450px;
 
       background-color: #7B68F2;
       background: linear-gradient(to bottom, #CFCFCF, #FFFFFF);
@@ -75,6 +69,15 @@
        clear:both;
     }
 
+    .form-column{
+    	margin:10px;
+    }
+
+    .button-center{
+		align:center;
+		width:100%;
+    }
+
         </style>
 
 
@@ -97,46 +100,33 @@
 			})
 		}
 	</script>
-
-
-
-
 </head>
 
-
-
-
-
-
 <body>
-
-
 		<div class="container" align="center">
 		<div id="loginbox">
-
         <div class='logintitle ericssonfont'> Asset Details</div>
         <div class='separator'></div>
  <form:form method="post" action="saveAssetDetails.html" modelAttribute="assetDTO" name="updateAssetDetailForm">
+	<section style="width:100%;">
+	<div class="form-column" style="float:left;">
 	<label for="login_name" class='ericssonfont'>Asset Name*:</label>
-
 	<form:input path="assetName" style="width:140px;" id="assetName" required="required"/>
 	<%-- <br><br>
 	<label for="login_name" class='ericssonfont'>Asset ID *:</label>
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Project Type*: </font> -->
 	<form:input path="id" style="width:140px;" id="id" required="required"/> --%>
 	<br><br>
-	
 	<label for="login_name" class='ericssonfont'>Project name</label>
 	<form:input path="projectName" style="width:140px;" id="projectName" required="required"/>
-	
 	<br><br>
 	<label for="login_name" class='ericssonfont'>Reused in Other Projects Name*:</label>
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DPI Score*: </font> -->
 	<form:input path="reusedInOtherProjectsName" style="width:140px;" id="reusedInOtherProjectsName" required="required"/>
 	<br><br>
-	<label for="login_name" class='ericssonfont'>Asset Description*:</label>
-	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Date*: </font> -->
-	<form:input path="assetShortDescription"  style="width:140px;" id="assetShortDescription" required="required"/>
+	<label for="login_name" class='ericssonfont'>Asset Creation Date*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">DPI Score*: </font> -->
+	<form:input path="assetCreationDate" style="width:140px;" id="assetCreationDate" required="required"/>
 	<br><br>
 	<label for="login_name" class='ericssonfont'>Effort Save*:</label>
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">PM/SPM Name*: </font> -->
@@ -146,13 +136,24 @@
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">TL name*: </font> -->
 	<form:input path="registeredInAssetPortal" style="width:140px;" id="registeredInAssetPortal" required="required"/>
 	<br><br>
+	</div>
+	<div class="form-column" style="float:left;">
+	<label for="login_name" class='ericssonfont'>Asset Description*:</label>
+	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">Date*: </font> -->
+	<form:textarea path="assetShortDescription"  style="width:140px;" rows="11" id="assetShortDescription" required="required"/>
+	<br><br>
 	<label for="login_name" class='ericssonfont'>Approval Status*:</label>
 	<!-- <font face="THE TIMES NEW ROMAN"color="#0B2F3A" size="5">TL name*: </font> -->
 	<form:input path="approvalStatus" style="width:140px;" id="approvalStatus" required="required"/>
 	<br><br>
 	<form:hidden path="id" style="width:140px;" id="id"/>
-	<input type="submit" style="width:100px;" value="Save/Update" />
+	</div>
+	</section>
+	<section style="width:140px;" >
+	<div class="button-center">
+	<input type="submit" value="Save/Update" />
+	</div>
+	</section>
 </form:form>
-
 </body>
 </html>

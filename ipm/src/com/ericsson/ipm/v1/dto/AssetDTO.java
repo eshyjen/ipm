@@ -3,29 +3,46 @@ package com.ericsson.ipm.v1.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class AssetDTO implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
 
-	
-	
+
+
 	private int id;
 
 	private String approvalStatus;
 
+	@NotNull(message="AssetName must not be Empty")
+    @NotEmpty(message="AssetName must not be Empty")
 	private String assetName;
 
+	@NotNull
+    @NotEmpty
+	private String assetCreationDate;
+
+	@NotNull
+    @NotEmpty
 	private String assetShortDescription;
 
 	private String effortSave;
 
+	@NotNull
+    @NotEmpty
 	private String projectName;
 
+	@NotNull
+    @NotEmpty
 	private String registeredInAssetPortal;
-
 	private String reusedInOtherProjectsName;
-	
+
+	@NotNull
+    @NotEmpty
 	private Date creationDate;
 
 	public int getId() {
@@ -51,6 +68,9 @@ public class AssetDTO implements Serializable{
 	public void setAssetName(String assetName) {
 		this.assetName = assetName;
 	}
+
+
+
 
 	public String getAssetShortDescription() {
 		return assetShortDescription;
@@ -100,7 +120,15 @@ public class AssetDTO implements Serializable{
 		this.creationDate = creationDate;
 	}
 
+	public String getAssetCreationDate() {
+		return assetCreationDate;
+	}
+
+	public void setAssetCreationDate(String assetCreationDate) {
+		this.assetCreationDate = assetCreationDate;
+	}
+
 	// private UserProfile userprofile;
-	
-	
+
+
 }

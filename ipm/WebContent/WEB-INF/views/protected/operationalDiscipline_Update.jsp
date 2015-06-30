@@ -34,11 +34,7 @@
 
 
 
-
-
-
-
-            #loginbox {
+			 #loginbox {
       width: 600px;
       height: 350px;
 

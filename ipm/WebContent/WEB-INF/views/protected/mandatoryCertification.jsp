@@ -124,7 +124,7 @@
 
 <div class="container" align='center'>
 <div id='loginbox' ><font color="#0B2F3A" size="4">
-<div class='logintitle ericssonfont'> Mandatory Certification</div>
+<div class='logintitle ericssonfont'> Mandatory Training</div>
 
 <div class='separator'></div>
 
@@ -148,15 +148,15 @@
 
  <font style="float:left; margin-left:20%">Attach Certificate:</font>
 
-<font style="float:right;margin-right:20%"><input type="file" name="uploadedFile" size="40"/></font>
-<br><BR>
+ <font style="float:right;margin-right:20%"><input type="file" name="uploadedFile" size="40"/></font>
+ <br><BR>
 
   <font style="float:left; margin-left:20%">Completion Status:</font>
   <font style="float:right;margin-right:35%"> <form:radiobutton path="completionStatus" name="option" value="Yes"   />Yes
 <form:radiobutton path="completionStatus" name="option" value="No"  />No  </font><br><br>
 
 <input style="width: 100px;" type="submit" class="styled-button-5" value="submit"></input>
-
+<form:hidden path="id" id="id"></form:hidden>
 
 </form:form>
 </div>
