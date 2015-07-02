@@ -11,12 +11,12 @@ public abstract class BaseController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
-	
+
 	public ContextAuthenticatedUserDetailsVO getCurrentUser()
 	{
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		LOGGER.debug("principal : "+principal);
-	    if (principal instanceof UserDetails) 
+	    if (principal instanceof UserDetails)
 	    {
 	    	String signum = ((UserDetails) principal).getUsername();
 	    	LOGGER.debug("signum : "+signum);

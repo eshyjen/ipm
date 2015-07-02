@@ -128,8 +128,7 @@ public class UserProfile implements Serializable {
 		@OneToMany(mappedBy="userprofile")
 		private Set<MandatoryCertification> mandatoryCertification;
 
-		@OneToMany(mappedBy="userprofile")
-		private Set<Certification> certification;
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserRoleAssignment> roleAssignments = new ArrayList<UserRoleAssignment>(0);
@@ -422,30 +421,8 @@ public class UserProfile implements Serializable {
 
 	// end mandatory certification -----------------------------------------------------------------
 
-	//CERTIFICATION!!!!!!!!!!!!_--------------------------__!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-	public Set<Certification> getCertifications() {
-		return this.certification;
-	}
-
-	public void setCertifications(Set<Certification> certification) {
-		this.certification = certification;
-	}
-
-	public Certification addCertification(Certification certification) {
-		getCertifications().add(certification);
-		certification.setUserprofile(this);
-
-		return certification;
-	}
-
-	public Certification removeCertification(Certification certification) {
-		getCertifications().remove(certification);
-		certification.setUserprofile(null);
-
-		return certification;
-	}
 	   public List<UserRoleAssignment> getRoleAssignments() {
 		return roleAssignments;
 	}
