@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.domain.Asset;
+import com.ericsson.ipm.v1.domain.Certification;
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
 import com.ericsson.ipm.v1.domain.KPI;
 import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
@@ -366,17 +367,17 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			throw re;
 		}
 	}
-	
+
 	public UserProfile getUserDetails(String signunid){
 		List<UserProfile> profiles = findBySignunid(signunid);
 		UserProfile profile = null;
-		
-		
+
+
 		//final String queryString = "SELECT model from UserProfile model JOIN FETCH model.assets JOIN FETCH model.operationaldiscplines JOIN FETCH model.deliveryQualities where model.signunId= :propertyValue";
 		final String queryString = "SELECT model from UserProfile model where model.signunId= :propertyValue";
-		
+
 		if(profiles != null && !profiles.isEmpty()){
-			
+
 			Query query = getEntityManager().createQuery(queryString);
 			query.setParameter("propertyValue", signunid);
 			List<UserProfile> userProfiles = query.getResultList();
@@ -404,6 +405,24 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			for(UserProfile profile : userProfiles){
 				Set<MandatoryCertification> mandatoryCertification = profile.getMandatorycertifications();
 				LOGGER.debug("mandatoryCertification : "+ mandatoryCertification);
+			}
+			return userProfiles;
+		} catch (RuntimeException re) {
+			LOGGER.info("UserProfile find by property name failed"+ re);
+			throw re;
+		}
+	}
+	@Override
+	public List<UserProfile> findByIdWithCertification(Object id) {
+		try {
+			//final String queryString = "from UserProfile model left join fetch model.assets where model.id= :propertyValue";
+			final String queryString = "from UserProfile model where model.id= :propertyValue";
+			Query query = getEntityManager().createQuery(queryString);
+			query.setParameter("propertyValue", id);
+			List<UserProfile> userProfiles = query.getResultList();
+			for(UserProfile profile : userProfiles){
+				Set<Certification> certification = profile.getCertifications();
+				LOGGER.debug("certification : "+ certification);
 			}
 			return userProfiles;
 		} catch (RuntimeException re) {

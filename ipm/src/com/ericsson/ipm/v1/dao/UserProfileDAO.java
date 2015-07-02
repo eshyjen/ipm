@@ -6,7 +6,7 @@ import com.ericsson.ipm.v1.domain.UserProfile;
 
 /**
  * Interface for UserprofileDAO.
- * 
+ *
  * @author iqbal.hosain.khan@ericsson.com
  */
 
@@ -14,7 +14,7 @@ public interface UserProfileDAO {
 
 	/**
 	 * Find all Userprofile entities with a specific property value.
-	 * 
+	 *
 	 * @param propertyName
 	 *            the name of the Userprofile property to query
 	 * @param value
@@ -65,7 +65,7 @@ public interface UserProfileDAO {
 
 	/**
 	 * Find all Userprofile entities.
-	 * 
+	 *
 	 * @return List<Userprofile> all Userprofile entities
 	 */
 	public List<UserProfile> findAll();
@@ -91,5 +91,8 @@ public interface UserProfileDAO {
 	public UserProfile getUserDetails(String signunid);
 
 	public List<UserProfile> findByIdWithMandatoryCertification(Object id);
+
+	public List<UserProfile> findByIdWithCertification(Object id);
+
 
 }
