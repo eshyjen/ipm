@@ -56,7 +56,7 @@ public class MandatoryCertificationController extends BaseController {
         // model.addAttribute("roles", roleService.findAll());
         return "protected/mandatoryCertification";
     }
-    
+
 
     @RequestMapping(value = "saveMandatoryCertification.html", method = RequestMethod.POST)
     public String saveMandatoryCertificationForm(
@@ -193,7 +193,7 @@ public class MandatoryCertificationController extends BaseController {
         UserProfile userProfile = userProfileService
                 .findByIdWithMandatoryCertification(profile.getId());
         model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
-                userProfile.getMandatorycertifications());
+                userProfile.getMandatoryCertifications());
         return "protected/mandatoryCertification_Show";
     }
 
@@ -211,7 +211,7 @@ public class MandatoryCertificationController extends BaseController {
                 .findByIdWithMandatoryCertification(profile.getId());
         System.out.println("PROFILE------------------------" + profile);
         model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
-                userProfile.getMandatorycertifications());
+                userProfile.getMandatoryCertifications());
 
         return "protected/mandatoryCertification_Show";
     }
@@ -277,7 +277,7 @@ public class MandatoryCertificationController extends BaseController {
         userProfile = userProfileService
                 .findByIdWithMandatoryCertification(profile.getId());
         model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
-                userProfile.getMandatorycertifications());
+                userProfile.getMandatoryCertifications());
 
         return "protected/mandatoryCertification_Show";
     }

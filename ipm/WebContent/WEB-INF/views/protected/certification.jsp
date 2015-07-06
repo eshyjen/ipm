@@ -119,8 +119,6 @@
 		 <font style="float:left; margin-left:20%;"> Training Name:</font>
 		 <font style="float:right;margin-right:20% "><form:input path="trainingName" id="field" style="width:200px;" required="required"/> </font><br><BR>
 
-
-
 		  <font style="float:left; margin-left:20%">Date/WK Planned:</font>
 		  <font style="float:right;margin-right:20%"><form:input path="dateWeekPlanned"  style="width:200px;"  type="date" required="required" /></font><br><br>
 

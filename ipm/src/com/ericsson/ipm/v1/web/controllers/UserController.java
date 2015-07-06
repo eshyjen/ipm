@@ -280,7 +280,6 @@ public class UserController extends BaseController {
 			employeeDTO.setName(managedPeopleMap.get(string));
 			employeeDTOs.add(employeeDTO);
 		}
-	    
 		model.addAttribute(Constants.EMPLOYEE_LIST, employeeDTOs);
 		return "protected/managedPeople";
 	}

@@ -92,6 +92,10 @@ public interface UserProfileDAO {
 
 	public List<UserProfile> findByIdWithMandatoryCertification(Object id);
 
+	public List<UserProfile> findByIdWithCertification(Object id);
+
+
+
 
 
 }

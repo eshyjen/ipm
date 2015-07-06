@@ -11,14 +11,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 /**
  * The persistent class for the userprofile database table.
@@ -125,9 +123,12 @@ public class UserProfile implements Serializable {
 	private Set<OperationalDiscipline> operationaldiscplines;
 
 	//bi-directional many-to-one association to MandatoryCertification
-		@OneToMany(mappedBy="userprofile")
-		private Set<MandatoryCertification> mandatoryCertification;
+	@OneToMany(mappedBy="userprofile")
+	private Set<MandatoryCertification> mandatoryCertifications;
 
+	//bi-directional many-to-one association to MandatoryCertification
+	@OneToMany(mappedBy="userprofile")
+	private Set<Certification> certifications;
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -393,35 +394,6 @@ public class UserProfile implements Serializable {
 		return operationaldiscpline;
 	}
 
-	//MANDATORY CERTIFICATION!!!!!!!!!!!!_--------------------------__!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-	public Set<MandatoryCertification> getMandatorycertifications() {
-		return this.mandatoryCertification;
-	}
-
-	public void setMandatorycertifications(Set<MandatoryCertification> mandatoryCertification) {
-		this.mandatoryCertification = mandatoryCertification;
-	}
-
-	public MandatoryCertification addMandatorycertification(MandatoryCertification mandatorycertification) {
-		getMandatorycertifications().add(mandatorycertification);
-		mandatorycertification.setUserprofile(this);
-
-		return mandatorycertification;
-	}
-
-	public MandatoryCertification removeMandatorycertification(MandatoryCertification mandatorycertification) {
-		getMandatorycertifications().remove(mandatorycertification);
-		mandatorycertification.setUserprofile(null);
-
-		return mandatorycertification;
-	}
-
-
-	// end mandatory certification -----------------------------------------------------------------
-
-
 
 	   public List<UserRoleAssignment> getRoleAssignments() {
 		return roleAssignments;
@@ -442,6 +414,7 @@ public class UserProfile implements Serializable {
 				addRole(role);
 			}
 		}
+
 
 		// convenience-method
 		public void clearAllRoles() {
@@ -481,7 +454,22 @@ public class UserProfile implements Serializable {
 			this.employee = employee;
 		}
 
+		public Set<MandatoryCertification> getMandatoryCertifications() {
+			return mandatoryCertifications;
+		}
 
+		public void setMandatoryCertifications(
+				Set<MandatoryCertification> mandatoryCertifications) {
+			this.mandatoryCertifications = mandatoryCertifications;
+		}
+
+		public Set<Certification> getCertifications() {
+			return certifications;
+		}
+
+		public void setCertifications(Set<Certification> certifications) {
+			this.certifications = certifications;
+		}
 
 
 }

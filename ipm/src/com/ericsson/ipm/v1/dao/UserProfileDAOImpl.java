@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ericsson.ipm.v1.domain.Asset;
+import com.ericsson.ipm.v1.domain.Certification;
 import com.ericsson.ipm.v1.domain.DeliveryQuality;
 import com.ericsson.ipm.v1.domain.KPI;
 import com.ericsson.ipm.v1.domain.KPIRoleAssignment;
@@ -402,7 +403,7 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			query.setParameter("propertyValue", id);
 			List<UserProfile> userProfiles = query.getResultList();
 			for(UserProfile profile : userProfiles){
-				Set<MandatoryCertification> mandatoryCertification = profile.getMandatorycertifications();
+				Set<MandatoryCertification> mandatoryCertification = profile.getMandatoryCertifications();
 				LOGGER.debug("mandatoryCertification : "+ mandatoryCertification);
 			}
 			return userProfiles;
@@ -411,6 +412,28 @@ public class UserProfileDAOImpl extends BaseDAO<Integer, UserProfile> implements
 			throw re;
 		}
 	}
+
+	@Override
+	public List<UserProfile> findByIdWithCertification(Object id) {
+		// TODO Auto-generated method stub
+		try {
+			//final String queryString = "from UserProfile model left join fetch model.assets where model.id= :propertyValue";
+			final String queryString = "from UserProfile model where model.id= :propertyValue";
+			Query query = getEntityManager().createQuery(queryString);
+			query.setParameter("propertyValue", id);
+			List<UserProfile> userProfiles = query.getResultList();
+			for(UserProfile profile : userProfiles){
+				Set<Certification> certification = profile.getCertifications();
+				LOGGER.debug("certification : "+ certification);
+			}
+			return userProfiles;
+		} catch (RuntimeException re) {
+			LOGGER.info("UserProfile find by property name failed"+ re);
+			throw re;
+		}
+	}
+
+
 
 
 }
