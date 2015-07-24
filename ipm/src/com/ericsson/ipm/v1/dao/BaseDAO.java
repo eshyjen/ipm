@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ericsson.ipm.v1.dao;
 
@@ -17,7 +17,7 @@ import com.ericsson.v1.util.Constants;
 
 /**
  * @author iqbal.hosain.khan@ericsson.com
- * 
+ *
  */
 public abstract class BaseDAO<K, E> implements GenericDAO<K, E> {
 	protected Class<E> entityClass;

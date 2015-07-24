@@ -40,7 +40,7 @@ function back2ProtectedHome() {
    <li class='has-sub' style=" font-size: 15px;" ><a href="#"><span>Home  &#9662;</span></a>
       <ul>
          <li><a href="ipmDashboard.html"><span>Home</span></a></li>
-         <li><a href='#'><span>Goals</span></a></li>
+         <li><a href="showGoal.html"><span>Goals</span></a></li>
          <li><a href='#'><span>Performance</span></a></li>
          <li><a href='assetDetails.html'><span>Asset</span></a></li>
          <li><a href='deliveryQualityList.html'><span>Delivery Quality</span></a></li>

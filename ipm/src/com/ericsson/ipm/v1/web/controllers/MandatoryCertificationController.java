@@ -212,7 +212,6 @@ public class MandatoryCertificationController extends BaseController {
         System.out.println("PROFILE------------------------" + profile);
         model.addAttribute(Constants.MANDATORY_CERTIFICATION_LIST,
                 userProfile.getMandatoryCertifications());
-
         return "protected/mandatoryCertification_Show";
     }
 

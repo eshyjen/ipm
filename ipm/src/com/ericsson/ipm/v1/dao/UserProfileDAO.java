@@ -95,6 +95,8 @@ public interface UserProfileDAO {
 	public List<UserProfile> findByIdWithCertification(Object id);
 
 
+	public List<UserProfile> findByIdWithGoal(Object id);
+
 
 
 

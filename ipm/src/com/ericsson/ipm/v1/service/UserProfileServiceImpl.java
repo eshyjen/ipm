@@ -166,6 +166,22 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	}
 
+	@Override
+	public UserProfile findByIdWithGoal(Object id) {
+		// TODO Auto-generated method stub
+		UserProfile userProfile = null;
+		
+		List<UserProfile> userProfiles = userProfileDAO.findByIdWithGoal(id);
+		LOGGER.debug("userProfiles for Goal: "+userProfiles);
+		if(userProfiles != null && userProfiles.size() > 0){
+			userProfile = userProfiles.get(0);
+		}
+		LOGGER.debug("userProfile : "+userProfile);
+		return userProfile;
+	}
+
+
+
 
 	@Override
     public UserProfile registerNewUserAccount(final RegistrationDTO accountDto) throws EmailExistsException {
@@ -518,6 +534,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
 
 
 

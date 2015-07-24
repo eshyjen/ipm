@@ -116,9 +116,7 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private Set<Asset> assets;
 
-
-
-	//bi-directional many-to-one association to Operationaldiscpline
+	//bi-directional many-to-one association to OperationalDiscpline
 	@OneToMany(mappedBy="userprofile")
 	private Set<OperationalDiscipline> operationaldiscplines;
 
@@ -126,9 +124,13 @@ public class UserProfile implements Serializable {
 	@OneToMany(mappedBy="userprofile")
 	private Set<MandatoryCertification> mandatoryCertifications;
 
-	//bi-directional many-to-one association to MandatoryCertification
+	//bi-directional many-to-one association to Certification
 	@OneToMany(mappedBy="userprofile")
 	private Set<Certification> certifications;
+
+	//bi-directional many-to-one association to Goal
+		@OneToMany(mappedBy="userprofile")
+		private Set<Goal> goals;
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -469,6 +471,14 @@ public class UserProfile implements Serializable {
 
 		public void setCertifications(Set<Certification> certifications) {
 			this.certifications = certifications;
+		}
+
+		public Set<Goal> getGoals() {
+			return goals;
+		}
+
+		public void setGoals(Set<Goal> goals) {
+			this.goals = goals;
 		}
 
 

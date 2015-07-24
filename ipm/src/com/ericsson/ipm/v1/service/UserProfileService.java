@@ -58,6 +58,8 @@ public interface UserProfileService {
 
 	 public UserProfile findByIdWithCertification(Object id);
 
+	 public UserProfile findByIdWithGoal(Object id);
+
 	 public UserProfile getUserDetails(String signunid);
 
 	public UserProfile findByTrainingName(String trainingName);
